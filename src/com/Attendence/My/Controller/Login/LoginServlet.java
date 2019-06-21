@@ -18,12 +18,14 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
             boolean rs = lo.loginquery(UserName,PassWord);
             if (rs==true){
 //                request.getRequestDispatcher("index.html").forward(request,response);
-                response.sendRedirect(request.getContextPath() + "/AttendanceFrontEnd/index.html");
+//               out.println(request.getContextPath());
+                response.sendRedirect( "http://localhost/AttendanceFrontEnd/index.html");
 
             }
             else {
 //                request.getRequestDispatcher("login.html");
-                response.sendRedirect(request.getContextPath() + "/AttendanceFrontEnd/login.html");
+//                out.println(request.getContextPath());
+                response.sendRedirect("http://localhost/AttendanceFrontEnd/login.html");
             }
         } catch (SQLException e) {
             e.printStackTrace();

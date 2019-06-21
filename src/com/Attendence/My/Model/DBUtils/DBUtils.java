@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class DBUtils {
     String driver="com.mysql.jdbc.Driver";
-    String url="jdbc:mysql://localhost:3306/Attendence";
+    String url="jdbc:mysql://localhost:3306/attendence";
     String user="root";
-    String password="YKY12345..";
+    String password="root";
     Connection conn=null;
     public Connection getConnecton(){
         try {

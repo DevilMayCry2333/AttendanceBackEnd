@@ -20,7 +20,9 @@ public class PunchCard {
         }
         ResultSet rs = null;
         try {
-            rs = st.executeQuery(tablename);
+            String sql = "SELECT * from " + tablename;
+
+            rs = st.executeQuery(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
