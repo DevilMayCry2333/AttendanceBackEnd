@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class Login {
     public ResultSet query(String username){
-        String sql = "SELECT password FROM usertable" + "WHERE username='" + username + "'";
+        String sql = "SELECT PassWord FROM tLogin " + "WHERE UserName='" + username + "'";
         DBUtils db = new DBUtils();
         ResultSet rs = null;
         Connection cn = db.getConnecton();

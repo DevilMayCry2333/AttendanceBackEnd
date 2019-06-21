@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "InsertDeServlet",urlPatterns = "/InsertDeServlet")
 public class InsertDeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-          boolean cc=false;
+        boolean cc=false;
         Department de=new Department();
         cc=de.InsertDepartment();
         if (cc==true){

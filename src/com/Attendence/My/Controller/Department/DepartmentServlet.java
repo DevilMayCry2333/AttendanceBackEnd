@@ -21,8 +21,6 @@ public class DepartmentServlet extends HttpServlet {
         RequestDispatcher requestDispatcher=request.getRequestDispatcher("xxx.jsp");
         requestDispatcher.forward(request,response);
 
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
