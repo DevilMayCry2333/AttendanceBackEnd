@@ -15,8 +15,12 @@ public class EmployeeList {
         try {
                 re = employee.EmployQuery();
                 while (re.next()){
-                    js.put("xx",re.getString("id"));
-                    js.put("x2",re.getString("user"));
+                    js.put("EmployId",re.getString("EmployId"));
+                    js.put("UserName",re.getString("UserName"));
+                    js.put("Gender",re.getString("Gender"));
+                    js.put("Age",re.getInt("Age"));
+                    js.put("Nation",re.getString("Nation"));
+                    js.put("Job",re.getString("Job"));
                     Json.add(js);
 
                 }

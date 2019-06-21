@@ -1,8 +1,7 @@
-package com.Attendence.My.Controller.EmployeeList;
+package com.Attendence.My.Controller.PaySalary;
 
-import com.Attendence.My.Model.Service.EmployeeList.EmployeeList;
+import com.Attendence.My.Model.Service.PaySalaryList.PaySalaryList;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
-@WebServlet(name = "EmployeeListServlet",urlPatterns = "/EmployeeListServlet")
-public class EmployeeListServlet extends HttpServlet {
+@WebServlet(name = "PaySalaryServlet",urlPatterns = "/PaySalaryServlet")
+public class PaySalaryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin","*");
         //允许请求的方法
@@ -27,17 +27,17 @@ public class EmployeeListServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         JSONArray jsonArray;
-        EmployeeList employeeList=new EmployeeList();
-        jsonArray=employeeList.EmployeeList();
+        PaySalaryList station=new PaySalaryList();
+        jsonArray=station.PaySalayList();
         PrintWriter out = response.getWriter();
         out.println(jsonArray);
 
-//        js.put("user","132");
 
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        doPost(request,response);
     }
 }

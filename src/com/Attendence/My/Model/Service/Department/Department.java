@@ -8,15 +8,18 @@ import java.sql.SQLException;
 
 public class Department {
     public JSONArray Department(){
-        com.Attendence.My.Model.DAO.Department.Department department=new com.Attendence.My.Model.DAO.Department.Department();
-        ResultSet re=null;
         JSONArray JsonArr=new JSONArray();
         JSONObject JS=new JSONObject();
+        com.Attendence.My.Model.DAO.Department.Department department=new com.Attendence.My.Model.DAO.Department.Department();
+        ResultSet re=null;
         try {
             re = department.DepartmentQuery();
             while (re.next()){
-                JS.put("xx",re.getString("xx"));
-                JS.put("x2",re.getString("xx"));
+                JS.put("DepartmentId",re.getString("DepartmentId"));
+                JS.put("Dname",re.getString("Dname"));
+                JS.put("Dprincipal",re.getString("Dprincipal"));
+                JS.put("Dability",re.getString("Dability"));
+                JS.put("Sdepartment",re.getString("Sdepartment"));
                 JsonArr.add(JS);
 
             }
