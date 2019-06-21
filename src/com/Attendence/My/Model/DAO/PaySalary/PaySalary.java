@@ -1,4 +1,4 @@
-package com.Attendence.My.Model.DAO.EmployeeList;
+package com.Attendence.My.Model.DAO.PaySalary;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
 
@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class EmployeeList {
-    public ResultSet EmployQuery() throws SQLException {
-        String str="SELECT * FROM Employ";
+public class PaySalary {
+    public ResultSet PaySalaryQuery() throws SQLException {
+        String str="SELECT * FROM PaySalary";
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
         ResultSet re=null;
@@ -22,8 +22,8 @@ public class EmployeeList {
         }
         return re;
     }
-    public boolean InsertEmployee(){
-        String st="INSERT INTO xxx vaues(?,?,?) ";
+    public boolean InsertPaySalary(){
+        String st="INSERT INTO PaySalary vaues(?,?,?,?,?) ";
         DBUtils db=new DBUtils();
         Connection conn=db.getConnecton();
         boolean c = false;
@@ -41,5 +41,4 @@ public class EmployeeList {
             return false;
         }
     }
-
 }

@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class Department {
     public ResultSet DepartmentQuery(){
-        String sql="SELECT * FROM xxx";
+        String sql="SELECT * FROM Department";
         ResultSet re=null;
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();

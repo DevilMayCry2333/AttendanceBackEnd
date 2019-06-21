@@ -24,7 +24,7 @@ public class DownloadClassServlet extends HttpServlet {
         colname.add("Isuperior");
         colname.add("Jcategory");
 
-        StringBuffer sb = GetExcel.getExcel("Station",colname);
+//        StringBuffer sb = GetExcel.getExcel("Station",colname);
 
         Map<String, ArrayList> map = new HashMap<>();
 
@@ -42,7 +42,7 @@ public class DownloadClassServlet extends HttpServlet {
         map.put("Isuperior",Isuperior);
         map.put("JCategory",JCategory);
 
-        request.getSession().setAttribute("excel", sb.toString());
+//        request.getSession().setAttribute("excel", sb.toString());
         response.sendRedirect(request.getContextPath() + "/export.jsp");
     }
 
