@@ -36,9 +36,9 @@ public class Department {
             return  false;
         }
     }
-    public  boolean DeleteDepartment(){
+    public  boolean DeleteDepartment(String[] del){
         com.Attendence.My.Model.DAO.Department.Department depa=new com.Attendence.My.Model.DAO.Department.Department();
-        boolean dept=depa.DeleteDepartment();
+        boolean dept=depa.DeleteDepartment(del);
         if (dept==true){
             return true;
         }

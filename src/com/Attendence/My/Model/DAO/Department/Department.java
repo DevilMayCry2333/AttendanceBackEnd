@@ -38,7 +38,7 @@ public class Department {
         }
         else return false;
     }
-    public  boolean DeleteDepartment(){
+    public  boolean DeleteDepartment(String []del){
         String str="DELETE FROM xx WHERE id in($id)";
         DBUtils dbu=new DBUtils();
         Connection conne=dbu.getConnecton();
