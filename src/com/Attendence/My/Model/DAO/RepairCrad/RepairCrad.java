@@ -1,7 +1,7 @@
+
 package com.Attendence.My.Model.DAO.RepairCrad;
 
-
-import com.Attendence.My.Model.DBUtils.DBUtils;
+import com.Attendence.My.Model.Utils.Connect;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,9 +10,8 @@ import java.sql.Statement;
 
 public class RepairCrad {
     public ResultSet RepairQuery (String tablename){
-        DBUtils cn = new DBUtils();
-
-        Connection conn = cn.getConnecton();
+        Connect cn = new Connect();
+        Connection conn = cn.getConnection();
         Statement st = null;
         try {
             st = conn.createStatement();
@@ -21,8 +20,7 @@ public class RepairCrad {
         }
         ResultSet rs = null;
         try {
-            String sql = "SELECT * FROM " + tablename;
-            rs = st.executeQuery(sql);
+            rs = st.executeQuery(tablename);
         } catch (SQLException e) {
             e.printStackTrace();
         }

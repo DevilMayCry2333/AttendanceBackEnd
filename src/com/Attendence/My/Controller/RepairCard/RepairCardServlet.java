@@ -1,8 +1,6 @@
 package com.Attendence.My.Controller.RepairCard;
 
 import com.Attendence.My.Model.Service.RepairCard.*;
-
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -18,19 +16,18 @@ import java.sql.SQLException;
 public class RepairCardServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-//        out.println("<html><body>123</body></html>");
-        RepairCard repairCard = new RepairCard();
-        try {
-            JSONArray jsonArray = repairCard.RepairQuery();
-            out.println(jsonArray.toString());
+        out.println("<html><body>123</body></html>");
+//        RepairCard repairCard = new RepairCard();
+//        try {
+//            JSONObject js = repairCard.RepairQuery();
 //            request.setAttribute("answer",js);
 //            request.getRequestDispatcher("/index/sda").forward(request,response);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 //        request.getRequestDispatcher("/test.jsp").forward(request,response);
-//        response.sendRedirect( request.getContextPath() + "/test.jsp");
+        response.sendRedirect( request.getContextPath() + "/test.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
