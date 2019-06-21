@@ -17,7 +17,13 @@ public class Station {
         try{
             re=station.StationQuery();
             while (re.next()) {
-                jsonObject.put("aasf",re.getString("xx"));
+                jsonObject.put("Id",re.getString("Id"));
+                jsonObject.put("JobId",re.getString("JobId"));
+                jsonObject.put("Pname",re.getString("Pname"));
+                jsonObject.put("Adepartment",re.getString("Adepartment"));
+                jsonObject.put("Isuperior",re.getString("Isuperior"));
+                jsonObject.put("Jcategory",re.getString("Jcategory"));
+
                 jsonArray.add(jsonObject);
             }
             }catch (Exception e){

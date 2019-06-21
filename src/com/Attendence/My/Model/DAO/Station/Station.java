@@ -5,31 +5,31 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Station {
     public ResultSet StationQuery(){
-        String sql="SELECT * FROM xx";
+        String sql="SELECT * FROM Station";
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
         ResultSet re=null;
         try{
             Statement sta=con.createStatement();
-            re=sta.executeQuery(sql);
+            re = sta.executeQuery(sql);
         }catch (Exception e){
             e.printStackTrace();
         }
         return re;
     }
     public boolean  InsertStation(){
-        String sql="INSERT INTO xx vaues(?,?,?)";
+        String sql="INSERT INTO Station vaues(?,?,?)";
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
         boolean c=false;
         try{
-            Statement sta=con.createStatement();
-            c=sta.execute(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
         }catch (Exception e){
             e.printStackTrace();
         }

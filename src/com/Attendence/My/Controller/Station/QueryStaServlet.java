@@ -10,16 +10,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "QueryStaServlet",urlPatterns = "/QueryStaServlet")
 public class QueryStaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setHeader("Access-Control-Allow-Origin","*");
+        //允许请求的方法
+        response.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setContentType("text/html");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         JSONArray jsonArray=new JSONArray();
         Station station=new Station();
         jsonArray=station.StationQuery();
-        request.setAttribute("jsonArr",jsonArray);
-        RequestDispatcher requestDispatcher=request.getRequestDispatcher("xxx.jsp");
-        requestDispatcher.forward(request,response);
+        PrintWriter out = response.getWriter();
+        out.println(jsonArray);
 
     }
 
