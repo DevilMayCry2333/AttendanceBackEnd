@@ -10,9 +10,9 @@ import java.sql.Statement;
 
 public class RepairCrad {
     public ResultSet RepairQuery (String tablename){
-        DBUtils db = new DBUtils();
+        DBUtils cn = new DBUtils();
 
-        Connection conn = db.getConnecton();
+        Connection conn = cn.getConnecton();
         Statement st = null;
         try {
             st = conn.createStatement();
@@ -21,7 +21,8 @@ public class RepairCrad {
         }
         ResultSet rs = null;
         try {
-            rs = st.executeQuery(tablename);
+            String sql = "SELECT * FROM " + tablename;
+            rs = st.executeQuery(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }

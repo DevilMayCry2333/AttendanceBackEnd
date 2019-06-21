@@ -18,6 +18,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
             boolean rs = lo.loginquery(UserName,PassWord);
             if (rs==true){
 //                request.getRequestDispatcher("index.html").forward(request,response);
+
                 response.sendRedirect( "http://localhost/AttendanceFrontEnd/index.html");
 
             }
