@@ -10,19 +10,19 @@ import java.util.ArrayList;
 
 public class ClassDAO {
     public ResultSet ClassQuery() throws SQLException {
-    String str="SELECT * from Classes";
-    DBUtils dbUtils=new DBUtils();
-    Connection con= dbUtils.getConnecton();
-    ResultSet re = null;
-    try {
-        Statement st = con.createStatement();
-        re = st.executeQuery(str);
-    } catch (SQLException e) {
-        e.printStackTrace();
+        String str="SELECT * from Classes";
+        DBUtils dbUtils=new DBUtils();
+        Connection con= dbUtils.getConnecton();
+        ResultSet re = null;
+        try {
+            Statement st = con.createStatement();
+            re = st.executeQuery(str);
+        } catch (SQLException e) {
+            e.printStackTrace();
 
+        }
+        return re;
     }
-    return re;
-}
     public boolean InsertClass(ArrayList<String> al){
         String st="INSERT INTO Classes vaues(?,?,?,?,?) ";
         DBUtils db=new DBUtils();
@@ -42,4 +42,29 @@ public class ClassDAO {
             return false;
         }
     }
+    public boolean DeleteClass(String []del){
+        StringBuffer sql = new StringBuffer("DELETE FROM Classes WHERE Id in(");
+        for (int i = 0; i < del.length; i++) {
+            if (i==del.length-1){
+                sql.append("'" + del[i] + "')");
+            }else {
+                sql.append("'" + del[i] + "',");
+            }
+        }
+        System.out.println(sql);
+        DBUtils dbUtils=new DBUtils();
+        Connection cn = dbUtils.getConnecton();
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(sql.toString());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+
+    }
+
 }

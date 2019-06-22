@@ -1,7 +1,7 @@
-package com.Attendence.My.Controller.RepairCard;
+package com.Attendence.My.Controller.Classes;
 
-import com.Attendence.My.Model.Service.RepairCard.*;
-import net.sf.json.JSONObject;
+import com.Attendence.My.Model.DAO.Classes.ClassDAO;
+import com.Attendence.My.Model.Service.Classes.ClassList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
-@WebServlet(name = "RepairCardServlet",urlPatterns = "/RepairCardServlet")
-public class RepairCardServlet extends HttpServlet {
+@WebServlet(name = "ClassDeleteServlet" ,urlPatterns = "/ClassDeleteServlet")
+public class ClassDeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin","*");
         //允许请求的方法
@@ -26,18 +25,15 @@ public class RepairCardServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         PrintWriter out = response.getWriter();
-        out.println("<html><body>123</body></html>");
-//        RepairCard repairCard = new RepairCard();
-//        try {
-//            JSONObject js = repairCard.RepairQuery();
-//            request.setAttribute("answer",js);
-//            request.getRequestDispatcher("/index/sda").forward(request,response);
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
+        String [] tearray = request.getParameterValues("DelList");
+//        for (int i = 0; i < tearray.length; i++) {
+//            System.out.println(tearray[i]);
 //        }
-//        request.getRequestDispatcher("/test.jsp").forward(request,response);
-//        response.sendRedirect( request.getContextPath() + "/test.jsp");
+        ClassList cl = new ClassList();
+        cl.DeleteClass(tearray);
+
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

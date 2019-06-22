@@ -1,11 +1,14 @@
 package com.Attendence.My.Model.Service.Classes;
 
 import com.Attendence.My.Model.DAO.Classes.ClassDAO;
+import com.Attendence.My.Model.DBUtils.DBUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ClassList {
     public JSONArray ClassList(){
@@ -29,4 +32,12 @@ public class ClassList {
         }
         return Json;
     }
+    public boolean DeleteClass(String []del){
+        ClassDAO cd = new ClassDAO();
+        cd.DeleteClass(del);
+        return true;
+
+    }
+
+
 }

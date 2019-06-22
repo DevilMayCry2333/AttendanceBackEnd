@@ -11,6 +11,16 @@ import java.sql.SQLException;
 @WebServlet(name = "PunchCardServlet",urlPatterns = "/PunchCardServlet")
 public class PunchCardServlet extends javax.servlet.http.HttpServlet {
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+        response.setHeader("Access-Control-Allow-Origin","*");
+        //允许请求的方法
+        response.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setContentType("text/html");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         PrintWriter out = response.getWriter();
         out.println("<html><body>123</body></html>");
 //        PunchCard pc = new PunchCard();
@@ -23,7 +33,7 @@ public class PunchCardServlet extends javax.servlet.http.HttpServlet {
 //            e.printStackTrace();
 //        }
 //        request.getRequestDispatcher("/test.jsp").forward(request,response);
-        response.sendRedirect( request.getContextPath() + "/test.jsp");
+//        response.sendRedirect( request.getContextPath() + "/test.jsp");
 
     }
 
