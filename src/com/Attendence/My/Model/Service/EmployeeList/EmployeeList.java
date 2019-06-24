@@ -1,5 +1,6 @@
 package com.Attendence.My.Model.Service.EmployeeList;
 
+import com.Attendence.My.Model.Entity.Employee.EmployeeInsert;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -29,18 +30,10 @@ public class EmployeeList {
         }
        return Json;
     }
-    public boolean JsonEmployee(){
-        JSONObject ejson=new JSONObject();
-        com.Attendence.My.Model.DAO.EmployeeList.EmployeeList Jemployee=new com.Attendence.My.Model.DAO.EmployeeList.EmployeeList();
-        boolean bol=Jemployee.InsertEmployee();
-        if(bol==true){
-            return  true;
-        }
-        else {
-            return  false;
-        }
-
-
+    public boolean insertEmployee(EmployeeInsert employInsert){
+        com.Attendence.My.Model.DAO.EmployeeList.EmployeeList emList =
+                new com.Attendence.My.Model.DAO.EmployeeList.EmployeeList();
+        return emList.InsertEmployee(employInsert);
     }
 
 }

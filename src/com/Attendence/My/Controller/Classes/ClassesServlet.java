@@ -26,6 +26,7 @@ public class ClassesServlet extends HttpServlet {
 
         JSONArray jsonArray;
         ClassList c=new ClassList();
+
         jsonArray=c.ClassList();
         PrintWriter out = response.getWriter();
         out.println(jsonArray);

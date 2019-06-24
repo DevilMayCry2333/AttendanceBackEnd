@@ -28,19 +28,24 @@ public class DownloadClassServlet extends HttpServlet {
         ArrayList<String> AdepartmentData = new ArrayList<>();
         AdepartmentData.add("hello4");
         ArrayList<String> Isuperior = new ArrayList<>();
-//        Isuperior.add("")
+        Isuperior.add("Hello");
         ArrayList<String> JCategory = new ArrayList<>();
+        JCategory.add("EEE");
 
-        map.put("Id", IdColData);
-        map.put("JobId", JobIdColData);
         map.put("Pname", PnameColData);
+        map.put("Id", IdColData);
         map.put("Adepartment",AdepartmentData);
         map.put("Isuperior",Isuperior);
-        map.put("JCategory",JCategory);
+        map.put("Jcategory",JCategory);
+        map.put("JobId", JobIdColData);
 
-//        StringBuffer sb = GetExcel.getExcel("Station",colname);
+
+
+//        StringBuffer sb = GetExcel.getExcel("Station",colname,map);
+//        System.out.println(sb.toString());
+
 //        request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect(request.getContextPath() + "/export.jsp");
+        response.sendRedirect("http://localhost:8080/unnamed/export.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

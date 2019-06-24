@@ -22,7 +22,7 @@ public class GetExcel {
 //        sb.append("<table><tr><td>用户名称</td><td>邮箱地址</td></tr>");
 
 
-        for (int i = 0; i < colname.size(); i++) {
+        for (int i = 0; i < colname.size() ; i++) {
             sb.append("<tr>");
             ArrayList rs = DataMap.get(colname.get(i));
             for (int j = 0; j < DataMap.get(colname.get(i)).size(); j++) {
@@ -34,6 +34,7 @@ public class GetExcel {
             sb.append("</tr>");
 
         }
+        sb.append("</table>");
 //        for (String key : map.keySet()) {
 //            sb.append("<tr><td>").append(key).append("</td><td>").append(map.get(key)).append("</td></tr>");
 //        }

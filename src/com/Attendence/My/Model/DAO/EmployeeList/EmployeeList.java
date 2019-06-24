@@ -1,6 +1,7 @@
 package com.Attendence.My.Model.DAO.EmployeeList;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
+import com.Attendence.My.Model.Entity.Employee.EmployeeInsert;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,24 +23,33 @@ public class EmployeeList {
         }
         return re;
     }
-    public boolean InsertEmployee(){
-        String st="INSERT INTO xxx vaues(?,?,?) ";
+
+    public boolean InsertEmployee(EmployeeInsert empInsert){
         DBUtils db=new DBUtils();
         Connection conn=db.getConnecton();
-        boolean c = false;
         try {
-            Statement stt=conn.createStatement();
-            c=stt.execute(st);
+            Statement st = conn.createStatement();
+            String sql =
+                    "INSERT INTO Employ (EmployId,UserName,Nation,IDNumber,salary,Phone,EmeContact,Job,Describle) " +
+                            "Values" +
+                "('" + empInsert.getUserCode() +
+                            "','" + empInsert.getUserName() +
+                    "','" + empInsert.getNation() + "','" + empInsert.getIdCard() + "','" + empInsert.getSalary() +
+                    "','" + empInsert.getTel() + "','" + empInsert.getEmergyContact() + "','" +empInsert.getStation()
+                    + "','" + empInsert.getDesc() + "')";
+            System.out.println(sql);
+            int result = st.executeUpdate(sql);
+
+            if (result>0){
+                return true;
+            }
+//            System.out.println(sql);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if(c==true){
-            return  true;
-        }
-        else {
-            return false;
-        }
+
+        return false;
     }
 
 }
