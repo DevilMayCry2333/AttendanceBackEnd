@@ -1,6 +1,7 @@
 package com.Attendence.My.Model.Service.EmployeeList;
 
 import com.Attendence.My.Model.Entity.Employee.EmployeeInsert;
+import com.Attendence.My.Model.Entity.Employee.EmployeeUpdate;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -34,6 +35,10 @@ public class EmployeeList {
         com.Attendence.My.Model.DAO.EmployeeList.EmployeeList emList =
                 new com.Attendence.My.Model.DAO.EmployeeList.EmployeeList();
         return emList.InsertEmployee(employInsert);
+    }
+    public boolean EmployeeUpdate(EmployeeUpdate employeeUpdate){
+        com.Attendence.My.Model.DAO.EmployeeList.EmployeeList employeeList=new com.Attendence.My.Model.DAO.EmployeeList.EmployeeList();
+        return employeeList.UpadateEmployee(employeeUpdate);
     }
 
 }

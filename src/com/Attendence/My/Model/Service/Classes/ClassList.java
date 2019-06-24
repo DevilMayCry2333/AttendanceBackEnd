@@ -2,6 +2,8 @@ package com.Attendence.My.Model.Service.Classes;
 
 import com.Attendence.My.Model.DAO.Classes.ClassDAO;
 import com.Attendence.My.Model.DBUtils.DBUtils;
+import com.Attendence.My.Model.Entity.Class.ClassUpdate;
+import com.Attendence.My.Model.Entity.Employee.EmployeeUpdate;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -54,5 +56,10 @@ public class ClassList {
         return true;
 
     }
+    public boolean ClassUpdate(ClassUpdate classUpdate){
+        ClassDAO classDAO=new ClassDAO();
+        return classDAO.ClassUpdate(classUpdate);
+    }
+
 
 }

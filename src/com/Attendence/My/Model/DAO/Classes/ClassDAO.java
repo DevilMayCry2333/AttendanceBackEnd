@@ -1,6 +1,7 @@
 package com.Attendence.My.Model.DAO.Classes;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
+import com.Attendence.My.Model.Entity.Class.ClassUpdate;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -70,5 +71,22 @@ public class ClassDAO {
         return true;
 
     }
+    public boolean ClassUpdate(ClassUpdate classUpdate){
+    String sql="UPDATE employ set(ClassID='" + classUpdate.getClassId() + "', Cname='"+ classUpdate.getCname()+"',Mtime'"+classUpdate.getMtime()+"',Atime'"+classUpdate.getAtime()+"')";
+    DBUtils dbUtils=new DBUtils();
+    Connection con=dbUtils.getConnecton();
+    //boolean c=false;
+                try {
+        Statement st=con.createStatement();
+        int result=st.executeUpdate(sql);
+        if(result>0){
+            return true;
+
+        }
+    }catch (Exception e){
+        e.printStackTrace();
+    }
+                return false;
+}
 
 }

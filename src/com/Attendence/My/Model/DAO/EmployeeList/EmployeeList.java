@@ -2,6 +2,7 @@ package com.Attendence.My.Model.DAO.EmployeeList;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
 import com.Attendence.My.Model.Entity.Employee.EmployeeInsert;
+import com.Attendence.My.Model.Entity.Employee.EmployeeUpdate;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -50,6 +51,23 @@ public class EmployeeList {
         }
 
         return false;
+    }
+    public boolean UpadateEmployee(EmployeeUpdate employeeUpdate){
+        String sql="UPDATE employ set(userName='" + employeeUpdate.getUserName() + "', userCode'"+ employeeUpdate.getUserCode()+"',Nation'"+employeeUpdate.getNation()+"')";
+                DBUtils dbUtils=new DBUtils();
+                Connection con=dbUtils.getConnecton();
+                //boolean c=false;
+                try {
+                    Statement st=con.createStatement();
+                    int result=st.executeUpdate(sql);
+                    if(result>0){
+                        return true;
+
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                return false;
     }
 
 }
