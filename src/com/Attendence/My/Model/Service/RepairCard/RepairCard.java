@@ -14,7 +14,7 @@ public class RepairCard {
         ResultSet rs = rc.RepairQuery("select * from repair");
         while (rs.next()){
             jsonObject.put("RepairId",rs.getString("RepairId"));
-            jsonObject.put("Scode",rs.getString("Scode"));
+            jsonObject.put("ClassId",rs.getString("ClassId"));
             jsonObject.put("UserName",rs.getString("UserName"));
             jsonObject.put("RepairDate",rs.getString("RepairDate"));
             jsonObject.put("Reason",rs.getString("Reason"));

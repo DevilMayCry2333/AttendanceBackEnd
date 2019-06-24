@@ -32,8 +32,6 @@ public class ClassDeleteServlet extends HttpServlet {
         ClassList cl = new ClassList();
         cl.DeleteClass(tearray);
 
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

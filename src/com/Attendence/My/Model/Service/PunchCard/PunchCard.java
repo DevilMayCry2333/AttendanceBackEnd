@@ -12,10 +12,10 @@ public class PunchCard {
         JSONObject json = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         com.Attendence.My.Model.DAO.PunchCard.PunchCard pc = new com.Attendence.My.Model.DAO.PunchCard.PunchCard();
-        ResultSet rs = pc.PunchQuery("select * from punch");
+        ResultSet rs = pc.PunchQuery("SELECT * from Punch");
         while (rs.next()){
             json.put("PunchId",rs.getString("PunchId"));
-            json.put("Scode",rs.getString("Scode"));
+            json.put("Scode",rs.getString("ClassId"));
             json.put("UserName",rs.getString("UserName"));
             json.put("PunchDate",rs.getString("PunchDate"));
             json.put("Remarks",rs.getString("Remarks"));
