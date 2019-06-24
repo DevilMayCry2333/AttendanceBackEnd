@@ -1,6 +1,9 @@
 package com.Attendence.My.Controller.Station;
 
 import com.Attendence.My.utils.GetExcel;
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,34 +20,30 @@ import java.util.Map;
 public class DownloadClassServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        StringBuffer sb = GetExcel.getExcel("Station",colname);
+        JSONArray jsonArr = new JSONArray();
+        JSONObject json = new JSONObject();
 
-        Map<String, ArrayList> map = new HashMap<>();
-        ArrayList<String> IdColData = new ArrayList<>();
-        IdColData.add("hello");
-        ArrayList<String> JobIdColData = new ArrayList<>();
-        JobIdColData.add("hello2");
-        ArrayList<String> PnameColData = new ArrayList<>();
-        PnameColData.add("hello3");
-        ArrayList<String> AdepartmentData = new ArrayList<>();
-        AdepartmentData.add("hello4");
-        ArrayList<String> Isuperior = new ArrayList<>();
-        Isuperior.add("Hello");
-        ArrayList<String> JCategory = new ArrayList<>();
-        JCategory.add("EEE");
+        List<String> colname = new ArrayList<>();
+        colname.add("Pname");
+        colname.add("Id");
+        colname.add("Adepartment");
+        colname.add("Isuperior");
+        colname.add("Jcategory");
+        colname.add("JobId");
 
-        map.put("Pname", PnameColData);
-        map.put("Id", IdColData);
-        map.put("Adepartment",AdepartmentData);
-        map.put("Isuperior",Isuperior);
-        map.put("Jcategory",JCategory);
-        map.put("JobId", JobIdColData);
+        json.put("Pname","123");
+        json.put("Id","222");
+        json.put("Adepartment","333");
+        json.put("Isuperior","444");
+        json.put("Jcategory","555");
+        json.put("JobId","666");
+        jsonArr.add(json);
 
 
+        StringBuffer sb = GetExcel.getExcel("Station",colname,jsonArr);
+        System.out.println(sb.toString());
 
-//        StringBuffer sb = GetExcel.getExcel("Station",colname,map);
-//        System.out.println(sb.toString());
-
-//        request.getSession().setAttribute("excel", sb.toString());
+        request.getSession().setAttribute("excel", sb.toString());
         response.sendRedirect("http://localhost:8080/unnamed/export.jsp");
     }
 

@@ -10,6 +10,9 @@ public class EmployeeInsert {
     private String EmergyContact;
     private String Station;
     private String Desc;
+    private String Gender;
+    private String Age;
+
 
     public String getUserName() {
         return userName;
@@ -81,5 +84,21 @@ public class EmployeeInsert {
 
     public void setDesc(String desc) {
         Desc = desc;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String gender) {
+        Gender = gender;
+    }
+
+    public String getAge() {
+        return Age;
+    }
+
+    public void setAge(String age) {
+        Age = age;
     }
 }

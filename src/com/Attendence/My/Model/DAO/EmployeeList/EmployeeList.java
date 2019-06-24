@@ -23,7 +23,7 @@ public class EmployeeList {
         return re;
     }
 
-    public boolean AddEmp(ArrayList<String> list) throws SQLException {
+    public boolean AddEmp(EmployeeInsert EmpInsert) throws SQLException {
 
 //
 //        String sql="INSERT INTO Employ( Id,EmployId, UserName, Age, Nation, IDNumber, salary, Phone, EmeContact, Job,Desc)values('" + list.get(0) +"','" + list.get(0) + "','"
@@ -52,21 +52,24 @@ public class EmployeeList {
 
         DBUtils dbUtils=new DBUtils();
         Connection con= dbUtils.getConnecton();
-        String sql = "insert into Employ value (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into Employ(EmployId, UserName, Nation, IDNumber, salary, Phone, EmeContact, Job, Describle, Age, Gender, ClassId)  value (?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pstmt = con.prepareStatement(sql);
 
-        pstmt.setInt(1,1);
-        pstmt.setString(2,list.get(0));
-        pstmt.setString(3,list.get(1));
-        pstmt.setInt(4, Integer.parseInt(list.get(2)));
-        pstmt.setString(5,list.get(3));
-        pstmt.setString(6,list.get(4));
-        pstmt.setDouble(7, Double.parseDouble(list.get(5)));
-        pstmt.setString(8,list.get(6));
-        pstmt.setString(9,list.get(7));
-        pstmt.setString(10,list.get(8));
-        pstmt.setString(11,list.get(9));
-        pstmt.setString(12,list.get(10));
+
+        pstmt.setString(1,EmpInsert.getUserCode());
+        pstmt.setString(2,EmpInsert.getUserName());
+        pstmt.setString(3, EmpInsert.getNation());
+        pstmt.setString(4,EmpInsert.getIdCard());
+        pstmt.setString(5,EmpInsert.getSalary());
+        pstmt.setString(6, EmpInsert.getTel());
+        pstmt.setString(7,EmpInsert.getEmergyContact());
+        pstmt.setString(8,EmpInsert.getStation());
+        pstmt.setString(9,EmpInsert.getDesc());
+        pstmt.setString(10,EmpInsert.getAge());
+        pstmt.setString(11,EmpInsert.getGender());
+        //班次ID是需要查询的
+        pstmt.setString(12,"1");
+
 
 
         int c = pstmt.executeUpdate();

@@ -36,9 +36,9 @@ public class Employee {
     }
 
 
-    public boolean AddEmp(ArrayList<String> list) throws SQLException {
+    public boolean AddEmp(EmployeeInsert EmpInsert) throws SQLException {
         EmployeeList dao = new EmployeeList();
-        boolean re= dao.AddEmp(list);
+        boolean re= dao.AddEmp(EmpInsert);
         if (re){
             return true;
         }else {

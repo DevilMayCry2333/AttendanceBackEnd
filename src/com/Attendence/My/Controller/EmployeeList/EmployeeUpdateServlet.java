@@ -1,7 +1,7 @@
 package com.Attendence.My.Controller.EmployeeList;
 
 import com.Attendence.My.Model.Entity.Employee.EmployeeUpdate;
-import com.Attendence.My.Model.Service.EmployeeList.EmployeeList;
+import com.Attendence.My.Model.Service.EmployeeList.Employee;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

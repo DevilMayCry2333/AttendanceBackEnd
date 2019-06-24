@@ -24,15 +24,18 @@ public class ClassesServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        JSONArray jsonArray;
+
         ClassList c=new ClassList();
 
-        jsonArray=c.ClassList();
+        JSONArray jsonArray =c.ClassList();
         PrintWriter out = response.getWriter();
-        out.println(jsonArray);
+        System.out.println(jsonArray);
+
+        out.println(jsonArray.toString());
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 @WebServlet(name = "EmployeeInsertServlet",urlPatterns = "/EmployeeInsertServlet")
 public class EmployeeInsertServlet extends HttpServlet {
@@ -48,9 +49,13 @@ public class EmployeeInsertServlet extends HttpServlet {
         empInsert.setStation(request.getParameter("Station"));
         empInsert.setDesc(request.getParameter("Desc"));
 
-        com.Attendence.My.Model.Service.EmployeeList.EmployeeList elService =
-                new com.Attendence.My.Model.Service.EmployeeList.EmployeeList();
-        elService.insertEmployee(empInsert);
+        com.Attendence.My.Model.Service.EmployeeList.Employee elService =
+                new com.Attendence.My.Model.Service.EmployeeList.Employee();
+        try {
+            elService.AddEmp(empInsert);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         response.sendRedirect("http://localhost/AttendanceFrontEnd/index.html");
 
 

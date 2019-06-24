@@ -1,5 +1,6 @@
 package com.Attendence.My.Controller.EmployeeList;
 
+import com.Attendence.My.Model.Entity.Employee.EmployeeInsert;
 import com.Attendence.My.Model.Service.EmployeeList.Employee;
 
 import javax.servlet.ServletException;
@@ -37,23 +38,35 @@ public class EmployeeAddServlet extends HttpServlet {
         String sex = request.getParameter("k");
 
 
+        EmployeeInsert EmpInsert = new EmployeeInsert();
+        EmpInsert.setUserCode(EmployId);
+        EmpInsert.setUserName(UserName);
+        EmpInsert.setNation(Nation);
+        EmpInsert.setIdCard(IDnumber);
+        EmpInsert.setSalary(Salary);
+        EmpInsert.setTel(Phone);
+        EmpInsert.setEmergyContact(EmeContact);
+        EmpInsert.setStation(Job);
+        EmpInsert.setDesc(Desc);
+        EmpInsert.setGender(sex);
+        EmpInsert.setAge(Age);
 
-        ArrayList<String> list = new ArrayList<>();
-        list.add(EmployId);
-        list.add(UserName);
-        list.add(Age);
-        list.add(Nation);
-        list.add(IDnumber);
-        list.add(Salary);
-        list.add(Phone);
-        list.add(EmeContact);
-        list.add(Job);
-        list.add(Desc);
-        list.add(sex);
+//        ArrayList<String> list = new ArrayList<>();
+//        list.add(EmployId);
+//        list.add(UserName);
+//        list.add(Age);
+//        list.add(Nation);
+//        list.add(IDnumber);
+//        list.add(Salary);
+//        list.add(Phone);
+//        list.add(EmeContact);
+//        list.add(Job);
+//        list.add(Desc);
+//        list.add(sex);
 
         Employee s= new Employee();
         try {
-            if(s.AddEmp(list)){
+            if(s.AddEmp(EmpInsert)){
                 System.out.println("yes");
             }else{
                 System.out.println("error");
