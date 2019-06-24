@@ -23,8 +23,12 @@ public class ClassDAO {
         }
         return re;
     }
-    public boolean InsertClass(ArrayList<String> al){
-        String st="INSERT INTO Classes vaues(?,?,?,?,?) ";
+    public boolean InsertClass(ArrayList<String> list){
+        String ee= list.get(0);
+//        String st="INSERT INTO Classes(Id,ClassId,Cname,Mtime,Atime)values('"+list.get(0)+"','" + list.get(0) + "','"
+//                + list.get(1) + "','" + list.get(2) +"','" + list.get(3) + "')";
+        String st="INSERT INTO Classes(ClassId,Cname,Mtime,Atime)values('" + list.get(0) + "','"
+                + list.get(1) + "','" + list.get(2) +"','" + list.get(3) + "')";
         DBUtils db=new DBUtils();
         Connection conn=db.getConnecton();
         boolean c = false;
