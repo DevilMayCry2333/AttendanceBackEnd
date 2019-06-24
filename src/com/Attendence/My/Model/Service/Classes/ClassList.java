@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ClassList {
     public JSONArray ClassList(){
@@ -32,12 +33,26 @@ public class ClassList {
         }
         return Json;
     }
+
+    public boolean AddClass(ArrayList<String> list){
+        JSONObject js= new JSONObject( );
+        JSONArray Json=new JSONArray();
+        ClassDAO dao = new ClassDAO();
+        boolean re= dao.InsertClass(list);
+        if (re){
+            return true;
+        }else {
+            return false;
+        }
+
+
+    }
+
     public boolean DeleteClass(String []del){
         ClassDAO cd = new ClassDAO();
         cd.DeleteClass(del);
         return true;
 
     }
-
 
 }
