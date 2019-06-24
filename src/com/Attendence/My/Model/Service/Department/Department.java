@@ -5,6 +5,7 @@ import net.sf.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Department {
     public JSONArray Department(){
@@ -15,6 +16,7 @@ public class Department {
         try {
             re = department.DepartmentQuery();
             while (re.next()){
+                JS.put("Id",re.getString("Id"));
                 JS.put("DepartmentId",re.getString("DepartmentId"));
                 JS.put("Dname",re.getString("Dname"));
                 JS.put("Dprincipal",re.getString("Dprincipal"));
@@ -50,4 +52,13 @@ public class Department {
         }
     }
 
+    public boolean AddDep(ArrayList<String> list) throws SQLException {
+        com.Attendence.My.Model.DAO.Department.Department dao= new com.Attendence.My.Model.DAO.Department.Department();
+        boolean re= dao.Dep(list);
+        if (re){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package com.Attendence.My.Controller.EmployeeList;
 
-import com.Attendence.My.Model.Service.EmployeeList.EmployeeList;
+import com.Attendence.My.Model.Service.EmployeeList.Employee;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -26,8 +26,9 @@ public class EmployeeListServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        JSONArray jsonArray = new JSONArray();
-        EmployeeList employeeList=new EmployeeList();
+
+        JSONArray jsonArray;
+        Employee employeeList=new Employee();
         jsonArray=employeeList.EmployeeList();
         PrintWriter out = response.getWriter();
         out.println(jsonArray);

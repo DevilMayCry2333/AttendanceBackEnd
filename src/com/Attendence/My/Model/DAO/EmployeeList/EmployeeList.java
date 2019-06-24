@@ -4,10 +4,8 @@ import com.Attendence.My.Model.DBUtils.DBUtils;
 import com.Attendence.My.Model.Entity.Employee.EmployeeInsert;
 import com.Attendence.My.Model.Entity.Employee.EmployeeUpdate;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class EmployeeList {
     public ResultSet EmployQuery() throws SQLException {
@@ -25,49 +23,59 @@ public class EmployeeList {
         return re;
     }
 
-    public boolean InsertEmployee(EmployeeInsert empInsert){
-        DBUtils db=new DBUtils();
-        Connection conn=db.getConnecton();
-        try {
-            Statement st = conn.createStatement();
-            String sql =
-                    "INSERT INTO Employ (EmployId,UserName,Nation,IDNumber,salary,Phone,EmeContact,Job,Describle) " +
-                            "Values" +
-                "('" + empInsert.getUserCode() +
-                            "','" + empInsert.getUserName() +
-                    "','" + empInsert.getNation() + "','" + empInsert.getIdCard() + "','" + empInsert.getSalary() +
-                    "','" + empInsert.getTel() + "','" + empInsert.getEmergyContact() + "','" +empInsert.getStation()
-                    + "','" + empInsert.getDesc() + "')";
-            System.out.println(sql);
-            int result = st.executeUpdate(sql);
+    public boolean AddEmp(ArrayList<String> list) throws SQLException {
 
-            if (result>0){
-                return true;
-            }
-//            System.out.println(sql);
+//
+//        String sql="INSERT INTO Employ( Id,EmployId, UserName, Age, Nation, IDNumber, salary, Phone, EmeContact, Job,Desc)values('" + list.get(0) +"','" + list.get(0) + "','"
+//                + list.get(1) + "','" + list.get(2) +"','" + list.get(3) + "','"+ list.get(4) +"','"+ list.get(5) + "',' "+list.get(6)+" ','"+list.get(7)+"','"+list.get(8)+"','"+list.get(9)+"')";
+//        DBUtils db=new DBUtils();
+//        Connection conn=db.getConnecton();
+//        boolean c = false;
+//        try {
+//            Statement stt=conn.createStatement();
+//            c=stt.execute(sql);
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        if(c==true){
+//            return  true;
+//        }
+//        else {
+//            return false;
+//        }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+
+
+
+
+        DBUtils dbUtils=new DBUtils();
+        Connection con= dbUtils.getConnecton();
+        String sql = "insert into Employ value (?,?,?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+
+        pstmt.setInt(1,1);
+        pstmt.setString(2,list.get(0));
+        pstmt.setString(3,list.get(1));
+        pstmt.setInt(4, Integer.parseInt(list.get(2)));
+        pstmt.setString(5,list.get(3));
+        pstmt.setString(6,list.get(4));
+        pstmt.setDouble(7, Double.parseDouble(list.get(5)));
+        pstmt.setString(8,list.get(6));
+        pstmt.setString(9,list.get(7));
+        pstmt.setString(10,list.get(8));
+        pstmt.setString(11,list.get(9));
+        pstmt.setString(12,list.get(10));
+
+
+        int c = pstmt.executeUpdate();
+
+        if(c==1){
+            return  true;
         }
-
-        return false;
+        else {
+            return false;
+        }
     }
-    public boolean UpadateEmployee(EmployeeUpdate employeeUpdate){
-        String sql="UPDATE employ set(userName='" + employeeUpdate.getUserName() + "', userCode'"+ employeeUpdate.getUserCode()+"',Nation'"+employeeUpdate.getNation()+"')";
-                DBUtils dbUtils=new DBUtils();
-                Connection con=dbUtils.getConnecton();
-                //boolean c=false;
-                try {
-                    Statement st=con.createStatement();
-                    int result=st.executeUpdate(sql);
-                    if(result>0){
-                        return true;
-
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-                return false;
-    }
-
 }

@@ -2,10 +2,8 @@ package com.Attendence.My.Model.DAO.Department;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class Department {
     public ResultSet DepartmentQuery(){
@@ -58,4 +56,28 @@ public class Department {
     }
 
 
+    public boolean Dep(ArrayList<String> list) throws SQLException {
+
+        DBUtils dbUtils=new DBUtils();
+        Connection con= dbUtils.getConnecton();
+        String sql = "insert into Department value (?,?,?,?,?,?)";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+
+        pstmt.setInt(1,10);
+        pstmt.setString(2,list.get(0));
+        pstmt.setString(3,list.get(1));
+        pstmt.setString(4,list.get(2));
+        pstmt.setString(5,list.get(3));
+        pstmt.setString(6,list.get(4));
+
+
+        int c = pstmt.executeUpdate();
+
+        if(c==1){
+            return  true;
+        }
+        else {
+            return false;
+        }
+    }
 }

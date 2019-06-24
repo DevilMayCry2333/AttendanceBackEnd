@@ -36,9 +36,7 @@ public class ClassList {
         return Json;
     }
 
-    public boolean AddClass(ArrayList<String> list){
-        JSONObject js= new JSONObject( );
-        JSONArray Json=new JSONArray();
+    public boolean AddClass(ArrayList<String> list) throws SQLException {
         ClassDAO dao = new ClassDAO();
         boolean re= dao.InsertClass(list);
         if (re){
@@ -62,4 +60,15 @@ public class ClassList {
     }
 
 
+
+    public boolean UpdateClass(ArrayList<String> list) throws SQLException {
+        ClassDAO dao = new ClassDAO();
+        boolean re = dao.UpdateClass(list);
+        if (re){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
 }

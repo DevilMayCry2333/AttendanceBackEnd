@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet(name = "AddClassServlet",urlPatterns = "/AddClassServlet")
@@ -38,10 +39,14 @@ public class AddClassServlet extends HttpServlet {
         list.add(LateTimeSelect);
 
         ClassList s= new ClassList();
-        if(s.AddClass(list)){
-            System.out.println("yes");
-        }else{
-            System.out.println("error");
+        try {
+            if(s.AddClass(list)){
+                System.out.println("yes");
+            }else{
+                System.out.println("error");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }

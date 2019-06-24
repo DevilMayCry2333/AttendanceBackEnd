@@ -1,8 +1,7 @@
-package com.Attendence.My.Controller.Station;
+package com.Attendence.My.Controller.EmployeeList;
 
-import com.Attendence.My.Model.Service.Station.Station;
+import com.Attendence.My.Model.Service.EmployeeList.Employee;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +11,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@WebServlet(name = "InsertStaServlet",urlPatterns = "/InsertStaServlet")
-public class InsertStaServlet extends HttpServlet {
+@WebServlet(name = "EmployeeAddServlet",urlPatterns = "/EmployeeAddServlet")
+public class EmployeeAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin","*");
         //允许请求的方法
@@ -25,24 +24,36 @@ public class InsertStaServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String DepartmentId=request.getParameter("a");
-        String Dname=request.getParameter("b");
-        String Dprincipal=request.getParameter("c");
-        String Dability= request.getParameter("d");
-        String Sdepartment= request.getParameter("e");
+        String EmployId=request.getParameter("a");
+        String UserName=request.getParameter("b");
+        String Age=request.getParameter("c");
+        String Nation= request.getParameter("d");
+        String IDnumber= request.getParameter("e");
+        String Salary=request.getParameter("f");
+        String Phone=request.getParameter("g");
+        String EmeContact=request.getParameter("h");
+        String Job = request.getParameter("i");
+        String Desc = request.getParameter("j");
+        String sex = request.getParameter("k");
+
 
 
         ArrayList<String> list = new ArrayList<>();
-        list.add(DepartmentId);
-        list.add(Dname);
-        list.add(Dprincipal);
-        list.add(Dability);
-        list.add(Sdepartment);
+        list.add(EmployId);
+        list.add(UserName);
+        list.add(Age);
+        list.add(Nation);
+        list.add(IDnumber);
+        list.add(Salary);
+        list.add(Phone);
+        list.add(EmeContact);
+        list.add(Job);
+        list.add(Desc);
+        list.add(sex);
 
-
-        Station d= new Station();
+        Employee s= new Employee();
         try {
-            if(d.AddSta(list)){
+            if(s.AddEmp(list)){
                 System.out.println("yes");
             }else{
                 System.out.println("error");
@@ -54,7 +65,7 @@ public class InsertStaServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
 
+        doPost(request, response);
     }
 }

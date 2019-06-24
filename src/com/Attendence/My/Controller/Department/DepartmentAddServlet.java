@@ -1,8 +1,7 @@
-package com.Attendence.My.Controller.Station;
+package com.Attendence.My.Controller.Department;
 
-import com.Attendence.My.Model.Service.Station.Station;
+import com.Attendence.My.Model.Service.Department.Department;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +11,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@WebServlet(name = "InsertStaServlet",urlPatterns = "/InsertStaServlet")
-public class InsertStaServlet extends HttpServlet {
+@WebServlet(name = "DepartmentAddServlet",urlPatterns = "/DepartmentAddServlet")
+public class DepartmentAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin","*");
         //允许请求的方法
@@ -32,6 +31,8 @@ public class InsertStaServlet extends HttpServlet {
         String Sdepartment= request.getParameter("e");
 
 
+
+
         ArrayList<String> list = new ArrayList<>();
         list.add(DepartmentId);
         list.add(Dname);
@@ -40,9 +41,9 @@ public class InsertStaServlet extends HttpServlet {
         list.add(Sdepartment);
 
 
-        Station d= new Station();
+        Department d= new Department();
         try {
-            if(d.AddSta(list)){
+            if(d.AddDep(list)){
                 System.out.println("yes");
             }else{
                 System.out.println("error");
@@ -50,11 +51,10 @@ public class InsertStaServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
 
+        doPost(request, response);
     }
 }

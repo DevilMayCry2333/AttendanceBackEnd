@@ -6,7 +6,9 @@ import net.sf.json.JSONObject;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class Station {
     public JSONArray StationQuery() {
@@ -31,19 +33,19 @@ public class Station {
         }
         return jsonArray;
     }
-    public boolean InsertStation(){
-        com.Attendence.My.Model.DAO.Station.Station station=new com.Attendence.My.Model.DAO.Station.Station();
-        boolean c=false;
-        try{
-            c=station.InsertStation();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        if (c==true){
-            return true;
-        }
-        else return false;
-    }
+//    public boolean InsertStation(ArrayList<String> list){
+//        com.Attendence.My.Model.DAO.Station.Station station=new com.Attendence.My.Model.DAO.Station.Station();
+//        boolean c=false;
+//        try{
+//            c=station.InsertStation(list);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        if (c==true){
+//            return true;
+//        }
+//        else return false;
+//    }
     public  boolean DeleteStation(){
         com.Attendence.My.Model.DAO.Station.Station station=new com.Attendence.My.Model.DAO.Station.Station();
         boolean c=false;
@@ -56,6 +58,16 @@ public class Station {
             return true;
         }
         else{
+            return false;
+        }
+    }
+
+    public boolean AddSta(ArrayList<String> list) throws SQLException {
+        com.Attendence.My.Model.DAO.Station.Station dao= new com.Attendence.My.Model.DAO.Station.Station();
+        boolean re= dao.InsertStation(list);
+        if (re){
+            return true;
+        }else {
             return false;
         }
     }

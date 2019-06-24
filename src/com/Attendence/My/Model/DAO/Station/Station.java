@@ -4,10 +4,8 @@ import com.Attendence.My.Model.DBUtils.DBUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class Station {
     public ResultSet StationQuery(){
@@ -23,20 +21,26 @@ public class Station {
         }
         return re;
     }
-    public boolean  InsertStation(){
-        String sql="INSERT INTO Station vaues(?,?,?)";
+    public boolean  InsertStation(ArrayList<String> list) throws SQLException {
         DBUtils dbUtils=new DBUtils();
-        Connection con=dbUtils.getConnecton();
-        boolean c=false;
-        try{
-            PreparedStatement ps = con.prepareStatement(sql);
-        }catch (Exception e){
-            e.printStackTrace();
+        Connection con= dbUtils.getConnecton();
+        String sql = "insert into Station value (null,?,?,?,?,?)";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+
+
+        pstmt.setString(1,list.get(0));
+        pstmt.setString(2,list.get(1));
+        pstmt.setString(3,list.get(2));
+        pstmt.setString(4,list.get(3));
+        pstmt.setString(5,list.get(4));
+
+
+        int c = pstmt.executeUpdate();
+
+        if(c==1){
+            return  true;
         }
-        if (c==true){
-            return true;
-        }
-        else{
+        else {
             return false;
         }
     }
@@ -57,5 +61,6 @@ public class Station {
             return false;
         }
     }
+
 
 }
