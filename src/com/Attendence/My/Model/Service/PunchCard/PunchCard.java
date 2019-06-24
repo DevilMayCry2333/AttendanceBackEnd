@@ -3,6 +3,7 @@ package com.Attendence.My.Model.Service.PunchCard;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -21,5 +22,15 @@ public class PunchCard {
             jsonArray.add(json);
         }
         return jsonArray;
+    }
+
+    public int PunchUpdate (com.Attendence.My.Model.Entity.PunchCard.PunchCard punchModel) {
+//        JSONObject jsonObject = new JSONObject();
+//        JSONArray jsonArray = new JSONArray();
+        com.Attendence.My.Model.DAO.PunchCard.PunchCard punchCard = new com.Attendence.My.Model.DAO.PunchCard.PunchCard();
+
+//        System.out.println(sql);
+        int line = punchCard.PunchUpdate( punchModel);
+        return line;
     }
 }

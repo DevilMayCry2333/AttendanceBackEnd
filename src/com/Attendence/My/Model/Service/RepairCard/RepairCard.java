@@ -22,6 +22,10 @@ public class RepairCard {
         }
         return jsonArray;
     }
-
+    public int RepairUpdate(com.Attendence.My.Model.Entity.RepairCard.RepairCard repairModel){
+        com.Attendence.My.Model.DAO.RepairCard.RepairCard repairCard = new com.Attendence.My.Model.DAO.RepairCard.RepairCard();
+        int line = repairCard.RepairUpdate(repairModel);
+        return line;
+    }
 
 }

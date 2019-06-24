@@ -6,19 +6,58 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RepairCard {
-    public JSONObject RepairQuery() throws SQLException {
-        JSONObject jsonObject = new JSONObject();
-        com.Attendence.My.Model.DAO.RepairCard.RepairCard rc = new com.Attendence.My.Model.DAO.RepairCard.RepairCard();
-        ResultSet rs = rc.RepairQuery("");
-        while (rs.next()){
-            jsonObject.put("RepairId",rs.getString("RepairId"));
-            jsonObject.put("Scode",rs.getString("Scode"));
-            jsonObject.put("UserName",rs.getString("UserName"));
-            jsonObject.put("RepairDate",rs.getDate("RepairDate"));
-            jsonObject.put("Reason",rs.getString("Reason"));
-        }
-        return jsonObject;
+    private String RepairId;
+    private String SCode;
+    private String UserName;
+    private String RepairDate;
+    private String Reason;
+    private int Id;
+
+    public String getRepairId() {
+        return RepairId;
     }
 
+    public void setRepairId(String repairId) {
+        RepairId = repairId;
+    }
 
+    public String getSCode() {
+        return SCode;
+    }
+
+    public void setSCode(String SCode) {
+        this.SCode = SCode;
+    }
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
+    public String getRepairDate() {
+        return RepairDate;
+    }
+
+    public void setRepairDate(String repairDate) {
+        RepairDate = repairDate;
+    }
+
+    public String getReason() {
+        return Reason;
+    }
+
+    public void setReason(String reason) {
+        Reason = reason;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
 }
