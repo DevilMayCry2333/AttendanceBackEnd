@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class Station {
     public ResultSet StationQuery(){
-        String sql="SELECT * FROM Station";
+        String sql="SELECT * FROM station";
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
         ResultSet re=null;

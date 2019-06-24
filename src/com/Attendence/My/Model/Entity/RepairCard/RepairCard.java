@@ -1,7 +1,5 @@
 package com.Attendence.My.Model.Entity.RepairCard;
 
-import com.Attendence.My.Model.DAO.RepairCrad.RepairCrad;
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 
 import java.sql.ResultSet;
@@ -10,7 +8,7 @@ import java.sql.SQLException;
 public class RepairCard {
     public JSONObject RepairQuery() throws SQLException {
         JSONObject jsonObject = new JSONObject();
-        RepairCrad rc = new RepairCrad();
+        com.Attendence.My.Model.DAO.RepairCard.RepairCard rc = new com.Attendence.My.Model.DAO.RepairCard.RepairCard();
         ResultSet rs = rc.RepairQuery("");
         while (rs.next()){
             jsonObject.put("RepairId",rs.getString("RepairId"));

@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class EmployeeList {
     public ResultSet EmployQuery() throws SQLException {
-        String str="SELECT * FROM Employ";
+        String str="SELECT * FROM employ";
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
         ResultSet re=null;

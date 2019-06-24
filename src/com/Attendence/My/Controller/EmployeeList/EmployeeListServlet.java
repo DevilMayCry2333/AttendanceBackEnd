@@ -26,18 +26,17 @@ public class EmployeeListServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        JSONArray jsonArray;
+        JSONArray jsonArray = new JSONArray();
         EmployeeList employeeList=new EmployeeList();
         jsonArray=employeeList.EmployeeList();
         PrintWriter out = response.getWriter();
         out.println(jsonArray);
-
 //        js.put("user","132");
 
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 }

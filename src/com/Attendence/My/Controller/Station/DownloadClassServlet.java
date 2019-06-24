@@ -16,19 +16,9 @@ import java.util.Map;
 @WebServlet(name = "DownloadClassServlet" , urlPatterns = "/DownloadClassServlet")
 public class DownloadClassServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<String> colname = new ArrayList<>();
-        colname.add("Id");
-        colname.add("JobId");
-        colname.add("Pname");
-        colname.add("Adepartment");
-        colname.add("Isuperior");
-        colname.add("Jcategory");
-
-
 //        StringBuffer sb = GetExcel.getExcel("Station",colname);
 
         Map<String, ArrayList> map = new HashMap<>();
-
         ArrayList<String> IdColData = new ArrayList<>();
         IdColData.add("hello");
         ArrayList<String> JobIdColData = new ArrayList<>();
@@ -49,7 +39,6 @@ public class DownloadClassServlet extends HttpServlet {
         map.put("JCategory",JCategory);
 
 //        StringBuffer sb = GetExcel.getExcel("Station",colname);
-
 //        request.getSession().setAttribute("excel", sb.toString());
         response.sendRedirect(request.getContextPath() + "/export.jsp");
     }

@@ -1,6 +1,7 @@
 package com.Attendence.My.Controller.RepairCard;
 
 import com.Attendence.My.Model.Service.RepairCard.*;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -24,9 +25,16 @@ public class RepairCardServlet extends HttpServlet {
         response.setContentType("text/html");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-
+        JSONArray jsonArray = new JSONArray();
+        RepairCard repairCard = new RepairCard();
+        try {
+            jsonArray = repairCard.RepairQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         PrintWriter out = response.getWriter();
-        out.println("<html><body>123</body></html>");
+        out.println(jsonArray);
+//        out.println("<html><body>123</body></html>");
 //        RepairCard repairCard = new RepairCard();
 //        try {
 //            JSONObject js = repairCard.RepairQuery();

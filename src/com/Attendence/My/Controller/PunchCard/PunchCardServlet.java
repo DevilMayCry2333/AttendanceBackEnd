@@ -1,6 +1,7 @@
 package com.Attendence.My.Controller.PunchCard;
 
 import com.Attendence.My.Model.Service.PunchCard.*;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import javax.servlet.annotation.WebServlet;
@@ -21,11 +22,20 @@ public class PunchCardServlet extends javax.servlet.http.HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
+
+
+//        out.println("<html><body>123</body></html>");
+        PunchCard pc = new PunchCard();
+        JSONArray js = new JSONArray();
+        try {
+            js = pc.PunchQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         PrintWriter out = response.getWriter();
-        out.println("<html><body>123</body></html>");
-//        PunchCard pc = new PunchCard();
+        out.println(js);
 //        try {
-//            JSONObject js = pc.PunchQuery();
+//            JSONArray js = pc.PunchQuery();
 //            request.setAttribute("answer",js);
 //            request.getRequestDispatcher("/index/sda").forward(request,response);
 //
