@@ -3,6 +3,7 @@ package com.Attendence.My.Controller.EmployeeList;
 import com.Attendence.My.Model.Entity.Employee.EmployeeInsert;
 import com.Attendence.My.Model.Entity.Employee.EmployeeUpdate;
 import com.Attendence.My.Model.Service.EmployeeList.Employee;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(name = "EmployeeUpdateServlet",urlPatterns = "/EmployeeUpdateServlet")
@@ -53,15 +55,21 @@ public class EmployeeUpdateServlet extends HttpServlet {
         EmpInsert.setAge(Age);
 
         Employee s= new Employee();
+        JSONObject json = new JSONObject();
+        PrintWriter out = response.getWriter();
+
         try {
             if(s.UpdateEmp(EmpInsert)){
+                json.put("Res","true");
                 System.out.println("yes");
             }else{
+                json.put("Res","false");
                 System.out.println("error");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        out.println(json);
 
 
     }

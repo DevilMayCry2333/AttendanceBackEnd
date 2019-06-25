@@ -1,6 +1,7 @@
 package com.Attendence.My.Controller.Department;
 
 import com.Attendence.My.Model.Service.Department.Department;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,19 +27,25 @@ public class DepartmentDelServlet extends HttpServlet {
 
         String id= request.getParameter("id");
         Department dd= new Department();
+        PrintWriter out = response.getWriter();
+        JSONObject json = new JSONObject();
+
         try {
 //            int result=0;
             if(dd.deleteDep(id)){
                 System.out.println("yes");
+                json.put("Res","true");
 //                PrintWriter out = response.getWriter();
 //                result=1;
 //                out.write(result);
             }else{
+                json.put("Res","false");
                 System.out.println("error");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        out.println(json.toString());
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
