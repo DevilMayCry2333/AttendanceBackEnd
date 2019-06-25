@@ -2,10 +2,8 @@ package com.Attendence.My.Model.DAO.EmployeeList;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
 import com.Attendence.My.Model.Entity.Employee.EmployeeInsert;
-import com.Attendence.My.Model.Entity.Employee.EmployeeUpdate;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class EmployeeList {
     public ResultSet EmployQuery() throws SQLException {
@@ -45,11 +43,6 @@ public class EmployeeList {
 //            return false;
 //        }
 
-
-
-
-
-
         DBUtils dbUtils=new DBUtils();
         Connection con= dbUtils.getConnecton();
         String sql = "insert into Employ(EmployId, UserName, Nation, IDNumber, salary, Phone, EmeContact, Job, Describle, Age, Gender, ClassId)  value (?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -81,4 +74,5 @@ public class EmployeeList {
             return false;
         }
     }
+
 }

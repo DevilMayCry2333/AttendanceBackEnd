@@ -1,7 +1,7 @@
-package com.Attendence.My.Controller.Leave;
+package com.Attendence.My.Controller.RepairCard;
 
-import com.Attendence.My.Model.Entity.Leave.Leave;
-import com.Attendence.My.Model.Service.Leave.LeaveList;
+import com.Attendence.My.Model.Entity.RepairCard.RepairInsert;
+import com.Attendence.My.Model.Service.RepairCard.RepairCard;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "InsertLeaveServlet",urlPatterns = "/InsertLeaveServlet")
-public class InsertLeaveServlet extends HttpServlet {
+@WebServlet(name = "RepairCardInsertServlet")
+public class RepairCardInsertServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin","*");
         //允许请求的方法
@@ -24,23 +24,24 @@ public class InsertLeaveServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        Leave leave = new Leave();
-        leave.setLeaveId(request.getParameter("LeaveId"));
-        leave.setLeaveName(request.getParameter("LeaveName"));
-        leave.setBeginDate(request.getParameter("BeginDate"));
-        leave.setEndDate(request.getParameter("EndDate"));
-        leave.setLeaveReason(request.getParameter("LeaveReason"));
-
-        LeaveList leaveList = new LeaveList();
+        RepairInsert repairInsert = new RepairInsert();
+        repairInsert.setRepairId(request.getParameter("RepairId"));
+        repairInsert.setClassID(request.getParameter("ClassId"));
+        repairInsert.setUserName(request.getParameter("UserName"));
+        repairInsert.setRepairDate(request.getParameter("RepairDate"));
+        repairInsert.setReason(request.getParameter("Reason"));
+        RepairCard repairService = new RepairCard();
         try {
-            leaveList.LeaveInsert(leave);
+            repairService.RepairInsert(repairInsert);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         response.sendRedirect("http://localhost/AttendanceFrontEnd/index.html");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+            doPost(request,response);
     }
 }

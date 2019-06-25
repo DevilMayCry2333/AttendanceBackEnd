@@ -1,5 +1,6 @@
 package com.Attendence.My.Model.Service.RepairCard;
 
+import com.Attendence.My.Model.Entity.RepairCard.RepairInsert;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -27,5 +28,13 @@ public class RepairCard {
         int line = repairCard.RepairUpdate(repairModel);
         return line;
     }
-
+    public boolean RepairInsert(RepairInsert repairInsert) throws SQLException {
+        com.Attendence.My.Model.DAO.RepairCard.RepairCard repairCard = new com.Attendence.My.Model.DAO.RepairCard.RepairCard();
+        boolean re = repairCard.RepairCardInsert(repairInsert);
+        if(re){
+            return true;
+        }
+        else
+            return false;
+    }
 }

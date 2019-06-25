@@ -2,11 +2,9 @@
 package com.Attendence.My.Model.DAO.RepairCard;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
+import com.Attendence.My.Model.Entity.RepairCard.RepairInsert;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class RepairCard {
     public ResultSet RepairQuery (String sql){
@@ -48,4 +46,26 @@ public class RepairCard {
         }
         return line;
     }
+
+    public boolean RepairCardInsert (RepairInsert repairModel) throws SQLException {
+        DBUtils dbUtils = new DBUtils();
+        Connection connection = dbUtils.getConnecton();
+        String sql = "insert into repair(RepairId, ClassID, UserName, PunchDate, Remarks, Id) value  (?,?,?,?,?,?)";//sql语句
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,repairModel.getRepairId());
+        preparedStatement.setString(2,repairModel.getClassID());
+        preparedStatement.setString(3,repairModel.getUserName());
+        preparedStatement.setString(4,repairModel.getRepairDate());
+        preparedStatement.setString(5,repairModel.getReason());
+        // 班次，查询
+        preparedStatement.setString(6,"1");
+
+        int c = preparedStatement.executeUpdate();
+        if(c==1){
+            return true;
+        }
+        else
+            return  false;
+    }
+
 }

@@ -1,7 +1,7 @@
-package com.Attendence.My.Controller.Leave;
+package com.Attendence.My.Controller.PunchCard;
 
-import com.Attendence.My.Model.Entity.Leave.Leave;
-import com.Attendence.My.Model.Service.Leave.LeaveList;
+import com.Attendence.My.Model.Entity.PunchCard.PunchCardInsert;
+import com.Attendence.My.Model.Service.PunchCard.PunchCard;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "InsertLeaveServlet",urlPatterns = "/InsertLeaveServlet")
-public class InsertLeaveServlet extends HttpServlet {
+@WebServlet(name = "PunchInsertServlet",urlPatterns = "/PunchInsertServlet")
+public class PunchInsertServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin","*");
         //允许请求的方法
@@ -24,23 +24,24 @@ public class InsertLeaveServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        Leave leave = new Leave();
-        leave.setLeaveId(request.getParameter("LeaveId"));
-        leave.setLeaveName(request.getParameter("LeaveName"));
-        leave.setBeginDate(request.getParameter("BeginDate"));
-        leave.setEndDate(request.getParameter("EndDate"));
-        leave.setLeaveReason(request.getParameter("LeaveReason"));
+        PunchCardInsert punchCardInsert = new PunchCardInsert();
+        punchCardInsert.setPunchId(request.getParameter("PunchId"));
+        punchCardInsert.setClassId(request.getParameter("ClassId"));
+        punchCardInsert.setUserName(request.getParameter("UserName"));
+        punchCardInsert.setPunchDate(request.getParameter("PunchDate"));
+        punchCardInsert.setRemarks(request.getParameter("Remarks"));
 
-        LeaveList leaveList = new LeaveList();
+        PunchCard punchService = new PunchCard();
         try {
-            leaveList.LeaveInsert(leave);
+            punchService.PunchInsert(punchCardInsert);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         response.sendRedirect("http://localhost/AttendanceFrontEnd/index.html");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        doPost(request,response);
     }
 }

@@ -1,11 +1,9 @@
 package com.Attendence.My.Model.DAO.Leave;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
+import com.Attendence.My.Model.Entity.Leave.Leave;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class LeaveDAO {
@@ -23,19 +21,21 @@ public class LeaveDAO {
         }
         return re;
     }
-    public boolean InsertLeave(ArrayList<String> al){
-        String st="INSERT INTO Leave vaues(?,?,?,?,?) ";
+    public boolean InsertLeave(Leave leave) throws SQLException {
+        String st="INSERT INTO myleave (LeaveId, LeaveName, BeginDate, EndDate, LeaveReason, Id) vaues(?,?,?,?,?,?) ";
         DBUtils db=new DBUtils();
         Connection conn=db.getConnecton();
-        boolean c = false;
-        try {
-            Statement stt=conn.createStatement();
-            c=stt.execute(st);
+        int c;
+        PreparedStatement preparedStatement = conn.prepareStatement(st);
+        preparedStatement.setString(1,leave.getLeaveId());
+        preparedStatement.setString(2,leave.getLeaveName());
+        preparedStatement.setString(3,leave.getBeginDate());
+        preparedStatement.setString(4,leave.getEndDate());
+        preparedStatement.setString(5,leave.getLeaveReason());
+        preparedStatement.setString(6,"1");
+        c = preparedStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        if(c==true){
+        if(c==1){
             return  true;
         }
         else {

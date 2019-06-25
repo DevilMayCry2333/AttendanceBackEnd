@@ -51,11 +51,13 @@ public class EmployeeInsertServlet extends HttpServlet {
 
         com.Attendence.My.Model.Service.EmployeeList.Employee elService =
                 new com.Attendence.My.Model.Service.EmployeeList.Employee();
+
         try {
             elService.AddEmp(empInsert);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         response.sendRedirect("http://localhost/AttendanceFrontEnd/index.html");
 
 
