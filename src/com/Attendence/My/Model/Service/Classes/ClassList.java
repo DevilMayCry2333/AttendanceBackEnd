@@ -57,40 +57,18 @@ public class ClassList {
     public boolean InsertClass(ArrayList<String> al){
         ClassDAO cd=new ClassDAO();
         boolean cc=false;
-        if(cc==cd.InsertClass(al)){
-            return true;
+        try {
+            if(cc==cd.InsertClass(al)){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     public boolean ClassUpdate(ClassUpdate classUpdate){
         ClassDAO classDAO=new ClassDAO();
         return classDAO.ClassUpdate(classUpdate);
-    }
-
-
-    public boolean InsertClass(ArrayList<String> al) throws SQLException {
-        ClassDAO cd=new ClassDAO();
-        boolean cc=false;
-        if(cc==cd.InsertClass(al)){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-
-    public boolean UpdateClass(ArrayList<String> list) throws SQLException {
-        ClassDAO dao = new ClassDAO();
-        boolean re = dao.UpdateClass(list);
-        if (re){
-            return true;
-        }else {
-            return false;
-        }
-
     }
 }

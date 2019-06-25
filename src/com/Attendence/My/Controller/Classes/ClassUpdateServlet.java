@@ -1,7 +1,9 @@
 package com.Attendence.My.Controller.Classes;
 
 
+import com.Attendence.My.Model.Entity.Class.ClassUpdate;
 import com.Attendence.My.Model.Service.Classes.ClassList;
+import net.sf.json.JSONObject;
 
 
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -23,7 +26,7 @@ public class ClassUpdateServlet extends HttpServlet {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setContentType("text/html");
+        response.setContentType("text/javascript");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
@@ -33,24 +36,19 @@ public class ClassUpdateServlet extends HttpServlet {
         String EarlyTimeSelect=request.getParameter("EarlyTimeSelect");
         String LateTimeSelect= request.getParameter("LateTimeSelect");
         String desc = request.getParameter("desc");
-
-        ArrayList<String> list = new ArrayList<>();
-        list.add(id);
-        list.add(Ccode);
-        list.add(Cname);
-        list.add(EarlyTimeSelect);
-        list.add(LateTimeSelect);
-
-        ClassList uc= new ClassList();
-        try {
-            if(uc.UpdateClass(list)){
-                System.out.println("yes");
-            }else{
-                System.out.println("error");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        ClassUpdate classUpdate = new ClassUpdate();
+        classUpdate.setId(id);
+        classUpdate.setClassId(Ccode);
+        classUpdate.setCname(Cname);
+        classUpdate.setMtime(EarlyTimeSelect);
+        classUpdate.setAtime(LateTimeSelect);
+        classUpdate.setDesc(desc);
+        ClassList cl = new ClassList();
+        boolean res = cl.ClassUpdate(classUpdate);
+        JSONObject js = new JSONObject();
+        js.put("Res",String.valueOf(res));
+        PrintWriter out = response.getWriter();
+        out.println(js.toString());
 
 
     }

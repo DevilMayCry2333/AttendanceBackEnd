@@ -61,6 +61,31 @@ public class ClassDAO {
             return false;
         }
     }
+    public boolean ClassUpdate(ClassUpdate classUpdate){
+        DBUtils dbUtils=new DBUtils();
+        Connection con=dbUtils.getConnecton();
+        try {
+            PreparedStatement psmt = con.prepareStatement("UPDATE Classes SET ClassId = ? ,Classes.Cname = ? , Classes.Mtime = ? , Classes.Atime = ? , Classes.Descri = ? WHERE Classes.Id = ?");
+            psmt.setString(1,classUpdate.getClassId());
+            psmt.setString(2,classUpdate.getCname());
+            psmt.setString(3,classUpdate.getMtime());
+            psmt.setString(4,classUpdate.getAtime());
+            psmt.setString(5,classUpdate.getDesc());
+            psmt.setString(6,classUpdate.getId());
+            int res = psmt.executeUpdate();
+            System.out.println(res);
+
+            if(res > 0){
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public boolean DeleteClass(String []del){
         StringBuffer sql = new StringBuffer("DELETE FROM Classes WHERE Id in(");
         for (int i = 0; i < del.length; i++) {
