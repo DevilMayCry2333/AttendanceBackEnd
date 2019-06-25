@@ -71,4 +71,15 @@ public class Station {
             return false;
         }
     }
+
+    public boolean UpdateSta(ArrayList<String> list) throws SQLException {
+
+        com.Attendence.My.Model.DAO.Station.Station dao = new com.Attendence.My.Model.DAO.Station.Station();
+        boolean re = dao.UpdateSta(list);
+        if (re){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

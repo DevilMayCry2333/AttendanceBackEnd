@@ -61,4 +61,14 @@ public class Department {
             return false;
         }
     }
+
+    public boolean UpdateDep(ArrayList<String> list) throws SQLException {
+        com.Attendence.My.Model.DAO.Department.Department dao = new com.Attendence.My.Model.DAO.Department.Department();
+        boolean re = dao.UpdateDep(list);
+        if (re){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
