@@ -63,4 +63,44 @@ public class Station {
     }
 
 
+    public boolean UpdateSta(ArrayList<String> list) throws SQLException {
+        DBUtils dbUtils=new DBUtils();
+        Connection con= dbUtils.getConnecton();
+        String sql = "update Station set JobId=?,Pname=?,Adepartment=?,Isuperior=?,Jcategory=? where Id = ?";
+        PreparedStatement pstmt = null;
+        pstmt = con.prepareStatement(sql);
+        pstmt.setString(1,list.get(1));
+        pstmt.setString(2,list.get(2));
+        pstmt.setString(3,list.get(3));
+        pstmt.setString(4,list.get(4));
+        pstmt.setString(5,list.get(5));
+        pstmt.setInt(6, Integer.parseInt(list.get(0)));
+
+        int c = pstmt.executeUpdate();
+
+        if(c==1){
+            return  true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean DeleteSta(String id) throws SQLException {
+        DBUtils dbUtils=new DBUtils();
+        Connection con= dbUtils.getConnecton();
+        String sql = "delete from Station where Id=?";
+        PreparedStatement pstmt = null;
+        pstmt = con.prepareStatement(sql);
+        pstmt.setInt(1, Integer.parseInt(id));
+
+        int c = pstmt.executeUpdate();
+
+        if(c==1){
+            return  true;
+        }
+        else {
+            return false;
+        }
+    }
 }

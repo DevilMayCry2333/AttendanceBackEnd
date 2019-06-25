@@ -1,5 +1,6 @@
 package com.Attendence.My.Controller.Station;
 
+import com.Attendence.My.Model.Service.Classes.ClassList;
 import com.Attendence.My.utils.GetExcel;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
@@ -19,27 +20,16 @@ import java.util.Map;
 @WebServlet(name = "DownloadClassServlet" , urlPatterns = "/DownloadClassServlet")
 public class DownloadClassServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        StringBuffer sb = GetExcel.getExcel("Station",colname);
-        JSONArray jsonArr = new JSONArray();
-        JSONObject json = new JSONObject();
 
         List<String> colname = new ArrayList<>();
-        colname.add("Pname");
         colname.add("Id");
-        colname.add("Adepartment");
-        colname.add("Isuperior");
-        colname.add("Jcategory");
-        colname.add("JobId");
+        colname.add("ClassId");
+        colname.add("Cname");
+        colname.add("Mtime");
+        colname.add("Atime");
 
-        json.put("Pname","123");
-        json.put("Id","222");
-        json.put("Adepartment","333");
-        json.put("Isuperior","444");
-        json.put("Jcategory","555");
-        json.put("JobId","666");
-        jsonArr.add(json);
-
-
+        ClassList Cl = new ClassList();
+        JSONArray jsonArr = Cl.ClassList();
         StringBuffer sb = GetExcel.getExcel("Station",colname,jsonArr);
         System.out.println(sb.toString());
 

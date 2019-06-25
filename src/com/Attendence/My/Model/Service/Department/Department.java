@@ -61,4 +61,24 @@ public class Department {
             return false;
         }
     }
+
+    public boolean UpdateDep(ArrayList<String> list) throws SQLException {
+        com.Attendence.My.Model.DAO.Department.Department dao = new com.Attendence.My.Model.DAO.Department.Department();
+        boolean re = dao.UpdateDep(list);
+        if (re){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean deleteDep(String id) throws SQLException {
+        com.Attendence.My.Model.DAO.Department.Department dao = new com.Attendence.My.Model.DAO.Department.Department();
+        boolean re = dao.DeleteDep(id);
+        if (re){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
