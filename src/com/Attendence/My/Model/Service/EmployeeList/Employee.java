@@ -34,7 +34,6 @@ public class Employee {
         }
        return Json;
     }
-
     public boolean AddEmp(EmployeeInsert EmpInsert) throws SQLException {
         EmployeeList dao = new EmployeeList();
         boolean re= dao.AddEmp(EmpInsert);
