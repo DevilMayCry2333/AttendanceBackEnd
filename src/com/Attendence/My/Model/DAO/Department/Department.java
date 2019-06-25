@@ -60,15 +60,15 @@ public class Department {
 
         DBUtils dbUtils=new DBUtils();
         Connection con= dbUtils.getConnecton();
-        String sql = "insert into Department value (null ,?,?,?,?,?)";
+        String sql = "insert into Department value (null,?,?,?,?,?)";
         PreparedStatement pstmt = con.prepareStatement(sql);
 
-        pstmt.setInt(1,10);
-        pstmt.setString(2,list.get(0));
-        pstmt.setString(3,list.get(1));
-        pstmt.setString(4,list.get(2));
-        pstmt.setString(5,list.get(3));
-        pstmt.setString(6,list.get(4));
+
+        pstmt.setString(1,list.get(0));
+        pstmt.setString(2,list.get(1));
+        pstmt.setString(3,list.get(2));
+        pstmt.setString(4,list.get(3));
+        pstmt.setString(5,list.get(4));
 
 
         int c = pstmt.executeUpdate();
@@ -93,6 +93,24 @@ public class Department {
         pstmt.setString(4,list.get(4));
         pstmt.setString(5,list.get(5));
         pstmt.setInt(6, Integer.parseInt(list.get(0)));
+
+        int c = pstmt.executeUpdate();
+
+        if(c==1){
+            return  true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean DeleteDep(String id) throws SQLException {
+        DBUtils dbUtils=new DBUtils();
+        Connection con= dbUtils.getConnecton();
+        String sql = "delete from Department where Id=?";
+        PreparedStatement pstmt = null;
+        pstmt = con.prepareStatement(sql);
+        pstmt.setInt(1, Integer.parseInt(id));
 
         int c = pstmt.executeUpdate();
 

@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-@WebServlet(name = "DepartmentUpdateServlet",urlPatterns = "/DepartmentUpdateServlet")
-public class DepartmentUpdateServlet extends HttpServlet {
+@WebServlet(name = "DepartmentDelServlet",urlPatterns = "/DepartmentDelServlet")
+public class DepartmentDelServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin","*");
         //允许请求的方法
@@ -24,41 +24,25 @@ public class DepartmentUpdateServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-
-
-
-
         String id= request.getParameter("id");
-        String DepartmentId=request.getParameter("a");
-        String Dname=request.getParameter("b");
-        String Dprincipal=request.getParameter("c");
-        String Dability= request.getParameter("d");
-        String Sdepartment= request.getParameter("e");
-
-        ArrayList<String> list = new ArrayList<>();
-        list.add(id);
-        list.add(DepartmentId);
-        list.add(Dname);
-        list.add(Dprincipal);
-        list.add(Dability);
-        list.add(Sdepartment);
-
-        Department du= new Department();
+        Department dd= new Department();
         try {
-            if(du.UpdateDep(list)){
+//            int result=0;
+            if(dd.deleteDep(id)){
                 System.out.println("yes");
+//                PrintWriter out = response.getWriter();
+//                result=1;
+//                out.write(result);
             }else{
                 System.out.println("error");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        doPost(request,response);
+        doPost(request, response);
     }
 }

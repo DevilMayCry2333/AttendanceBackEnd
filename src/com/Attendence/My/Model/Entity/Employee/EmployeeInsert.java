@@ -1,6 +1,15 @@
 package com.Attendence.My.Model.Entity.Employee;
 
 public class EmployeeInsert {
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    private int Id;
     private String userName;
     private String userCode;
     private String Nation;

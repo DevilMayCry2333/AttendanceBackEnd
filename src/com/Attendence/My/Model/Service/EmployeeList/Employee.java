@@ -79,4 +79,23 @@ public class Employee {
 
     }
 
+    public boolean UpdateEmp(EmployeeInsert empInsert) throws SQLException {
+        EmployeeList dao = new EmployeeList();
+        boolean re = dao.UpdateEmp(empInsert);
+        if (re){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean deleteEmp(String id) throws SQLException {
+        EmployeeList dao = new EmployeeList();
+        boolean re = dao.DeleteEmp(id);
+        if (re){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

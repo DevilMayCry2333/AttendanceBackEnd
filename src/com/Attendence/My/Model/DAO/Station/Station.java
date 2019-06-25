@@ -85,4 +85,22 @@ public class Station {
             return false;
         }
     }
+
+    public boolean DeleteSta(String id) throws SQLException {
+        DBUtils dbUtils=new DBUtils();
+        Connection con= dbUtils.getConnecton();
+        String sql = "delete from Station where Id=?";
+        PreparedStatement pstmt = null;
+        pstmt = con.prepareStatement(sql);
+        pstmt.setInt(1, Integer.parseInt(id));
+
+        int c = pstmt.executeUpdate();
+
+        if(c==1){
+            return  true;
+        }
+        else {
+            return false;
+        }
+    }
 }

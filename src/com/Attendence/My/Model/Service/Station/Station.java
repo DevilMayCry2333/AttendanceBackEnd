@@ -82,4 +82,14 @@ public class Station {
             return false;
         }
     }
+
+    public boolean deleteSta(String id) throws SQLException {
+        com.Attendence.My.Model.DAO.Station.Station dao = new com.Attendence.My.Model.DAO.Station.Station();
+        boolean re = dao.DeleteSta(id);
+        if (re){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
