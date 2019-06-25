@@ -21,6 +21,30 @@ public class ClassDAO {
         }
         return re;
     }
+<<<<<<< Updated upstream
+=======
+    public boolean InsertClass(ArrayList<String> al){
+        DBUtils db=new DBUtils();
+        Connection conn=db.getConnecton();
+        String st="INSERT INTO Classes vaues(";
+        for (int i = 0; i < al.size(); i++) {
+            if(i == al.size()-1) {
+                String tmp = al.get(i);
+                st = st + tmp + ",";
+            }else {
+                String tmp = al.get(i);
+                st = st + tmp;
+            }
+        }
+        st = st + ")";
+//        System.out.println(st);
+//        return true;
+
+        boolean c = false;
+        try {
+            Statement stt=conn.createStatement();
+            c=stt.execute(st);
+>>>>>>> Stashed changes
 
     public boolean InsertClass(ArrayList<String> list) throws SQLException {
 //        String sql="INSERT INTO Classes(ClassId,Cname,Mtime,Atime)values('" + list.get(0) + "','"

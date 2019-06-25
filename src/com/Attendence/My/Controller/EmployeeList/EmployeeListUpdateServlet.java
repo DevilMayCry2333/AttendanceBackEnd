@@ -1,7 +1,9 @@
 package com.Attendence.My.Controller.EmployeeList;
 
 import com.Attendence.My.Model.Entity.EmployeeList.EmployeeListUpdate;
+
 import com.Attendence.My.Model.Service.EmployeeList.Employee;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +18,9 @@ public class EmployeeListUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<String> arrayList=new ArrayList<>();
         boolean c=false;
+
         Employee tt=new Employee();
+
         EmployeeListUpdate elu = new EmployeeListUpdate();
         elu.setEmployId("123");
 

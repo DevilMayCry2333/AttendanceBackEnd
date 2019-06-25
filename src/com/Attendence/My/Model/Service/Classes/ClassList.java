@@ -54,6 +54,16 @@ public class ClassList {
         return true;
 
     }
+    public boolean InsertClass(ArrayList<String> al){
+        ClassDAO cd=new ClassDAO();
+        boolean cc=false;
+        if(cc==cd.InsertClass(al)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     public boolean ClassUpdate(ClassUpdate classUpdate){
         ClassDAO classDAO=new ClassDAO();

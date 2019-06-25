@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 
 @WebServlet(name = "ClassInsertServlet",urlPatterns = "/ClassInsertServlet")
@@ -22,11 +24,15 @@ public class ClassInsertServlet extends HttpServlet {
         al.add(request.getParameter("Mtime"));
         al.add(request.getParameter("Atime"));
         al.add(request.getParameter("Remark"));
-        try {
-            c=tt.InsertClass(al);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+//        try {
+//            c=tt.InsertClass(al);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
+
+
         if (c==true){
             response.sendRedirect("xx");
 
