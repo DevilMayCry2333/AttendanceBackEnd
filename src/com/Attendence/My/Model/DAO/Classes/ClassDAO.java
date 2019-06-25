@@ -21,6 +21,7 @@ public class ClassDAO {
         }
         return re;
     }
+
     public boolean InsertClass(ArrayList<String> list) throws SQLException {
 //        String sql="INSERT INTO Classes(ClassId,Cname,Mtime,Atime)values('" + list.get(0) + "','"
 //                + list.get(1) + "','" + list.get(2) +"','" + list.get(3) + "')";
@@ -42,26 +43,23 @@ public class ClassDAO {
 //        }
 
 
-        DBUtils dbUtils=new DBUtils();
-        Connection con= dbUtils.getConnecton();
+        DBUtils dbUtils = new DBUtils();
+        Connection con = dbUtils.getConnecton();
         String sql = "insert into Classes value (null,?,?,?,?)";
         PreparedStatement pstmt = null;
-            pstmt = con.prepareStatement(sql);
-        pstmt.setString(1,list.get(0));
-        pstmt.setString(2,list.get(1));
-        pstmt.setString(3,list.get(2));
-        pstmt.setString(4,list.get(3));
+        pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, list.get(0));
+        pstmt.setString(2, list.get(1));
+        pstmt.setString(3, list.get(2));
+        pstmt.setString(4, list.get(3));
 
-            int c = pstmt.executeUpdate();
+        int c = pstmt.executeUpdate();
 
-            if(c==1){
-                return  true;
-            }
-            else {
-                return false;
-            }
-
-
+        if (c == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public boolean DeleteClass(String []del){
         StringBuffer sql = new StringBuffer("DELETE FROM Classes WHERE Id in(");

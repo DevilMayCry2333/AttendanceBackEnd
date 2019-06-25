@@ -54,11 +54,23 @@ public class ClassList {
         return true;
 
     }
+
     public boolean ClassUpdate(ClassUpdate classUpdate){
         ClassDAO classDAO=new ClassDAO();
         return classDAO.ClassUpdate(classUpdate);
     }
 
+
+    public boolean InsertClass(ArrayList<String> al) throws SQLException {
+        ClassDAO cd=new ClassDAO();
+        boolean cc=false;
+        if(cc==cd.InsertClass(al)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 
     public boolean UpdateClass(ArrayList<String> list) throws SQLException {

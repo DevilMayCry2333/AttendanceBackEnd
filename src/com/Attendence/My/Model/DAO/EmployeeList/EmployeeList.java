@@ -2,14 +2,18 @@ package com.Attendence.My.Model.DAO.EmployeeList;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
 import com.Attendence.My.Model.Entity.Employee.EmployeeInsert;
-import com.Attendence.My.Model.Entity.Employee.EmployeeUpdate;
 
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class EmployeeList {
-    public ResultSet EmployQuery() throws SQLException {
-        String str="SELECT * FROM employ";
+    public ResultSet EmployQuery(int page) throws SQLException {
+        String str="SELECT * FROM employ where id between '" + (page-1)*10 + "'and '"+(page)*10 + "'";
+        System.out.println(str);
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
         ResultSet re=null;
@@ -81,4 +85,43 @@ public class EmployeeList {
             return false;
         }
     }
+
+    public boolean UpdateEmployee(ArrayList<String> aa){
+        //ResultSet c=null;
+        boolean c=false;
+        String str = "UPDATE Employ SET EmployId='" + aa.get(0) + "',UserName='" + aa.get(1) +
+                "',Age='" + aa.get(2) + "',Nation='" +  aa.get(3) + "',IDNumber='" + aa.get(4) +
+                "',salary='" +  aa.get(5) + "',Phone='" +  aa.get(6) + "',EmeContact='" + aa.get(7)
+                + "',job='" +  aa.get(8) + "',Des='"+  aa.get(9)+"' where Id = 1" ;
+        //String sql = "UPDATE Employee SET ";
+        System.out.println(str);
+            DBUtils db=new DBUtils();
+            Connection con=db.getConnecton();
+            try{
+                Statement ste=con.createStatement();
+                c=ste.execute(str);
+            }catch (Exception e){
+                e.printStackTrace( );
+            }
+        if (c==true){
+            return  true;
+        }
+        else{
+            return false;
+        }
+    }
+        public ResultSet UpdateEmployQuery(String id) throws SQLException {
+            String str="SELECT * FROM Employ where EmployId=id";
+            DBUtils dbUtils=new DBUtils();
+            Connection con=dbUtils.getConnecton();
+            ResultSet re=null;
+            try {
+                Statement st = con.createStatement();
+                re = st.executeQuery(str);
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+            return re;
+        }
 }
