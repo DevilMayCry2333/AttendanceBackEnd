@@ -1,40 +1,63 @@
 package com.Attendence.My.Model.DAO.Department;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
+import com.Attendence.My.Model.Entity.Department.DepartmentList;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class Department {
-    public ResultSet DepartmentQuery(){
+    public ArrayList<DepartmentList> DepartmentQuery() throws SQLException {
         String sql="SELECT * FROM Department";
         ResultSet re=null;
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
+        ArrayList<DepartmentList> arrD = new ArrayList<>();
         Statement sta= null;
         try {
             sta = con.createStatement();
             re=sta.executeQuery(sql);
+            while (re.next()){
+                DepartmentList dl = new DepartmentList();
+                dl.setId(re.getInt("Id"));
+                dl.setDepartmentId(re.getString("DepartmentId"));
+                dl.setDname(re.getString("Dname"));
+                dl.setDPrincipal(re.getString("Dprincipal"));
+                dl.setDability(re.getString("Dability"));
+                dl.setSdepartment(re.getString("Sdepartment"));
+                arrD.add(dl);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            re.close();
+            sta.close();
+            con.close();
+        }
+        return arrD;
+    }
+    public  boolean InsertDepartment(DepartmentList dl){
+        String st="INSERT INTO Department(DepartmentId, Dname, Dprincipal, Dability, Sdepartment) VALUES (?,?,?,?,?)";
+        DBUtils db=new DBUtils();
+        Connection conn=db.getConnecton();
+        PreparedStatement psmt = null;
+        int res = 0;
+        try {
+            psmt = conn.prepareStatement(st);
+            psmt.setString(1,dl.getDepartmentId());
+            psmt.setString(2,dl.getDname());
+            psmt.setString(3,dl.getDPrincipal());
+            psmt.setString(4,dl.getDability());
+            psmt.setString(5,dl.getSdepartment());
+            res = psmt.executeUpdate();
+            psmt.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return re;
-    }
-    public  boolean InsertDepartment(){
-        String st="INSERT INTO xx vaues (?,?,?)";
-        DBUtils db=new DBUtils();
-        Connection conn=db.getConnecton();
-        boolean cc=false;
-        try {
-            Statement ste = conn.createStatement();
-            cc = ste.execute(st);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        if (cc==true){
+        if(res > 0)
             return true;
-        }
-        else return false;
+        return false;
     }
     public  boolean DeleteDepartment(String []del){
         String str="DELETE FROM xx WHERE id in($id)";
@@ -44,6 +67,9 @@ public class Department {
         try{
             Statement sta=conne.createStatement();
             ccc=sta.execute(str);
+            sta.close();
+            conne.close();
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -55,46 +81,23 @@ public class Department {
         }
     }
 
-
-    public boolean Dep(ArrayList<String> list) throws SQLException {
-
-        DBUtils dbUtils=new DBUtils();
-        Connection con= dbUtils.getConnecton();
-        String sql = "insert into Department value (null,?,?,?,?,?)";
-        PreparedStatement pstmt = con.prepareStatement(sql);
-
-
-        pstmt.setString(1,list.get(0));
-        pstmt.setString(2,list.get(1));
-        pstmt.setString(3,list.get(2));
-        pstmt.setString(4,list.get(3));
-        pstmt.setString(5,list.get(4));
-
-
-        int c = pstmt.executeUpdate();
-
-        if(c==1){
-            return  true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    public boolean UpdateDep(ArrayList<String> list) throws SQLException {
+    public boolean UpdateDep(DepartmentList dlist) throws SQLException {
         DBUtils dbUtils=new DBUtils();
         Connection con= dbUtils.getConnecton();
         String sql = "update Department set DepartmentId=?,Dname=?,Dprincipal=?,Dability=?,Sdepartment=? where Id = ?";
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
-        pstmt.setString(1,list.get(1));
-        pstmt.setString(2,list.get(2));
-        pstmt.setString(3,list.get(3));
-        pstmt.setString(4,list.get(4));
-        pstmt.setString(5,list.get(5));
-        pstmt.setInt(6, Integer.parseInt(list.get(0)));
+        pstmt.setString(1,dlist.getDepartmentId());
+        pstmt.setString(2,dlist.getDname());
+        pstmt.setString(3,dlist.getDPrincipal());
+        pstmt.setString(4,dlist.getDability());
+        pstmt.setString(5,dlist.getSdepartment());
+        pstmt.setInt(6, dlist.getId());
 
         int c = pstmt.executeUpdate();
+        pstmt.close();
+        con.close();
+
 
         if(c==1){
             return  true;
@@ -113,6 +116,8 @@ public class Department {
         pstmt.setInt(1, Integer.parseInt(id));
 
         int c = pstmt.executeUpdate();
+        pstmt.close();
+        con.close();
 
         if(c==1){
             return  true;

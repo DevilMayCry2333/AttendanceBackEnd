@@ -11,28 +11,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Employee {
-    public JSONArray EmployeeList(int page){
+    public ArrayList<com.Attendence.My.Model.Entity.Employee.EmployeeList> EmployeeList(int page) throws SQLException {
        JSONObject js= new JSONObject( );
        JSONArray Json=new JSONArray();
-        com.Attendence.My.Model.DAO.EmployeeList.EmployeeList employee=new com.Attendence.My.Model.DAO.EmployeeList.EmployeeList();
-        ResultSet re= null;
-        try {
-                re = employee.EmployQuery(page);
-                while (re.next()){
-                    js.put("Id",re.getString("Id"));
-                    js.put("EmployId",re.getString("EmployId"));
-                    js.put("UserName",re.getString("UserName"));
-                    js.put("Gender",re.getString("Gender"));
-                    js.put("Age",re.getInt("Age"));
-                    js.put("Nation",re.getString("Nation"));
-                    js.put("Job",re.getString("Job"));
-                    Json.add(js);
+       com.Attendence.My.Model.DAO.EmployeeList.EmployeeList employee=new com.Attendence.My.Model.DAO.EmployeeList.EmployeeList();
+       return employee.EmployQuery(page);
 
-                }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-       return Json;
     }
     public boolean AddEmp(EmployeeInsert EmpInsert) throws SQLException {
         EmployeeList dao = new EmployeeList();

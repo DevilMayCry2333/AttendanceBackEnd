@@ -10,7 +10,7 @@ public class Attend {
 
 
 
-    public ArrayList<com.Attendence.My.Model.Entity.Attend.Attend> QueryAttend(){
+    public ArrayList<com.Attendence.My.Model.Entity.Attend.Attend> QueryAttend() throws SQLException {
 
 
         ArrayList<String> PunchID = new ArrayList<>();
@@ -63,16 +63,25 @@ public class Attend {
         String EarlyAfternoon = "SELECT * FROM earlyafternoon";
         String AbsDay = "SELECT * FROM absday";
 
-        try {
-            Statement st = conn.createStatement();
-            Statement st2 = conn.createStatement();
-            Statement st3 = conn.createStatement();
-            Statement st4 = conn.createStatement();
+        Statement st = null;
+        Statement st2 = null;
+        Statement st3 = null;
+        Statement st4 = null;
+        ResultSet rss = null;
+        ResultSet rss2 = null;
+        ResultSet rss3 = null;
+        ResultSet rss4 = null;
 
-            ResultSet rss = st.executeQuery(Normal);
-            ResultSet rss2 = st2.executeQuery(LateMorning);
-            ResultSet rss3 = st3.executeQuery(EarlyAfternoon);
-            ResultSet rss4 = st4.executeQuery(AbsDay);
+        try {
+            st = conn.createStatement();
+            st2 = conn.createStatement();
+            st3 = conn.createStatement();
+            st4 = conn.createStatement();
+
+            rss = st.executeQuery(Normal);
+            rss2 = st2.executeQuery(LateMorning);
+            rss3 = st3.executeQuery(EarlyAfternoon);
+            rss4 = st4.executeQuery(AbsDay);
 
             int i = 0;
 
@@ -177,6 +186,16 @@ public class Attend {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            rss.close();
+            rss2.close();
+            rss3.close();
+            rss4.close();;
+            st.close();
+            st2.close();
+            st3.close();
+            st4.close();
+            conn.close();
         }
         as.add(attendMod);
         as.add(attendMod2);
@@ -201,8 +220,9 @@ public class Attend {
                 psmt.setString(4,attend.getClassId().get(i));
                 psmt.setString(5,attend.getAttendStatus().get(i));
                 psmt.executeUpdate();
+                psmt.close();
             }
-
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -216,6 +236,8 @@ public class Attend {
         try {
             psdel = conn.prepareStatement("DELETE FROM Attend");
             psdel.executeUpdate();
+            psdel.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

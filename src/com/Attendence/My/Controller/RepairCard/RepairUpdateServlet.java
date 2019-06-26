@@ -30,7 +30,7 @@ public class RepairUpdateServlet extends HttpServlet {
 //        repairModel.setRepairDate(request.getParameter("Date"));
 //        repairModel.setRepairId(request.getParameter("RepairId"));
        repairModel.setId(1);
-        repairModel.setSCode("123");
+        repairModel.setClassId("123");
         repairModel.setUserName("123");
         repairModel.setReason("123");
         repairModel.setRepairDate("1111-11-11");

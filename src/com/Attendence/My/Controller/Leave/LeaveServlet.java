@@ -1,7 +1,9 @@
 package com.Attendence.My.Controller.Leave;
 
+import com.Attendence.My.Model.Entity.Leave.Leave;
 import com.Attendence.My.Model.Service.Leave.LeaveList;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet(name = "LeaveServlet",urlPatterns = "/LeaveServlet")
 public class LeaveServlet extends HttpServlet {
@@ -25,9 +29,26 @@ public class LeaveServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        JSONArray jsonArray;
-        LeaveList station=new LeaveList();
-        jsonArray=station.LeaveList();
+        JSONArray jsonArray = new JSONArray();
+        LeaveList leave=new LeaveList();
+
+        ArrayList<Leave> leaveArr = null;
+        try {
+            leaveArr = leave.LeaveList();
+            for (int i = 0; i < leaveArr.size(); i++) {
+                JSONObject js = new JSONObject();
+                js.put("LeaveId",leaveArr.get(i).getLeaveId());
+                js.put("LeaveName",leaveArr.get(i).getLeaveName());
+                js.put("BeginDate",leaveArr.get(i).getBeginDate());
+                js.put("EndDate",leaveArr.get(i).getEndDate());
+                js.put("LeaveReason",leaveArr.get(i).getLeaveReason());
+                jsonArray.add(js);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         PrintWriter out = response.getWriter();
         out.println(jsonArray);
 

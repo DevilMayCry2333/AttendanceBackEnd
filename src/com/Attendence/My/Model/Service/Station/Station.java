@@ -1,6 +1,7 @@
 package com.Attendence.My.Model.Service.Station;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
+import com.Attendence.My.Model.Entity.Station.StationList;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -11,27 +12,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Station {
-    public JSONArray StationQuery() {
-        JSONArray jsonArray = new JSONArray();
-        JSONObject jsonObject = new JSONObject();
-        ResultSet re=null;
+    public ArrayList<StationList> StationQuery() throws SQLException {
         com.Attendence.My.Model.DAO.Station.Station station=new com.Attendence.My.Model.DAO.Station.Station();
-        try{
-            re=station.StationQuery();
-            while (re.next()) {
-                jsonObject.put("Id",re.getString("Id"));
-                jsonObject.put("JobId",re.getString("JobId"));
-                jsonObject.put("Pname",re.getString("Pname"));
-                jsonObject.put("Adepartment",re.getString("Adepartment"));
-                jsonObject.put("Isuperior",re.getString("Isuperior"));
-                jsonObject.put("Jcategory",re.getString("Jcategory"));
-
-                jsonArray.add(jsonObject);
-            }
-            }catch (Exception e){
-            e.printStackTrace();
-        }
-        return jsonArray;
+        return station.StationQuery();
     }
 //    public boolean InsertStation(ArrayList<String> list){
 //        com.Attendence.My.Model.DAO.Station.Station station=new com.Attendence.My.Model.DAO.Station.Station();
@@ -46,11 +29,11 @@ public class Station {
 //        }
 //        else return false;
 //    }
-    public  boolean DeleteStation(){
+    public  boolean DeleteStation(String id){
         com.Attendence.My.Model.DAO.Station.Station station=new com.Attendence.My.Model.DAO.Station.Station();
         boolean c=false;
         try {
-            c=station.DeleteStation();
+            c=station.DeleteSta(id);
         }catch (Exception e){
             e.printStackTrace();
         }

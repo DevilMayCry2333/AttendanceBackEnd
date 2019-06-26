@@ -1,7 +1,10 @@
 package com.Attendence.My.Controller.Department;
 
+import com.Attendence.My.Model.Entity.Department.DepartmentList;
+import com.Attendence.My.Model.Entity.Station.StationList;
 import com.Attendence.My.Model.Service.Department.Department;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet(name = "DepartmentServlet",urlPatterns = "/DepartmentServlet")
 public class DepartmentServlet extends HttpServlet {
@@ -25,12 +30,34 @@ public class DepartmentServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        JSONArray jsonArray;
+        JSONArray jsonArray = new JSONArray();
+        //                JS.put("Id",re.getString("Id"));
+//                JS.put("DepartmentId",re.getString("DepartmentId"));
+//                JS.put("Dname",re.getString("Dname"));
+//                JS.put("Dprincipal",re.getString("Dprincipal"));
+//                JS.put("Dability",re.getString("Dability"));
+//                JS.put("Sdepartment",re.getString("Sdepartment"));
+//                JsonArr.add(JS);
+
         Department station=new Department();
-        jsonArray=station.Department();
+        try {
+            ArrayList<DepartmentList> DepartmentList = station.Department();
+            for (int i = 0; i < DepartmentList.size(); i++) {
+                JSONObject json = new JSONObject();
+                json.put("Id",DepartmentList.get(i).getId());
+                json.put("DepartmentId",DepartmentList.get(i).getDepartmentId());
+                json.put("Dname",DepartmentList.get(i).getDname());
+                json.put("Dprincipal",DepartmentList.get(i).getDPrincipal());
+                json.put("Dability",DepartmentList.get(i).getDability());
+                json.put("Sdepartment",DepartmentList.get(i).getSdepartment());
+                jsonArray.add(json);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         PrintWriter out = response.getWriter();
         out.println(jsonArray);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

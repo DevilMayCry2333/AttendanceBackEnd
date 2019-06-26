@@ -1,7 +1,7 @@
 package com.Attendence.My.Model.Entity.Class;
 
 public class ClassUpdate {
-    private String Id;
+    private int Id;
     private String ClassId;
     private String Cname;
     private String Mtime;
@@ -40,13 +40,6 @@ public class ClassUpdate {
         Atime = atime;
     }
 
-    public String getId() {
-        return Id;
-    }
-
-    public void setId(String id) {
-        Id = id;
-    }
 
     public String getDesc() {
         return Desc;
@@ -54,5 +47,13 @@ public class ClassUpdate {
 
     public void setDesc(String desc) {
         Desc = desc;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
     }
 }

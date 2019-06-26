@@ -1,5 +1,6 @@
 package com.Attendence.My.Controller.Station;
 
+import com.Attendence.My.Model.Entity.Class.ClassUpdate;
 import com.Attendence.My.Model.Service.Classes.ClassList;
 import com.Attendence.My.utils.GetExcel;
 import net.sf.json.JSON;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +31,21 @@ public class DownloadClassServlet extends HttpServlet {
         colname.add("Atime");
 
         ClassList Cl = new ClassList();
-        JSONArray jsonArr = Cl.ClassList();
+        JSONArray jsonArr = new JSONArray();
+        try {
+            ArrayList<ClassUpdate> ClassUpdate = Cl.ClassList();
+            for (int i = 0; i < ClassUpdate.size(); i++) {
+                JSONObject json = new JSONObject();
+                json.put("Id",ClassUpdate.get(i).getId());
+                json.put("ClassId",ClassUpdate.get(i).getClassId());
+                json.put("Cname",ClassUpdate.get(i).getCname());
+                json.put("Mtime",ClassUpdate.get(i).getMtime());
+                json.put("Atime",ClassUpdate.get(i).getAtime());
+                jsonArr.add(json);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         StringBuffer sb = GetExcel.getExcel("Station",colname,jsonArr);
         System.out.println(sb.toString());
 

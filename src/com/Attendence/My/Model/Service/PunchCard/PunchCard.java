@@ -7,22 +7,15 @@ import net.sf.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PunchCard {
-    public JSONArray PunchQuery() throws SQLException {
+    public ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> PunchQuery() throws SQLException {
         JSONObject json = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         com.Attendence.My.Model.DAO.PunchCard.PunchCard pc = new com.Attendence.My.Model.DAO.PunchCard.PunchCard();
-        ResultSet rs = pc.PunchQuery("SELECT * from Punch");
-        while (rs.next()){
-            json.put("PunchId",rs.getString("PunchId"));
-            json.put("Scode",rs.getString("ClassId"));
-            json.put("UserName",rs.getString("UserName"));
-            json.put("PunchDate",rs.getString("PunchDate"));
-            json.put("Remarks",rs.getString("Remarks"));
-            jsonArray.add(json);
-        }
-        return jsonArray;
+        return pc.PunchQuery("SELECT * from Punch");
+
     }
 
     public int PunchUpdate (com.Attendence.My.Model.Entity.PunchCard.PunchCard punchModel) {

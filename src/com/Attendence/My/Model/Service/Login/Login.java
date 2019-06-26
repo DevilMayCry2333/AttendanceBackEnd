@@ -6,16 +6,11 @@ import java.sql.SQLException;
 public class Login {
     public boolean loginquery(String username,String password) throws SQLException {
         com.Attendence.My.Model.DAO.Login.Login lg = new com.Attendence.My.Model.DAO.Login.Login();
-        ResultSet rs = lg.query(username);
-        if (rs.next()){
-            String realpass = rs.getString("password");
+        String realpass = lg.query(username);
             if(realpass.equals(password)){
                 return true;
             }else {
                 return false;
             }
-        }else {
-            return false;
-        }
     }
 }

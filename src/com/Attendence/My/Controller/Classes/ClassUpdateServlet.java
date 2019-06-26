@@ -30,7 +30,7 @@ public class ClassUpdateServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String id= request.getParameter("id");
+        int id= Integer.parseInt(request.getParameter("id"));
         String Ccode=request.getParameter("Ccode");
         String Cname=request.getParameter("Cname");
         String EarlyTimeSelect=request.getParameter("EarlyTimeSelect");

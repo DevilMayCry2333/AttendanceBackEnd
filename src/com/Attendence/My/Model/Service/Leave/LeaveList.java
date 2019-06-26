@@ -7,28 +7,12 @@ import net.sf.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class LeaveList {
-    public JSONArray LeaveList(){
-        JSONObject js= new JSONObject( );
-        JSONArray Json=new JSONArray();
+    public ArrayList<Leave> LeaveList() throws SQLException {
         LeaveDAO leave = new LeaveDAO();
-        ResultSet re1= null;
-        try {
-            re1 = leave.LeaveQuery();
-            while (re1.next()){
-                js.put("LeaveId",re1.getString("LeaveId"));
-                js.put("LeaveName",re1.getString("LeaveName"));
-                js.put("BeginDate",re1.getString("BeginDate"));
-                js.put("EndDate",re1.getString("EndDate"));
-                js.put("LeaveReason",re1.getString("LeaveReason"));
-                Json.add(js);
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return Json;
+        return leave.LeaveQuery();
     }
     public boolean LeaveInsert(Leave leaveModel) throws SQLException {
         LeaveDAO leaveDAO = new LeaveDAO();

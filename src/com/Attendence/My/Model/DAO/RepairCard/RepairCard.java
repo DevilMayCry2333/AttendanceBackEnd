@@ -5,29 +5,48 @@ import com.Attendence.My.Model.DBUtils.DBUtils;
 import com.Attendence.My.Model.Entity.RepairCard.RepairInsert;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class RepairCard {
-    public ResultSet RepairQuery (String sql){
+    public ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> RepairQuery (String sql) throws SQLException {
 
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
         Statement st = null;
+        ResultSet rs = null;
+        ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> repairArr = new ArrayList<>();
+
         try {
             st = con.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        ResultSet rs = null;
-        try {
             rs = st.executeQuery(sql);
+            while (rs.next()){
+                //            jsonObject.put("RepairId",rs.getString("RepairId"));
+//            jsonObject.put("ClassId",rs.getString("ClassId"));
+//            jsonObject.put("UserName",rs.getString("UserName"));
+//            jsonObject.put("RepairDate",rs.getString("RepairDate"));
+//            jsonObject.put("Reason",rs.getString("Reason"));
+//            jsonArray.add(jsonObject);
+                com.Attendence.My.Model.Entity.RepairCard.RepairCard repair = new com.Attendence.My.Model.Entity.RepairCard.RepairCard();
+                repair.setId(rs.getInt("Id"));
+                repair.setClassId(rs.getString("ClassId"));
+                repair.setUserName(rs.getString("UserName"));
+                repair.setRepairDate(rs.getString("RepairDate"));
+                repair.setReason(rs.getString("Reason"));
+                repair.setRepairId(rs.getString("RepairId"));
+                repairArr.add(repair);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            rs.close();
+            st.close();
+            con.close();
         }
-        return  rs;
+        return repairArr;
     }
 
     public int RepairUpdate(com.Attendence.My.Model.Entity.RepairCard.RepairCard repairModel){
-        String sql = "UPDATE repair SET RepairId ='" + repairModel.getRepairId() + "',Scode='" + repairModel.getSCode() + "',UserName='" + repairModel.getUserName() + "',Reason='" + repairModel.getReason() + "',RepairDate='" + repairModel.getRepairDate() + "',Id = '" + repairModel.getId() + "'WHERE Id = '" + repairModel.getId()+ "'";
+        String sql = "UPDATE repair SET RepairId ='" + repairModel.getRepairId() + "',Scode='" + repairModel.getClassId() + "',UserName='" + repairModel.getUserName() + "',Reason='" + repairModel.getReason() + "',RepairDate='" + repairModel.getRepairDate() + "',Id = '" + repairModel.getId() + "'WHERE Id = '" + repairModel.getId()+ "'";
         System.out.println(sql);
 
         int line = 0;
@@ -36,11 +55,9 @@ public class RepairCard {
         Statement st = null;
         try {
             st = conn.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
             line = st.executeUpdate(sql);
+            st.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -61,6 +78,8 @@ public class RepairCard {
         preparedStatement.setString(6,"1");
 
         int c = preparedStatement.executeUpdate();
+        preparedStatement.close();
+        connection.close();
         if(c==1){
             return true;
         }

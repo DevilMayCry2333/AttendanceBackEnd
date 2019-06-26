@@ -5,27 +5,40 @@ import com.Attendence.My.Model.Entity.PunchCard.PunchCardInsert;
 import com.Attendence.My.Model.Utils.Connect;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class PunchCard {
-    public ResultSet PunchQuery(String sql){
+    public ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> PunchQuery(String sql) throws SQLException {
         DBUtils cn = new DBUtils();
         Connection conn = cn.getConnecton();
+        ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> punchArr = new ArrayList<>();
+
+        ResultSet rs = null;
         Statement st = null;
         try {
             st = conn.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        ResultSet rs = null;
-        try {
             rs = st.executeQuery(sql);
+            while (rs.next()){
+                com.Attendence.My.Model.Entity.PunchCard.PunchCard punch = new com.Attendence.My.Model.Entity.PunchCard.PunchCard();
+                punch.setID(rs.getInt("Id"));
+                punch.setClassId(rs.getString("ClassId"));
+                punch.setUserName(rs.getString("UserName"));
+                punch.setPunchDate(rs.getString("PunchDate"));
+                punch.setRemarks(rs.getString("Remarks"));
+                punch.setPunchId(rs.getString("PunchId"));
+                punchArr.add(punch);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            rs.close();
+            st.close();
+            conn.close();
         }
-        return rs;
+        return punchArr;
     }
     public int PunchUpdate(com.Attendence.My.Model.Entity.PunchCard.PunchCard punchModel){
-        String sql = "UPDATE punch SET PunchId ='" + punchModel.getID() + "',Scode='" + punchModel.getSCode() + "',UserName='" + punchModel.getUserName() + "',PunchDate='" + punchModel.getPunchDate() + "',Remarks='" + punchModel.getRemarks() + "'WHERE Id = '" + punchModel.getID() + "'";
+        String sql = "UPDATE punch SET PunchId ='" + punchModel.getID() + "',ClassId='" + punchModel.getClassId() + "',UserName='" + punchModel.getUserName() + "',PunchDate='" + punchModel.getPunchDate() + "',Remarks='" + punchModel.getRemarks() + "'WHERE Id = '" + punchModel.getID() + "'";
         System.out.println(sql);
 
         int line = 0;
@@ -34,11 +47,9 @@ public class PunchCard {
         Statement st = null;
         try {
             st = conn.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try {
             line = st.executeUpdate(sql);
+            st.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,6 +69,8 @@ public class PunchCard {
             preparedStatement.setString(6,"1");
 
         int c =preparedStatement.executeUpdate();
+        preparedStatement.close();
+        connection.close();
         if(c == 1){
             return true;
         }

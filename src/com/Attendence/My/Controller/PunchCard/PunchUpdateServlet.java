@@ -30,7 +30,7 @@ public class PunchUpdateServlet extends HttpServlet {
 //        punchCardModel.setPunchDate(request.getParameter("PunchDate"));
 //        punchCardModel.setPunchId(request.getParameter("PunchId"));
 //        punchCardModel.setRemarks(request.getParameter("Remarks"));
-        punchCardModel.setSCode("123");
+        punchCardModel.setClassId("123");
         punchCardModel.setID(1);
         punchCardModel.setPunchDate("2019-06-24");
         punchCardModel.setPunchId("666");

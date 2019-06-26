@@ -7,19 +7,41 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ClassDAO {
-    public ResultSet ClassQuery() throws SQLException {
+    public ArrayList<ClassUpdate> ClassQuery() throws SQLException {
         String str="SELECT * from Classes";
         DBUtils dbUtils=new DBUtils();
         Connection con= dbUtils.getConnecton();
+        ArrayList<ClassUpdate> ClassArr = new ArrayList<>();
         ResultSet re = null;
+        Statement st = null;
         try {
-            Statement st = con.createStatement();
+            st = con.createStatement();
             re = st.executeQuery(str);
+            while (re.next()){
+                //                js.put("Id",re1.getString("Id"));
+//                js.put("ClassId",re1.getString("ClassId"));
+//                js.put("Cname",re1.getString("Cname"));
+//                js.put("Mtime",re1.getString("Mtime"));
+//                js.put("Atime",re1.getString("Atime"));
+                ClassUpdate classUpdate = new ClassUpdate();
+                classUpdate.setId(re.getInt("Id"));
+                classUpdate.setClassId(re.getString("ClassId"));
+                classUpdate.setCname(re.getString("Cname"));
+                classUpdate.setMtime(re.getString("Mtime"));
+                classUpdate.setAtime(re.getString("Atime"));
+                ClassArr.add(classUpdate);
+
+
+            }
         } catch (SQLException e) {
             e.printStackTrace();
 
+        }finally {
+            re.close();
+            st.close();
+            con.close();
         }
-        return re;
+        return ClassArr;
     }
 
     public boolean InsertClass(ArrayList<String> list) throws SQLException {
@@ -54,7 +76,8 @@ public class ClassDAO {
         pstmt.setString(4, list.get(3));
 
         int c = pstmt.executeUpdate();
-
+        pstmt.close();
+        con.close();
         if (c == 1) {
             return true;
         } else {
@@ -71,9 +94,11 @@ public class ClassDAO {
             psmt.setString(3,classUpdate.getMtime());
             psmt.setString(4,classUpdate.getAtime());
             psmt.setString(5,classUpdate.getDesc());
-            psmt.setString(6,classUpdate.getId());
+            psmt.setInt(6,classUpdate.getId());
             int res = psmt.executeUpdate();
             System.out.println(res);
+            psmt.close();
+            con.close();
 
             if(res > 0){
                 return true;
@@ -101,6 +126,8 @@ public class ClassDAO {
         try {
             Statement st = cn.createStatement();
             st.executeUpdate(sql.toString());
+            st.close();
+            cn.close();
 
         } catch (SQLException e) {
             e.printStackTrace();

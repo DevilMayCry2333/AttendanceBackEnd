@@ -1,5 +1,6 @@
 package com.Attendence.My.Controller.EmployeeList;
 
+import com.Attendence.My.Model.Entity.Employee.EmployeeList;
 import com.Attendence.My.Model.Service.EmployeeList.Employee;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet(name = "EmployeeListServlet",urlPatterns = "/EmployeeListServlet")
 public class EmployeeListServlet extends HttpServlet {
@@ -25,18 +28,30 @@ public class EmployeeListServlet extends HttpServlet {
         response.setContentType("text/html");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        JSONArray jsonArray;
+        JSONArray jsonArray = new JSONArray();
+
         //String pages=request.getParameter("page");
         int  page=1;
         //int page=Integer.valueOf(pages).intValue();
         Employee employeeList=new Employee();
-        jsonArray=employeeList.EmployeeList(page);
+        try {
+            ArrayList<EmployeeList> arrEmp = employeeList.EmployeeList(page);
+            for (int i = 0; i < arrEmp.size(); i++) {
+                JSONObject js = new JSONObject();
+                    js.put("Id",arrEmp.get(i).getId());
+                    js.put("EmployId",arrEmp.get(i).getUserCode());
+                    js.put("UserName",arrEmp.get(i).getUserName());
+                    js.put("Gender",arrEmp.get(i).getGender());
+                    js.put("Age",arrEmp.get(i).getAge());
+                    js.put("Nation",arrEmp.get(i).getNation());
+                    js.put("Job",arrEmp.get(i).getStation());
+                    jsonArray.add(js);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         PrintWriter out = response.getWriter();
-        System.out.println(jsonArray);
         out.println(jsonArray);
-//        js.put("user","132");
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

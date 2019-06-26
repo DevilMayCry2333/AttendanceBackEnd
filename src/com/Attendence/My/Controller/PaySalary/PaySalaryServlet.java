@@ -1,7 +1,9 @@
 package com.Attendence.My.Controller.PaySalary;
 
+import com.Attendence.My.Model.Entity.PaySalary.PaySalary;
 import com.Attendence.My.Model.Service.PaySalaryList.PaySalaryList;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet(name = "PaySalaryServlet",urlPatterns = "/PaySalaryServlet")
 public class PaySalaryServlet extends HttpServlet {
@@ -26,12 +29,24 @@ public class PaySalaryServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        JSONArray jsonArray;
+        JSONArray jsonArray = new JSONArray();
+
         PaySalaryList station=new PaySalaryList();
-        jsonArray=station.PaySalayList();
+        ArrayList<PaySalary> arrpay = station.PaySalayList();
+        JSONObject json = new JSONObject();
+
+        for (int i = 0; i < arrpay.size(); i++) {
+            json.put("ClassId",arrpay.get(i).getClassId());
+            json.put("EmpName",arrpay.get(i).getEmpName());
+            json.put("Salary",arrpay.get(i).getSalary());
+            json.put("BeginTime",arrpay.get(i).getBeginTime());
+            json.put("EndTime",arrpay.get(i).getEndTime());
+            jsonArray.add(json);
+            System.out.println(json);
+
+        }
         PrintWriter out = response.getWriter();
         out.println(jsonArray);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -7,19 +7,38 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class LeaveDAO {
-    public ResultSet LeaveQuery() throws SQLException {
+    public ArrayList<Leave> LeaveQuery() throws SQLException {
         String str="SELECT * from MyLeave";
         DBUtils dbUtils=new DBUtils();
         Connection con= dbUtils.getConnecton();
+        ArrayList<Leave> leavArr = new ArrayList<>();
+        Statement st = null;
         ResultSet re = null;
         try {
-            Statement st = con.createStatement();
+            st = con.createStatement();
             re = st.executeQuery(str);
+            while (re.next()){
+                //                js.put("LeaveId",re1.getString("LeaveId"));
+//                js.put("LeaveName",re1.getString("LeaveName"));
+//                js.put("BeginDate",re1.getString("BeginDate"));
+//                js.put("EndDate",re1.getString("EndDate"));
+//                js.put("LeaveReason",re1.getString("LeaveReason"));
+                Leave leave = new Leave();
+                leave.setLeaveId(re.getString("LeaveId"));
+                leave.setLeaveName(re.getString("LeaveName"));
+                leave.setBeginDate(re.getString("BeginDate"));
+                leave.setEndDate(re.getString("EndDate"));
+                leave.setLeaveReason(re.getString("LeaveReason"));
+                leavArr.add(leave);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-
+        }finally {
+            re.close();
+            st.close();
+            con.close();
         }
-        return re;
+        return leavArr;
     }
     public boolean InsertLeave(Leave leave) throws SQLException {
         String st="INSERT INTO myleave (LeaveId, LeaveName, BeginDate, EndDate, LeaveReason, Id) vaues(?,?,?,?,?,?) ";
@@ -34,7 +53,8 @@ public class LeaveDAO {
         preparedStatement.setString(5,leave.getLeaveReason());
         preparedStatement.setString(6,"1");
         c = preparedStatement.executeUpdate();
-
+        preparedStatement.close();
+        conn.close();
         if(c==1){
             return  true;
         }

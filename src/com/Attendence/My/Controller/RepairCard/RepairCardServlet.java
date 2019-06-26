@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet(name = "RepairCardServlet",urlPatterns = "/RepairCardServlet")
 public class RepairCardServlet extends HttpServlet {
@@ -22,30 +23,34 @@ public class RepairCardServlet extends HttpServlet {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setContentType("text/html");
+        response.setContentType("text/javascript");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         JSONArray jsonArray = new JSONArray();
         RepairCard repairCard = new RepairCard();
+        //    jsonObject.put("RepairId",rs.getString("RepairId"));
+//            jsonObject.put("ClassId",rs.getString("ClassId"));
+//            jsonObject.put("UserName",rs.getString("UserName"));
+//            jsonObject.put("RepairDate",rs.getString("RepairDate"));
+//            jsonObject.put("Reason",rs.getString("Reason"));
+//            jsonArray.add(jsonObject);
         try {
-            jsonArray = repairCard.RepairQuery();
+            ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> arrRepair = repairCard.RepairQuery();
+            for (int i = 0; i < arrRepair.size(); i++) {
+                JSONObject json = new JSONObject();
+                json.put("RepairId",arrRepair.get(i).getRepairId());
+                json.put("ClassId",arrRepair.get(i).getClassId());
+                json.put("UserName",arrRepair.get(i).getUserName());
+                json.put("RepairDate",arrRepair.get(i).getRepairId());
+                json.put("Reason",arrRepair.get(i).getReason());
+                System.out.println(json);
+                jsonArray.add(json);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         PrintWriter out = response.getWriter();
         out.println(jsonArray);
-//        out.println("<html><body>123</body></html>");
-//        RepairCard repairCard = new RepairCard();
-//        try {
-//            JSONObject js = repairCard.RepairQuery();
-//            request.setAttribute("answer",js);
-//            request.getRequestDispatcher("/index/sda").forward(request,response);
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        request.getRequestDispatcher("/test.jsp").forward(request,response);
-//        response.sendRedirect( request.getContextPath() + "/test.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -2,7 +2,7 @@ package com.Attendence.My.Model.Entity.PunchCard;
 
 public class PunchCard {
     private int ID;
-    private String SCode;
+    private String ClassId;
     private String PunchId;
     private String UserName;
     private String PunchDate;
@@ -14,14 +14,6 @@ public class PunchCard {
 
     public void setID(int ID) {
         this.ID = ID;
-    }
-
-    public String getSCode() {
-        return SCode;
-    }
-
-    public void setSCode(String SCode) {
-        this.SCode = SCode;
     }
 
     public String getPunchId() {
@@ -57,4 +49,11 @@ public class PunchCard {
     }
 
 
+    public String getClassId() {
+        return ClassId;
+    }
+
+    public void setClassId(String classId) {
+        ClassId = classId;
+    }
 }

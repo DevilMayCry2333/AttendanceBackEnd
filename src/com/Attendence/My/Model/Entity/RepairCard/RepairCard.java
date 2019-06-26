@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class RepairCard {
     private String RepairId;
-    private String SCode;
+    private String ClassId;
     private String UserName;
     private String RepairDate;
     private String Reason;
@@ -19,14 +19,6 @@ public class RepairCard {
 
     public void setRepairId(String repairId) {
         RepairId = repairId;
-    }
-
-    public String getSCode() {
-        return SCode;
-    }
-
-    public void setSCode(String SCode) {
-        this.SCode = SCode;
     }
 
     public String getUserName() {
@@ -59,5 +51,13 @@ public class RepairCard {
 
     public void setId(int id) {
         Id = id;
+    }
+
+    public String getClassId() {
+        return ClassId;
+    }
+
+    public void setClassId(String classId) {
+        ClassId = classId;
     }
 }
