@@ -23,4 +23,12 @@ public class Attend {
         return as;
 
     }
+    public boolean insertTable(com.Attendence.My.Model.Entity.Attend.Attend attend){
+        com.Attendence.My.Model.DAO.Attend.Attend AttendDAO = new com.Attendence.My.Model.DAO.Attend.Attend();
+        return AttendDAO.insertTable(attend);
+    }
+    public boolean DelTable(){
+        com.Attendence.My.Model.DAO.Attend.Attend attend = new com.Attendence.My.Model.DAO.Attend.Attend();
+        return attend.DelTable();
+    }
 }

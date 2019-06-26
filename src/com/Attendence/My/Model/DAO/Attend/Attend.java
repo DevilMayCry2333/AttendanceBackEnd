@@ -2,10 +2,7 @@ package com.Attendence.My.Model.DAO.Attend;
 
 import com.Attendence.My.Model.DBUtils.DBUtils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Attend {
@@ -154,8 +151,8 @@ public class Attend {
             while (rss4.next()){
                 PunchID4.add(rss4.getString("EmployId"));
                 EmpName4.add(rss4.getString("UserName"));
-                EarlyTime4.add("缺勤");
-                LateTime4.add("缺勤");
+                EarlyTime4.add("9999-9999-9999 00:00:00");
+                LateTime4.add("1-1-1 00:00:00");
                 ClassId4.add(rss4.getString("ClassId"));
                 AttendStatus4.add("旷工");
                 i++;
@@ -188,6 +185,42 @@ public class Attend {
 
 
         return as;
+
+    }
+
+    public boolean insertTable(com.Attendence.My.Model.Entity.Attend.Attend attend){
+        DBUtils dbu = new DBUtils();
+        Connection conn = dbu.getConnecton();
+        try {
+
+            for (int i = 0; i <attend.getID().size(); i++) {
+                PreparedStatement psmt = conn.prepareStatement("INSERT INTO Attendence.Attend(EarlyTime, LateTime, EmpName, ClassId, AttendStatus) VALUES (?,?,?,?,?)");
+                psmt.setString(1,attend.getEarlyTime().get(i));
+                psmt.setString(2,attend.getLateTime().get(i));
+                psmt.setString(3,attend.getEmpName().get(i));
+                psmt.setString(4,attend.getClassId().get(i));
+                psmt.setString(5,attend.getAttendStatus().get(i));
+                psmt.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    public boolean DelTable(){
+        DBUtils db = new DBUtils();
+        Connection conn = db.getConnecton();
+        PreparedStatement psdel = null;
+        try {
+            psdel = conn.prepareStatement("DELETE FROM Attend");
+            psdel.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+      return true;
 
     }
 }

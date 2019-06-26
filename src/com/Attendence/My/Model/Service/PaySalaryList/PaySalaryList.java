@@ -15,6 +15,7 @@ public class PaySalaryList {
         JSONObject js= new JSONObject( );
         JSONArray Json=new JSONArray();
         PaySalary paysalary = new PaySalary();
+
         ResultSet re= null;
         try {
             re = paysalary.PaySalaryQuery();

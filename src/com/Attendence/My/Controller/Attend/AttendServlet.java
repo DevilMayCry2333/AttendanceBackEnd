@@ -30,11 +30,12 @@ public class AttendServlet extends HttpServlet {
         Attend attendService = new Attend();
         try {
             ArrayList<com.Attendence.My.Model.Entity.Attend.Attend> attendMod = attendService.QueryTable();
-
 //            com.Attendence.My.Model.Entity.Attend.Attend []attendMod = attendService.QueryTable();
             JSONArray jsonArr = new JSONArray();
+            attendService.DelTable();
 
             for (int i = 0; i < attendMod.size(); i++) {
+                attendService.insertTable(attendMod.get(i));
                 for (int j = 0; j < attendMod.get(i).getID().size(); j++) {
                     JSONObject json = new JSONObject();
                     json.put("Id",attendMod.get(i).getID().get(j));
@@ -44,7 +45,6 @@ public class AttendServlet extends HttpServlet {
                     json.put("ClassId",attendMod.get(i).getClassId().get(j));
                     json.put("AttendStatus",attendMod.get(i).getAttendStatus().get(j));
                     jsonArr.add(json);
-                    
                 }
 
             }
