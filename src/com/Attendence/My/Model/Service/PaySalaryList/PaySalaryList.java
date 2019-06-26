@@ -20,13 +20,12 @@ public class PaySalaryList {
         try {
             re = paysalary.PaySalaryQuery();
             while (re.next()){
-                js.put("PSId",re.getString("PSId"));
-                js.put("PSName",re.getString("PSName"));
-                js.put("Salary",re.getBigDecimal("Salary"));
-                js.put("BeginDate",re.getString("BeginDate"));
-                js.put("EndDate",re.getString("EndDate"));
+                js.put("ClassId",re.getString("ClassId"));
+                js.put("EmpName",re.getString("EmpName"));
+                js.put("Salary",re.getInt("Salary"));
+                js.put("BeginTime",re.getString("BeginTime"));
+                js.put("EndTime",re.getString("EndTime"));
                 Json.add(js);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();

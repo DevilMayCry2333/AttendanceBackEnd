@@ -32,8 +32,6 @@ public class PaySalaryServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println(jsonArray);
 
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -2,6 +2,7 @@ package com.Attendence.My.Controller.Classes;
 
 import com.Attendence.My.Model.DAO.Classes.ClassDAO;
 import com.Attendence.My.Model.Service.Classes.ClassList;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +21,7 @@ public class ClassDeleteServlet extends HttpServlet {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setContentType("text/html");
+        response.setContentType("text/javascript");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
@@ -30,7 +31,14 @@ public class ClassDeleteServlet extends HttpServlet {
 //            System.out.println(tearray[i]);
 //        }
         ClassList cl = new ClassList();
-        cl.DeleteClass(tearray);
+        boolean res = cl.DeleteClass(tearray);
+        JSONObject json = new JSONObject();
+        if(res){
+            json.put("Res","true");
+        }else {
+            json.put("Res","false");
+        }
+        out.println(json);
 
     }
 
