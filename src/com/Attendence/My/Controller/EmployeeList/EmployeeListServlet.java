@@ -30,8 +30,9 @@ public class EmployeeListServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         JSONArray jsonArray = new JSONArray();
 
-        //String pages=request.getParameter("page");
-        int  page=1;
+        int page = Integer.parseInt(request.getParameter("page"));
+
+//        int  page=1;
         //int page=Integer.valueOf(pages).intValue();
         Employee employeeList=new Employee();
         try {

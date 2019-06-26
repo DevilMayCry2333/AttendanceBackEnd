@@ -1,11 +1,13 @@
 package com.Attendence.My.Model.Service.EmployeeList;
 
+import com.Attendence.My.Model.DBUtils.DBUtils;
 import com.Attendence.My.Model.Entity.Employee.EmployeeInsert;
 import com.Attendence.My.Model.Entity.Employee.EmployeeUpdate;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import com.Attendence.My.Model.DAO.EmployeeList.EmployeeList;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -53,5 +55,9 @@ public class Employee {
         EmployeeList cd = new EmployeeList();
         cd.DeleteAllEmp(tearray);
         return true;
+    }
+    public int QueryAll(){
+        EmployeeList el = new EmployeeList();
+        return el.queryLines();
     }
 }

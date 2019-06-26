@@ -1,6 +1,7 @@
 package com.Attendence.My.Controller.RepairCard;
 
 import com.Attendence.My.Model.Entity.PunchCard.PunchCard;
+import com.Attendence.My.Model.Entity.RepairCard.RepairCard;
 import com.Attendence.My.utils.GetExcel;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -15,30 +16,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "RepairDownloadServlet")
+@WebServlet(name = "RepairDownloadServlet",urlPatterns = "/RepairDownloadServlet")
 public class RepairDownloadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<String> colname = new ArrayList<>();
+        colname.add("RepairId");
         colname.add("ClassId");
         colname.add("UserName");
-        colname.add("PunchDate");
-        colname.add("Remarks");
+        colname.add("RepairDate");
+        colname.add("Reason");
         colname.add("Id");
 
-        com.Attendence.My.Model.Service.PunchCard.PunchCard punch = new com.Attendence.My.Model.Service.PunchCard.PunchCard();
+        com.Attendence.My.Model.Service.RepairCard.RepairCard repairCard = new com.Attendence.My.Model.Service.RepairCard.RepairCard();
+
 
         JSONArray jsonArr = new JSONArray();
         try {
-            ArrayList<PunchCard> PunchArr = punch.PunchQuery();
+            ArrayList<RepairCard> RepairArr = repairCard.RepairQuery();
 
-            for (int i = 0; i < PunchArr.size(); i++) {
+            for (int i = 0; i < RepairArr.size(); i++) {
                 JSONObject json = new JSONObject();
-                json.put("PunchId",PunchArr.get(i).getPunchId());
-                json.put("ClassId",PunchArr.get(i).getClassId());
-                json.put("UserName",PunchArr.get(i).getUserName());
-                json.put("PunchDate",PunchArr.get(i).getPunchDate());
-                json.put("Remarks",PunchArr.get(i).getRemarks());
-                json.put("Id",PunchArr.get(i).getID());
+                json.put("RepairId",RepairArr.get(i).getRepairId());
+                json.put("ClassId",RepairArr.get(i).getClassId());
+                json.put("UserName",RepairArr.get(i).getUserName());
+                json.put("RepairDate",RepairArr.get(i).getRepairDate());
+                json.put("Reason",RepairArr.get(i).getReason());
+                json.put("Id",RepairArr.get(i).getId());
                 jsonArr.add(json);
             }
         } catch (SQLException e) {

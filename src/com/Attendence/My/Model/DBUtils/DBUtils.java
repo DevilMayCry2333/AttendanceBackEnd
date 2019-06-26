@@ -8,7 +8,7 @@ public class DBUtils {
     String driver="com.mysql.cj.jdbc.Driver";
     String url="jdbc:mysql://localhost:3306/Attendence";
     String user="root";
-    String password="123456xh";
+    String password="YKY12345..";
     Connection conn=null;
     public Connection getConnecton(){
         try {
