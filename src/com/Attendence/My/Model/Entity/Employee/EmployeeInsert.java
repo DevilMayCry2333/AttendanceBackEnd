@@ -21,6 +21,7 @@ public class EmployeeInsert {
     private String Desc;
     private String Gender;
     private String Age;
+    private String ClassId;
 
 
     public String getUserName() {
@@ -109,5 +110,13 @@ public class EmployeeInsert {
 
     public void setAge(String age) {
         Age = age;
+    }
+
+    public String getClassId() {
+        return ClassId;
+    }
+
+    public void setClassId(String classId) {
+        ClassId = classId;
     }
 }

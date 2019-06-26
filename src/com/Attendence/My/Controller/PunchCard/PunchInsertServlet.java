@@ -2,6 +2,7 @@ package com.Attendence.My.Controller.PunchCard;
 
 import com.Attendence.My.Model.Entity.PunchCard.PunchCardInsert;
 import com.Attendence.My.Model.Service.PunchCard.PunchCard;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(name = "PunchInsertServlet",urlPatterns = "/PunchInsertServlet")
@@ -20,7 +22,7 @@ public class PunchInsertServlet extends HttpServlet {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setContentType("text/html");
+        response.setContentType("text/javascript");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
@@ -30,15 +32,20 @@ public class PunchInsertServlet extends HttpServlet {
         punchCardInsert.setUserName(request.getParameter("UserName"));
         punchCardInsert.setPunchDate(request.getParameter("PunchDate"));
         punchCardInsert.setRemarks(request.getParameter("Remarks"));
-
+        JSONObject json = new JSONObject();
         PunchCard punchService = new PunchCard();
+        PrintWriter out = response.getWriter();
         try {
-            punchService.PunchInsert(punchCardInsert);
+            boolean res = punchService.PunchInsert(punchCardInsert);
+            if(res){
+                json.put("Res","true");
+            }else {
+                json.put("Res","false");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        response.sendRedirect("http://localhost/AttendanceFrontEnd/index.html");
+        out.println(json);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

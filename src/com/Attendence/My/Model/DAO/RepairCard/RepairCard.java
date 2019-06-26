@@ -67,7 +67,7 @@ public class RepairCard {
     public boolean RepairCardInsert (RepairInsert repairModel) throws SQLException {
         DBUtils dbUtils = new DBUtils();
         Connection connection = dbUtils.getConnecton();
-        String sql = "insert into repair(RepairId, ClassID, UserName, PunchDate, Remarks, Id) value  (?,?,?,?,?,?)";//sql语句
+        String sql = "insert into repair(RepairId, ClassId, UserName, RepairDate, Reason) VALUES (?,?,?,?,?)";//sql语句
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,repairModel.getRepairId());
         preparedStatement.setString(2,repairModel.getClassID());
@@ -75,7 +75,6 @@ public class RepairCard {
         preparedStatement.setString(4,repairModel.getRepairDate());
         preparedStatement.setString(5,repairModel.getReason());
         // 班次，查询
-        preparedStatement.setString(6,"1");
 
         int c = preparedStatement.executeUpdate();
         preparedStatement.close();

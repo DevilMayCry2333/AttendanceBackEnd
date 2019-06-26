@@ -70,8 +70,8 @@ public class EmployeeList {
         pstmt.setString(9,EmpInsert.getDesc());
         pstmt.setString(10,EmpInsert.getAge());
         pstmt.setString(11,EmpInsert.getGender());
+        pstmt.setString(12,EmpInsert.getClassId());
         //班次ID是需要查询的
-        pstmt.setString(12,"1");
         int c = pstmt.executeUpdate();
         pstmt.close();
         con.close();
