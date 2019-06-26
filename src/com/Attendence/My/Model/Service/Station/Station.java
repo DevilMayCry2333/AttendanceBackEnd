@@ -29,20 +29,24 @@ public class Station {
 //        }
 //        else return false;
 //    }
-    public  boolean DeleteStation(String id){
-        com.Attendence.My.Model.DAO.Station.Station station=new com.Attendence.My.Model.DAO.Station.Station();
-        boolean c=false;
+    public  boolean DeleteStation(String id) {
+        com.Attendence.My.Model.DAO.Station.Station station = new com.Attendence.My.Model.DAO.Station.Station();
+        boolean c = false;
         try {
-            c=station.DeleteSta(id);
-        }catch (Exception e){
+            c = station.DeleteSta(id);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        if (c==true){
+        if (c == true) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
+    }
+    public  boolean DeleteStation(String[] del){
+        com.Attendence.My.Model.DAO.Station.Station station2=new com.Attendence.My.Model.DAO.Station.Station();
+        station2.DeleteStation(del);
+        return true;
     }
 
     public boolean AddSta(ArrayList<String> list) throws SQLException {
@@ -59,16 +63,6 @@ public class Station {
 
         com.Attendence.My.Model.DAO.Station.Station dao = new com.Attendence.My.Model.DAO.Station.Station();
         boolean re = dao.UpdateSta(list);
-        if (re){
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    public boolean deleteSta(String id) throws SQLException {
-        com.Attendence.My.Model.DAO.Station.Station dao = new com.Attendence.My.Model.DAO.Station.Station();
-        boolean re = dao.DeleteSta(id);
         if (re){
             return true;
         }else {

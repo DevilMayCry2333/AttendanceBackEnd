@@ -15,20 +15,15 @@ public class Department {
         com.Attendence.My.Model.DAO.Department.Department department=new com.Attendence.My.Model.DAO.Department.Department();
         return department.DepartmentQuery();
     }
-    public  boolean InsertDepartment(DepartmentList dlist){
-        com.Attendence.My.Model.DAO.Department.Department dep=new com.Attendence.My.Model.DAO.Department.Department();
+    public  boolean InsertDepartment(DepartmentList dlist) {
+        com.Attendence.My.Model.DAO.Department.Department dep = new com.Attendence.My.Model.DAO.Department.Department();
         boolean res = dep.InsertDepartment(dlist);
         return res;
     }
-    public  boolean DeleteDepartment(String[] del){
-        com.Attendence.My.Model.DAO.Department.Department depa=new com.Attendence.My.Model.DAO.Department.Department();
-        boolean dept=depa.DeleteDepartment(del);
-        if (dept==true){
-            return true;
-        }
-        else{
-            return false;
-        }
+    public  boolean DeleteDepartment(String[] del){//批量删除
+        com.Attendence.My.Model.DAO.Department.Department cd = new com.Attendence.My.Model.DAO.Department.Department();
+        cd.DeleteDepartment(del);
+        return true;
     }
 
 

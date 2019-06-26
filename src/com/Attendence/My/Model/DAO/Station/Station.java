@@ -62,6 +62,29 @@ public class Station {
             return false;
         }
     }
+    public boolean DeleteStation(String[] del) {
+        StringBuffer sql = new StringBuffer("DELETE FROM Station WHERE Id in(");
+        for (int i = 0; i < del.length; i++) {
+            if (i==del.length-1){
+                sql.append("'" + del[i] + "')");
+            }else {
+                sql.append("'" + del[i] + "',");
+            }
+        }
+        System.out.println(sql);
+        DBUtils dbUtils=new DBUtils();
+        Connection cn = dbUtils.getConnecton();
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(sql.toString());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
 
     public boolean UpdateSta(ArrayList<String> list) throws SQLException {

@@ -59,26 +59,29 @@ public class Department {
             return true;
         return false;
     }
-    public  boolean DeleteDepartment(String []del){
-        String str="DELETE FROM xx WHERE id in($id)";
-        DBUtils dbu=new DBUtils();
-        Connection conne=dbu.getConnecton();
-        boolean ccc=false;
-        try{
-            Statement sta=conne.createStatement();
-            ccc=sta.execute(str);
-            sta.close();
-            conne.close();
 
-        }catch (Exception e){
+    public  boolean DeleteDepartment(String []del){ //批量删除
+        StringBuffer sql = new StringBuffer("DELETE FROM Department WHERE Id in(");
+        for (int i = 0; i < del.length; i++) {
+            if (i==del.length-1){
+                sql.append("'" + del[i] + "')");
+            }else {
+                sql.append("'" + del[i] + "',");
+            }
+        }
+        System.out.println(sql);
+        DBUtils dbUtils=new DBUtils();
+        Connection cn = dbUtils.getConnecton();
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(sql.toString());
+
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
-        if(ccc=true){
-            return true;
-        }
-        else {
             return false;
         }
+
+        return true;
     }
 
     public boolean UpdateDep(DepartmentList dlist) throws SQLException {
@@ -126,4 +129,6 @@ public class Department {
             return false;
         }
     }
+
+
 }

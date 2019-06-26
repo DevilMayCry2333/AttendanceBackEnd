@@ -132,4 +132,30 @@ public class EmployeeList {
             return false;
         }
     }
+
+
+    public boolean DeleteAllEmp(String []del){
+        StringBuffer sql = new StringBuffer("DELETE FROM Employ WHERE Id in(");
+        for (int i = 0; i < del.length; i++) {
+            if (i==del.length-1){
+                sql.append("'" + del[i] + "')");
+            }else {
+                sql.append("'" + del[i] + "',");
+            }
+        }
+        System.out.println(sql);
+        DBUtils dbUtils=new DBUtils();
+        Connection cn = dbUtils.getConnecton();
+        try {
+            Statement st = cn.createStatement();
+            st.executeUpdate(sql.toString());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+
+    }
 }

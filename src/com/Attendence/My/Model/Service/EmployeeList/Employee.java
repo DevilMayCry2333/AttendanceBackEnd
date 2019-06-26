@@ -48,4 +48,10 @@ public class Employee {
             return false;
         }
     }
+
+    public boolean DeleteAllEmp(String[] tearray) {
+        EmployeeList cd = new EmployeeList();
+        cd.DeleteAllEmp(tearray);
+        return true;
+    }
 }
