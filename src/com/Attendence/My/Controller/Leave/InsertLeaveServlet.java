@@ -37,7 +37,7 @@ public class InsertLeaveServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("http://localhost/AttendanceFrontEnd/index.html");
+//        response.sendRedirect("http://localhost/AttendanceFrontEnd/index.html");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -19,12 +19,13 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
             if (rs==true){
 //                request.getRequestDispatcher("index.html").forward(request,response);
 
-                response.sendRedirect( "http://localhost/AttendanceFrontEnd/index.html");
+//                response.sendRedirect( "http://localhost/AttendanceFrontEnd/index.html");
+                response.sendRedirect("https://youkaiyu.com/AttendanceFrontEnd/index.html");
 
             }
             else {
 //                request.getRequestDispatcher("login.html");
-                response.sendRedirect( "http://localhost/AttendanceFrontEnd/login.html");
+                response.sendRedirect( "https://youkaiyu.com/AttendanceFrontEnd/login.html");
             }
         } catch (SQLException e) {
             e.printStackTrace();

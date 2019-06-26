@@ -86,7 +86,6 @@ public class Attend {
             int i = 0;
 
             while (rss.next()){
-                PunchID.add(rss.getString("PunchId"));
                 EmpName.add(rss.getString("UserName"));
                 EarlyTime.add(rss.getString("t1"));
                 LateTime.add(rss.getString("t2"));
@@ -95,7 +94,6 @@ public class Attend {
             }
 //            rss.close();
 
-            attendMod.setID(PunchID);
             attendMod.setEmpName(EmpName);
             attendMod.setEarlyTime(EarlyTime);
             attendMod.setLateTime(LateTime);
@@ -110,7 +108,6 @@ public class Attend {
 //            AttendStatus.clear();
 
             while (rss2.next()){
-                PunchID2.add(rss2.getString("PunchId"));
                 EmpName2.add(rss2.getString("UserName"));
                 EarlyTime2.add(rss2.getString("t1"));
                 LateTime2.add(rss2.getString("t2"));
@@ -119,7 +116,6 @@ public class Attend {
             }
 //            rss2.close();
 
-            attendMod2.setID(PunchID2);
             attendMod2.setEmpName(EmpName2);
             attendMod2.setEarlyTime(EarlyTime2);
             attendMod2.setLateTime(LateTime2);
@@ -135,7 +131,6 @@ public class Attend {
 //            AttendStatus.clear();
 
             while (rss3.next()){
-                PunchID3.add(rss3.getString("PunchId"));
                 EmpName3.add(rss3.getString("UserName"));
                 EarlyTime3.add(rss3.getString("t1"));
                 LateTime3.add(rss3.getString("t2"));
@@ -143,7 +138,6 @@ public class Attend {
                 AttendStatus3.add("早退");
             }
 //            rss3.close();
-            attendMod3.setID(PunchID3);
             attendMod3.setEmpName(EmpName3);
             attendMod3.setEarlyTime(EarlyTime3);
             attendMod3.setLateTime(LateTime3);
@@ -156,19 +150,24 @@ public class Attend {
 //            LateTime.clear();
 //            ClassId.clear();
 //            AttendStatus.clear();
-
+            String r1 = "缺勤";
+            String r2 = "缺勤";
             while (rss4.next()){
-                PunchID4.add(rss4.getString("EmployId"));
                 EmpName4.add(rss4.getString("UserName"));
-                EarlyTime4.add("9999-9999-9999 00:00:00");
-                LateTime4.add("1-1-1 00:00:00");
+                try {
+                    r1 = rss4.getString("EarlyTime");
+                    r2 = rss4.getString("LatTime");
+                }catch (Exception e){
+                    ;
+                }
+                EarlyTime4.add(r1);
+                LateTime4.add(r2);
                 ClassId4.add(rss4.getString("ClassId"));
                 AttendStatus4.add("旷工");
                 i++;
             }
 //            rss4.close();
 
-            attendMod4.setID(PunchID4);
             attendMod4.setEarlyTime(EarlyTime4);
             attendMod4.setLateTime(LateTime4);
             attendMod4.setEmpName(EmpName4);
@@ -212,7 +211,7 @@ public class Attend {
         Connection conn = dbu.getConnecton();
         try {
 
-            for (int i = 0; i <attend.getID().size(); i++) {
+            for (int i = 0; i <attend.getClassId().size(); i++) {
                 PreparedStatement psmt = conn.prepareStatement("INSERT INTO Attendence.Attend(EarlyTime, LateTime, EmpName, ClassId, AttendStatus) VALUES (?,?,?,?,?)");
                 psmt.setString(1,attend.getEarlyTime().get(i));
                 psmt.setString(2,attend.getLateTime().get(i));

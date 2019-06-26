@@ -13,7 +13,7 @@ public class RepairCard {
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         com.Attendence.My.Model.DAO.RepairCard.RepairCard rc = new com.Attendence.My.Model.DAO.RepairCard.RepairCard();
-        return rc.RepairQuery("select * from repair");
+        return rc.RepairQuery("select * from Repair");
     }
     public int RepairUpdate(com.Attendence.My.Model.Entity.RepairCard.RepairCard repairModel){
         com.Attendence.My.Model.DAO.RepairCard.RepairCard repairCard = new com.Attendence.My.Model.DAO.RepairCard.RepairCard();

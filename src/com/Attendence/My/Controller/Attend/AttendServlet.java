@@ -36,9 +36,8 @@ public class AttendServlet extends HttpServlet {
 
             for (int i = 0; i < attendMod.size(); i++) {
                 attendService.insertTable(attendMod.get(i));
-                for (int j = 0; j < attendMod.get(i).getID().size(); j++) {
+                for (int j = 0; j < attendMod.get(i).getClassId().size(); j++) {
                     JSONObject json = new JSONObject();
-                    json.put("Id",attendMod.get(i).getID().get(j));
                     json.put("EarlyTime",attendMod.get(i).getEarlyTime().get(j));
                     json.put("LateTime",attendMod.get(i).getLateTime().get(j));
                     json.put("EmpName",attendMod.get(i).getEmpName().get(j));

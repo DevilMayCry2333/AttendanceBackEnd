@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Station {
     public ArrayList<StationList> StationQuery() throws SQLException {
-        String sql="SELECT * FROM station";
+        String sql="SELECT * FROM Station";
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
         Statement sta= null;

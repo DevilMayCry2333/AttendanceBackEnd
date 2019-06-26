@@ -28,12 +28,6 @@ public class RepairCardServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         JSONArray jsonArray = new JSONArray();
         RepairCard repairCard = new RepairCard();
-        //    jsonObject.put("RepairId",rs.getString("RepairId"));
-//            jsonObject.put("ClassId",rs.getString("ClassId"));
-//            jsonObject.put("UserName",rs.getString("UserName"));
-//            jsonObject.put("RepairDate",rs.getString("RepairDate"));
-//            jsonObject.put("Reason",rs.getString("Reason"));
-//            jsonArray.add(jsonObject);
         try {
             ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> arrRepair = repairCard.RepairQuery();
             for (int i = 0; i < arrRepair.size(); i++) {

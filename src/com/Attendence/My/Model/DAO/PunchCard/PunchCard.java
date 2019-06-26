@@ -58,7 +58,7 @@ public class PunchCard {
         public boolean PunchCardInsert(PunchCardInsert punchCardmModel) throws SQLException{
             DBUtils dbUtils = new DBUtils();
             Connection connection = dbUtils.getConnecton();
-            String sql = "insert into  punch(PunchId, ClassID, UserName, PunchDate, Remarks, Id) value  (?,?,?,?,?,?)";//sql语句
+            String sql = "insert into  punch(PunchId, ClassID, UserName, PunchDate, Remarks) value  (?,?,?,?,?)";//sql语句
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,punchCardmModel.getPunchId());
             preparedStatement.setString(2,punchCardmModel.getClassId());
@@ -66,7 +66,6 @@ public class PunchCard {
             preparedStatement.setString(4,punchCardmModel.getPunchDate());
             preparedStatement.setString(5,punchCardmModel.getRemarks());
            // 班次，查询
-            preparedStatement.setString(6,"1");
 
         int c =preparedStatement.executeUpdate();
         preparedStatement.close();

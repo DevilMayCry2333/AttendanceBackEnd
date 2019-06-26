@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class EmployeeList {
     public ArrayList<com.Attendence.My.Model.Entity.Employee.EmployeeList> EmployQuery(int page) throws SQLException {
-        String str="SELECT * FROM employ LIMIT ?,?";
+        String str="SELECT * FROM Employ LIMIT ?,?";
         System.out.println(str);
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
@@ -21,7 +21,7 @@ public class EmployeeList {
         PreparedStatement st = null;
         try {
             st = con.prepareStatement(str);
-            st.setInt(1,(page-1)*10);
+            st.setInt(1,page*10-10);
             st.setInt(2,10);
             re = st.executeQuery();
             //                    js.put("Id",re.getString("Id"));
