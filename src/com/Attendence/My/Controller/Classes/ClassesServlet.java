@@ -29,11 +29,13 @@ public class ClassesServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
 
-        ClassList c=new ClassList();
         JSONArray jsonArray = new JSONArray();
-        ArrayList<ClassUpdate> ClassUpdate = null;
+        int page = Integer.parseInt(request.getParameter("page"));
+
+
+        ClassList c=new ClassList();
         try {
-            ClassUpdate = c.ClassList();
+            ArrayList<ClassUpdate> ClassUpdate = c.ClassList(page);
             for (int i = 0; i < ClassUpdate.size(); i++) {
                 JSONObject json = new JSONObject();
                 json.put("Id",ClassUpdate.get(i).getId());

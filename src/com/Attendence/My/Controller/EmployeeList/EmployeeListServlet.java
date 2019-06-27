@@ -28,8 +28,8 @@ public class EmployeeListServlet extends HttpServlet {
         response.setContentType("text/html");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        JSONArray jsonArray = new JSONArray();
 
+        JSONArray jsonArray = new JSONArray();
         int page = Integer.parseInt(request.getParameter("page"));
 
 //        int  page=1;

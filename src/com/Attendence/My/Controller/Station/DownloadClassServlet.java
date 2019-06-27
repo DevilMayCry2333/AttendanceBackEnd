@@ -33,7 +33,7 @@ public class DownloadClassServlet extends HttpServlet {
         ClassList Cl = new ClassList();
         JSONArray jsonArr = new JSONArray();
         try {
-            ArrayList<ClassUpdate> ClassUpdate = Cl.ClassList();
+            ArrayList<ClassUpdate> ClassUpdate = Cl.ClassList(1);
             for (int i = 0; i < ClassUpdate.size(); i++) {
                 JSONObject json = new JSONObject();
                 json.put("Id",ClassUpdate.get(i).getId());

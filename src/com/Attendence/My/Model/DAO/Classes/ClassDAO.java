@@ -7,16 +7,19 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ClassDAO {
-    public ArrayList<ClassUpdate> ClassQuery() throws SQLException {
-        String str="SELECT * from Classes";
+    public ArrayList<ClassUpdate> ClassQuery(int page) throws SQLException {
+        String str="SELECT * from Classes LIMIT ?,?";
+        System.out.println(str);
         DBUtils dbUtils=new DBUtils();
-        Connection con= dbUtils.getConnecton();
+        Connection con=dbUtils.getConnecton();
+        ResultSet re=null;
         ArrayList<ClassUpdate> ClassArr = new ArrayList<>();
-        ResultSet re = null;
-        Statement st = null;
+        PreparedStatement st = null;
         try {
-            st = con.createStatement();
-            re = st.executeQuery(str);
+            st = con.prepareStatement(str);
+            st.setInt(1,page*10-10);
+            st.setInt(2,10);
+            re = st.executeQuery();
             while (re.next()){
                 //                js.put("Id",re1.getString("Id"));
 //                js.put("ClassId",re1.getString("ClassId"));
@@ -138,4 +141,21 @@ public class ClassDAO {
 
     }
 
+    public int queryLines() {
+        DBUtils db = new DBUtils();
+        Connection conn = db.getConnecton();
+        int res = 0;
+        ResultSet rs = null;
+        try {
+            PreparedStatement psmt = conn.prepareStatement("SELECT count(Id) ClassCount FROM Classes");
+            rs = psmt.executeQuery();
+            if(rs.next()){
+                res = rs.getInt("ClassCount");
+                System.out.println(res);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
 }

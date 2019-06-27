@@ -12,9 +12,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Station {
-    public ArrayList<StationList> StationQuery() throws SQLException {
+    public ArrayList<StationList> StationQuery(int page) throws SQLException {
         com.Attendence.My.Model.DAO.Station.Station station=new com.Attendence.My.Model.DAO.Station.Station();
-        return station.StationQuery();
+        return station.StationQuery(page);
     }
 //    public boolean InsertStation(ArrayList<String> list){
 //        com.Attendence.My.Model.DAO.Station.Station station=new com.Attendence.My.Model.DAO.Station.Station();
@@ -68,5 +68,10 @@ public class Station {
         }else {
             return false;
         }
+    }
+
+    public int QueryAll() {
+        com.Attendence.My.Model.DAO.Station.Station sl = new com.Attendence.My.Model.DAO.Station.Station();
+        return sl.queryLines();
     }
 }

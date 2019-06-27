@@ -27,15 +27,11 @@ public class QueryStaServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        Station station = new Station();
-
-        ArrayList<StationList> stationList = null;
         JSONArray jsonArr = new JSONArray();
+        int page = Integer.parseInt(request.getParameter("page"));
+        Station station = new Station();
         try {
-            stationList = station.StationQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            ArrayList<StationList> stationList = station.StationQuery(page);
         for (int i = 0; i < stationList.size(); i++) {
                 JSONObject json = new JSONObject();
                 json.put("Id",stationList.get(i).getId());
@@ -45,6 +41,9 @@ public class QueryStaServlet extends HttpServlet {
                 json.put("Isuperior",stationList.get(i).getIsuperior());
                 json.put("Jcategory",stationList.get(i).getJcategory());
                 jsonArr.add(json);
+        }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         PrintWriter out = response.getWriter();
         out.println(jsonArr);

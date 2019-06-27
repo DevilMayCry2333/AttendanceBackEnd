@@ -4,19 +4,26 @@ import com.Attendence.My.Model.DBUtils.DBUtils;
 import com.Attendence.My.Model.Entity.Department.DepartmentList;
 
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Department {
-    public ArrayList<DepartmentList> DepartmentQuery() throws SQLException {
-        String sql="SELECT * FROM Department";
-        ResultSet re=null;
+    public ArrayList<DepartmentList> DepartmentQuery(int page) throws SQLException {
+        String str="SELECT * FROM Department LIMIT ?,?";
+        System.out.println(str);
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
+        ResultSet re=null;
         ArrayList<DepartmentList> arrD = new ArrayList<>();
-        Statement sta= null;
+        PreparedStatement st= null;
         try {
-            sta = con.createStatement();
-            re=sta.executeQuery(sql);
+            st = con.prepareStatement(str);
+            st.setInt(1,page*10-10);
+            st.setInt(2,10);
+            re = st.executeQuery();
             while (re.next()){
                 DepartmentList dl = new DepartmentList();
                 dl.setId(re.getInt("Id"));
@@ -29,13 +36,17 @@ public class Department {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+
         }finally {
             re.close();
-            sta.close();
+            st.close();
             con.close();
         }
         return arrD;
     }
+
+
+
     public  boolean InsertDepartment(DepartmentList dl){
         String st="INSERT INTO Department(DepartmentId, Dname, Dprincipal, Dability, Sdepartment) VALUES (?,?,?,?,?)";
         DBUtils db=new DBUtils();
@@ -131,4 +142,21 @@ public class Department {
     }
 
 
+    public int queryLines() {
+        DBUtils db = new DBUtils();
+        Connection conn = db.getConnecton();
+        int res = 0;
+        ResultSet rs = null;
+        try {
+            PreparedStatement psmt = conn.prepareStatement("SELECT count(Id) DepCount FROM Department");
+            rs = psmt.executeQuery();
+            if(rs.next()){
+                res = rs.getInt("DepCount");
+                System.out.println(res);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
 }

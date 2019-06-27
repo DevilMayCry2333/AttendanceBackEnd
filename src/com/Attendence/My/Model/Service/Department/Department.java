@@ -9,11 +9,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Department {
-    public ArrayList<DepartmentList> Department() throws SQLException {
+    public ArrayList<DepartmentList> Department(int page) throws SQLException {
         JSONArray JsonArr=new JSONArray();
         JSONObject JS=new JSONObject();
         com.Attendence.My.Model.DAO.Department.Department department=new com.Attendence.My.Model.DAO.Department.Department();
-        return department.DepartmentQuery();
+        return department.DepartmentQuery(page);
     }
     public  boolean InsertDepartment(DepartmentList dlist) {
         com.Attendence.My.Model.DAO.Department.Department dep = new com.Attendence.My.Model.DAO.Department.Department();
@@ -45,5 +45,10 @@ public class Department {
         }else {
             return false;
         }
+    }
+
+    public Object QueryAll() {
+        com.Attendence.My.Model.DAO.Department.Department dq = new com.Attendence.My.Model.DAO.Department.Department();
+        return dq.queryLines();
     }
 }

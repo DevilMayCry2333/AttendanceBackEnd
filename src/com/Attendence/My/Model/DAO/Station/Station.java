@@ -9,16 +9,19 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Station {
-    public ArrayList<StationList> StationQuery() throws SQLException {
-        String sql="SELECT * FROM Station";
+    public ArrayList<StationList> StationQuery(int page) throws SQLException {
+        String sql="SELECT * FROM Station LIMIT ?,?";
+        System.out.println(sql);
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
-        Statement sta= null;
-        ArrayList<StationList> StationArr = new ArrayList<>();
         ResultSet re=null;
-        try{
-            sta = con.createStatement();
-            re = sta.executeQuery(sql);
+        ArrayList<StationList> sarr = new ArrayList<>();
+        PreparedStatement st = null;
+        try {
+            st = con.prepareStatement(sql);
+            st.setInt(1,page*10-10);
+            st.setInt(2,10);
+            re = st.executeQuery();
             while (re.next()){
                 StationList sl = new StationList();
                 sl.setId(re.getInt("Id"));
@@ -27,16 +30,16 @@ public class Station {
                 sl.setAdepartment(re.getString("Adepartment"));
                 sl.setIsuperior(re.getString("Isuperior"));
                 sl.setJcategory(re.getString("Jcategory"));
-                StationArr.add(sl);
+                sarr.add(sl);
             }
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             re.close();
-            sta.close();
+            st.close();
             con.close();
         }
-        return StationArr;
+        return sarr;
     }
     public boolean  InsertStation(ArrayList<String> list) throws SQLException {
         DBUtils dbUtils=new DBUtils();
@@ -128,5 +131,23 @@ public class Station {
         else {
             return false;
         }
+    }
+
+    public int queryLines() {
+        DBUtils db = new DBUtils();
+        Connection conn = db.getConnecton();
+        int res = 0;
+        ResultSet rs = null;
+        try {
+            PreparedStatement psmt = conn.prepareStatement("SELECT count(Id) StaCount FROM Station");
+            rs = psmt.executeQuery();
+            if(rs.next()){
+                res = rs.getInt("StaCount");
+                System.out.println(res);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 }

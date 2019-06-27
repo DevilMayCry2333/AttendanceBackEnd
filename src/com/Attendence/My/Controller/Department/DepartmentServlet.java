@@ -31,6 +31,8 @@ public class DepartmentServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         JSONArray jsonArray = new JSONArray();
+        int page = Integer.parseInt(request.getParameter("page"));
+        System.out.println(page);
         //                JS.put("Id",re.getString("Id"));
 //                JS.put("DepartmentId",re.getString("DepartmentId"));
 //                JS.put("Dname",re.getString("Dname"));
@@ -39,9 +41,9 @@ public class DepartmentServlet extends HttpServlet {
 //                JS.put("Sdepartment",re.getString("Sdepartment"));
 //                JsonArr.add(JS);
 
-        Department station=new Department();
+        Department department=new Department();
         try {
-            ArrayList<DepartmentList> DepartmentList = station.Department();
+            ArrayList<DepartmentList> DepartmentList = department.Department(page);
             for (int i = 0; i < DepartmentList.size(); i++) {
                 JSONObject json = new JSONObject();
                 json.put("Id",DepartmentList.get(i).getId());

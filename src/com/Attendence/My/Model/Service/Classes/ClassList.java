@@ -2,14 +2,17 @@ package com.Attendence.My.Model.Service.Classes;
 
 import com.Attendence.My.Model.DAO.Classes.ClassDAO;
 import com.Attendence.My.Model.Entity.Class.ClassUpdate;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ClassList {
-    public ArrayList<ClassUpdate> ClassList() throws SQLException {
+    public ArrayList<ClassUpdate> ClassList(int page) throws SQLException {
+
         ClassDAO classDAO = new ClassDAO();
-        return classDAO.ClassQuery();
+        return classDAO.ClassQuery(page);
     }
 
     public boolean AddClass(ArrayList<String> list) throws SQLException {
@@ -46,5 +49,10 @@ public class ClassList {
     public boolean ClassUpdate(ClassUpdate classUpdate){
         ClassDAO classDAO=new ClassDAO();
         return classDAO.ClassUpdate(classUpdate);
+    }
+
+    public int QueryAll() {
+        ClassDAO el = new ClassDAO();
+        return el.queryLines();
     }
 }
