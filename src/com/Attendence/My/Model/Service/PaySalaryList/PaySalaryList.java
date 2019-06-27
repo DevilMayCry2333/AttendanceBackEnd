@@ -26,4 +26,17 @@ public class PaySalaryList {
         }
         return paySalary;
     }
+    public ArrayList<com.Attendence.My.Model.Entity.PaySalary.PaySalary> Query(){
+        JSONObject js= new JSONObject( );
+        JSONArray Json=new JSONArray();
+        PaySalary payDAO = new PaySalary();
+        ArrayList<com.Attendence.My.Model.Entity.PaySalary.PaySalary> paySalary = null;
+        try {
+            paySalary = payDAO.Query();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return paySalary;
+    }
 }

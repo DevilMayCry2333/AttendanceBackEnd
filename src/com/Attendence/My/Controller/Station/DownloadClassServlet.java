@@ -50,7 +50,7 @@ public class DownloadClassServlet extends HttpServlet {
         System.out.println(sb.toString());
 
         request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect("http://localhost:8080/unnamed/export.jsp");
+        response.sendRedirect("http://localhost:8080/AttendanceBackEnd_war_exploded/export.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

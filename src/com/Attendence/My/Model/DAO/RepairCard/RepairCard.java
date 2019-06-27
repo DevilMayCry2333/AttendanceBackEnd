@@ -85,5 +85,41 @@ public class RepairCard {
         else
             return  false;
     }
+    public ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> Query (String sql) throws SQLException {
+
+        DBUtils dbUtils=new DBUtils();
+        Connection con=dbUtils.getConnecton();
+        Statement st = null;
+        ResultSet rs = null;
+        ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> repairArr = new ArrayList<>();
+
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                //            jsonObject.put("RepairId",rs.getString("RepairId"));
+//            jsonObject.put("ClassId",rs.getString("ClassId"));
+//            jsonObject.put("UserName",rs.getString("UserName"));
+//            jsonObject.put("RepairDate",rs.getString("RepairDate"));
+//            jsonObject.put("Reason",rs.getString("Reason"));
+//            jsonArray.add(jsonObject);
+                com.Attendence.My.Model.Entity.RepairCard.RepairCard repair = new com.Attendence.My.Model.Entity.RepairCard.RepairCard();
+                repair.setId(rs.getInt("Id"));
+                repair.setClassId(rs.getString("ClassId"));
+                repair.setUserName(rs.getString("UserName"));
+                repair.setRepairDate(rs.getString("RepairDate"));
+                repair.setReason(rs.getString("Reason"));
+                repair.setRepairId(rs.getString("RepairId"));
+                repairArr.add(repair);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            rs.close();
+            st.close();
+            con.close();
+        }
+        return repairArr;
+    }
 
 }

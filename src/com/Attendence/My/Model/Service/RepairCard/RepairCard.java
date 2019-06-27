@@ -29,4 +29,10 @@ public class RepairCard {
         else
             return false;
     }
+    public ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> Query() throws SQLException {
+        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        com.Attendence.My.Model.DAO.RepairCard.RepairCard rc = new com.Attendence.My.Model.DAO.RepairCard.RepairCard();
+        return rc.Query("select * from Repair");
+    }
 }

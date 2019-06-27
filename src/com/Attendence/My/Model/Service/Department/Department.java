@@ -51,4 +51,11 @@ public class Department {
         com.Attendence.My.Model.DAO.Department.Department dq = new com.Attendence.My.Model.DAO.Department.Department();
         return dq.queryLines();
     }
+
+    public ArrayList<DepartmentList> Query() throws SQLException {
+        JSONArray JsonArr = new JSONArray();
+        JSONObject JS = new JSONObject();
+        com.Attendence.My.Model.DAO.Department.Department department = new com.Attendence.My.Model.DAO.Department.Department();
+        return department.Query();
+    }
 }

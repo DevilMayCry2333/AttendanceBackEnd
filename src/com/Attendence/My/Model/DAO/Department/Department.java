@@ -140,6 +140,35 @@ public class Department {
             return false;
         }
     }
+    public ArrayList<DepartmentList> Query() throws SQLException {
+        String sql="SELECT * FROM Department";
+        ResultSet re=null;
+        DBUtils dbUtils=new DBUtils();
+        Connection con=dbUtils.getConnecton();
+        ArrayList<DepartmentList> arrD = new ArrayList<>();
+        Statement sta= null;
+        try {
+            sta = con.createStatement();
+            re=sta.executeQuery(sql);
+            while (re.next()){
+                DepartmentList dl = new DepartmentList();
+                dl.setId(re.getInt("Id"));
+                dl.setDepartmentId(re.getString("DepartmentId"));
+                dl.setDname(re.getString("Dname"));
+                dl.setDPrincipal(re.getString("Dprincipal"));
+                dl.setDability(re.getString("Dability"));
+                dl.setSdepartment(re.getString("Sdepartment"));
+                arrD.add(dl);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            re.close();
+            sta.close();
+            con.close();
+        }
+        return arrD;
+    }
 
 
     public int queryLines() {

@@ -178,4 +178,44 @@ public class EmployeeList {
         }
         return res;
     }
+    public ArrayList<com.Attendence.My.Model.Entity.Employee.EmployeeList> EmployQueryall() throws SQLException {
+        String str="SELECT * FROM Employ";
+        System.out.println(str);
+        DBUtils dbUtils=new DBUtils();
+        Connection con=dbUtils.getConnecton();
+        ResultSet re=null;
+        ArrayList<com.Attendence.My.Model.Entity.Employee.EmployeeList> earr = new ArrayList<>();
+        PreparedStatement st = null;
+        try {
+            st = con.prepareStatement(str);
+            re = st.executeQuery();
+            //                    js.put("Id",re.getString("Id"));
+//                    js.put("EmployId",re.getString("EmployId"));
+//                    js.put("UserName",re.getString("UserName"));
+//                    js.put("Gender",re.getString("Gender"));
+//                    js.put("Age",re.getInt("Age"));
+//                    js.put("Nation",re.getString("Nation"));
+//                    js.put("Job",re.getString("Job"));
+            while (re.next()){
+                com.Attendence.My.Model.Entity.Employee.EmployeeList emm = new com.Attendence.My.Model.Entity.Employee.EmployeeList();
+                emm.setId(re.getInt("Id"));
+                emm.setUserCode(re.getString("EmployId"));
+                emm.setUserName(re.getString("UserName"));
+                emm.setGender(re.getString("Gender"));
+                emm.setAge(re.getString("Age"));
+                emm.setNation(re.getString("Nation"));
+                emm.setStation(re.getString("Job"));
+                earr.add(emm);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }finally {
+            re.close();
+            st.close();
+            con.close();
+        }
+        return earr;
+    }
 }
+

@@ -141,7 +141,7 @@ public class Station {
         try {
             PreparedStatement psmt = conn.prepareStatement("SELECT count(Id) StaCount FROM Station");
             rs = psmt.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 res = rs.getInt("StaCount");
                 System.out.println(res);
             }
@@ -149,5 +149,35 @@ public class Station {
             e.printStackTrace();
         }
         return res;
+    }
+
+    public ArrayList<StationList> Query() throws SQLException {
+        String sql="SELECT * FROM Station";
+        DBUtils dbUtils=new DBUtils();
+        Connection con=dbUtils.getConnecton();
+        Statement sta= null;
+        ArrayList<StationList> StationArr = new ArrayList<>();
+        ResultSet re=null;
+        try{
+            sta = con.createStatement();
+            re = sta.executeQuery(sql);
+            while (re.next()){
+                StationList sl = new StationList();
+                sl.setId(re.getInt("Id"));
+                sl.setJobId(re.getString("JobId"));
+                sl.setPname(re.getString("Pname"));
+                sl.setAdepartment(re.getString("Adepartment"));
+                sl.setIsuperior(re.getString("Isuperior"));
+                sl.setJcategory(re.getString("Jcategory"));
+                StationArr.add(sl);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            re.close();
+            sta.close();
+            con.close();
+        }
+        return StationArr;
     }
 }

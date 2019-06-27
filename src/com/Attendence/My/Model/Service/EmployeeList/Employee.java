@@ -60,4 +60,8 @@ public class Employee {
         EmployeeList el = new EmployeeList();
         return el.queryLines();
     }
+    public ArrayList<com.Attendence.My.Model.Entity.Employee.EmployeeList> Query() throws SQLException {
+        EmployeeList el=new EmployeeList();
+        return el.EmployQueryall();
+    }
 }

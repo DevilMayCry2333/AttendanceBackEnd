@@ -62,4 +62,37 @@ public class LeaveDAO {
             return false;
         }
     }
+    public ArrayList<Leave> Query() throws SQLException {
+        String str="SELECT * from MyLeave";
+        DBUtils dbUtils=new DBUtils();
+        Connection con= dbUtils.getConnecton();
+        ArrayList<Leave> leavArr = new ArrayList<>();
+        Statement st = null;
+        ResultSet re = null;
+        try {
+            st = con.createStatement();
+            re = st.executeQuery(str);
+            while (re.next()){
+                //                js.put("LeaveId",re1.getString("LeaveId"));
+//                js.put("LeaveName",re1.getString("LeaveName"));
+//                js.put("BeginDate",re1.getString("BeginDate"));
+//                js.put("EndDate",re1.getString("EndDate"));
+//                js.put("LeaveReason",re1.getString("LeaveReason"));
+                Leave leave = new Leave();
+                leave.setLeaveId(re.getString("LeaveId"));
+                leave.setLeaveName(re.getString("LeaveName"));
+                leave.setBeginDate(re.getString("BeginDate"));
+                leave.setEndDate(re.getString("EndDate"));
+                leave.setLeaveReason(re.getString("LeaveReason"));
+                leavArr.add(leave);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            re.close();
+            st.close();
+            con.close();
+        }
+        return leavArr;
+    }
 }

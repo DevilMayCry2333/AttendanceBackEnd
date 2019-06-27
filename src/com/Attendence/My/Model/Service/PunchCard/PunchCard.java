@@ -18,6 +18,15 @@ public class PunchCard {
 
     }
 
+    public ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> Query() throws SQLException {
+        JSONObject json = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        com.Attendence.My.Model.DAO.PunchCard.PunchCard pc = new com.Attendence.My.Model.DAO.PunchCard.PunchCard();
+        return pc.Query("SELECT * from Punch");
+
+    }
+
+
     public int PunchUpdate (com.Attendence.My.Model.Entity.PunchCard.PunchCard punchModel) {
 //        JSONObject jsonObject = new JSONObject();
 //        JSONArray jsonArray = new JSONArray();

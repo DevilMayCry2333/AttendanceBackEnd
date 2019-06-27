@@ -76,4 +76,33 @@ public class PunchCard {
         else
             return false;
         }
+    public ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> Query(String sql) throws SQLException {
+        DBUtils cn = new DBUtils();
+        Connection conn = cn.getConnecton();
+        ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> punchArr = new ArrayList<>();
+
+        ResultSet rs = null;
+        Statement st = null;
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()){
+                com.Attendence.My.Model.Entity.PunchCard.PunchCard punch = new com.Attendence.My.Model.Entity.PunchCard.PunchCard();
+                punch.setID(rs.getInt("Id"));
+                punch.setClassId(rs.getString("ClassId"));
+                punch.setUserName(rs.getString("UserName"));
+                punch.setPunchDate(rs.getString("PunchDate"));
+                punch.setRemarks(rs.getString("Remarks"));
+                punch.setPunchId(rs.getString("PunchId"));
+                punchArr.add(punch);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            rs.close();
+            st.close();
+            conn.close();
+        }
+        return punchArr;
+    }
 }

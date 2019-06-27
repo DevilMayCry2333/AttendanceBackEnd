@@ -74,4 +74,8 @@ public class Station {
         com.Attendence.My.Model.DAO.Station.Station sl = new com.Attendence.My.Model.DAO.Station.Station();
         return sl.queryLines();
     }
+    public ArrayList<StationList> Query() throws SQLException {
+        com.Attendence.My.Model.DAO.Station.Station station = new com.Attendence.My.Model.DAO.Station.Station();
+        return station.Query();
+    }
 }

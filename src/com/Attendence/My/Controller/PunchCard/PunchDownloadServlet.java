@@ -32,7 +32,7 @@ public class PunchDownloadServlet extends HttpServlet {
 
         JSONArray jsonArr = new JSONArray();
         try {
-            ArrayList<PunchCard> PunchArr = punch.PunchQuery();
+            ArrayList<PunchCard> PunchArr = punch.Query();
 
             for (int i = 0; i < PunchArr.size(); i++) {
                 JSONObject json = new JSONObject();

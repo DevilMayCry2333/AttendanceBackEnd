@@ -32,7 +32,7 @@ public class RepairDownloadServlet extends HttpServlet {
 
         JSONArray jsonArr = new JSONArray();
         try {
-            ArrayList<RepairCard> RepairArr = repairCard.RepairQuery();
+            ArrayList<RepairCard> RepairArr = repairCard.Query();
 
             for (int i = 0; i < RepairArr.size(); i++) {
                 JSONObject json = new JSONObject();

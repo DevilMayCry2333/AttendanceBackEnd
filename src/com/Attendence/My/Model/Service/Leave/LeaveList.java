@@ -23,4 +23,8 @@ public class LeaveList {
         else
             return false;
     }
+    public ArrayList<Leave> Query() throws SQLException {
+        LeaveDAO leave = new LeaveDAO();
+        return leave.Query();
+    }
 }
