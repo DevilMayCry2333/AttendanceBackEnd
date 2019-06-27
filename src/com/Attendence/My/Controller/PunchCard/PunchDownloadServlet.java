@@ -3,6 +3,7 @@ package com.Attendence.My.Controller.PunchCard;
 import com.Attendence.My.Model.Entity.Class.ClassUpdate;
 import com.Attendence.My.Model.Entity.PunchCard.PunchCard;
 import com.Attendence.My.Model.Service.Classes.ClassList;
+import com.Attendence.My.Model.Utils.Url;
 import com.Attendence.My.utils.GetExcel;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -51,7 +52,7 @@ public class PunchDownloadServlet extends HttpServlet {
         System.out.println(sb.toString());
 
         request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect("http://localhost:8080/unnamed/export.jsp");
+        response.sendRedirect(Url.Url + "export.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

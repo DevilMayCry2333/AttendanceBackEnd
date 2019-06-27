@@ -212,7 +212,7 @@ public class Attend {
         try {
 
             for (int i = 0; i <attend.getClassId().size(); i++) {
-                PreparedStatement psmt = conn.prepareStatement("INSERT INTO Attendence.Attend(EarlyTime, LateTime, EmpName, ClassId, AttendStatus) VALUES (?,?,?,?,?)");
+                PreparedStatement psmt = conn.prepareStatement("INSERT INTO Attend(EarlyTime, LateTime, EmpName, ClassId, AttendStatus) VALUES (?,?,?,?,?)");
                 psmt.setString(1,attend.getEarlyTime().get(i));
                 psmt.setString(2,attend.getLateTime().get(i));
                 psmt.setString(3,attend.getEmpName().get(i));
@@ -398,7 +398,6 @@ public class Attend {
                 LateTime4.add(r2);
                 ClassId4.add(rss4.getString("ClassId"));
                 AttendStatus4.add("旷工");
-                i++;
             }
 //            rss4.close();
 

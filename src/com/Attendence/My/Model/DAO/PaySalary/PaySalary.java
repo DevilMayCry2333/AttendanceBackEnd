@@ -81,7 +81,6 @@ public class PaySalary {
                 arrPay.add(pay);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
 
         }finally {
             re.close();

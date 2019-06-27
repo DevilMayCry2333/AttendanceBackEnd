@@ -1,7 +1,8 @@
-package com.Attendence.My.Controller.Station;
+package com.Attendence.My.Controller.Classes;
 
 import com.Attendence.My.Model.Entity.Class.ClassUpdate;
 import com.Attendence.My.Model.Service.Classes.ClassList;
+import com.Attendence.My.Model.Utils.Url;
 import com.Attendence.My.utils.GetExcel;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
@@ -33,7 +34,7 @@ public class DownloadClassServlet extends HttpServlet {
         ClassList Cl = new ClassList();
         JSONArray jsonArr = new JSONArray();
         try {
-            ArrayList<ClassUpdate> ClassUpdate = Cl.ClassList(1);
+            ArrayList<ClassUpdate> ClassUpdate = Cl.Query();
             for (int i = 0; i < ClassUpdate.size(); i++) {
                 JSONObject json = new JSONObject();
                 json.put("Id",ClassUpdate.get(i).getId());
@@ -50,7 +51,7 @@ public class DownloadClassServlet extends HttpServlet {
         System.out.println(sb.toString());
 
         request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect("http://localhost:8080/AttendanceBackEnd_war_exploded/export.jsp");
+        response.sendRedirect(Url.Url + "export.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

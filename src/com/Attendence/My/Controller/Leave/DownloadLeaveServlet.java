@@ -2,6 +2,7 @@ package com.Attendence.My.Controller.Leave;
 
 import com.Attendence.My.Model.Entity.Leave.Leave;
 import com.Attendence.My.Model.Service.Leave.LeaveList;
+import com.Attendence.My.Model.Utils.Url;
 import com.Attendence.My.utils.GetExcel;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "DownloadLeaveServlet")
+@WebServlet(name = "DownloadLeaveServlet", urlPatterns = "/DownloadLeaveServlet")
 public class DownloadLeaveServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<String> atable=new ArrayList<>();
@@ -46,7 +47,7 @@ public class DownloadLeaveServlet extends HttpServlet {
         System.out.println(sb.toString());
 
         request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect("http://localhost:8080/AttendanceBackEnd_war_exploded/export.jsp");
+        response.sendRedirect(Url.Url + "export.jsp");
 
     }
 

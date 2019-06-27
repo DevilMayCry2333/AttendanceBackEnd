@@ -2,6 +2,7 @@ package com.Attendence.My.Controller.EmployeeList;
 
 import com.Attendence.My.Model.Entity.Employee.EmployeeList;
 import com.Attendence.My.Model.Service.EmployeeList.Employee;
+import com.Attendence.My.Model.Utils.Url;
 import com.Attendence.My.utils.GetExcel;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -17,15 +18,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "DownloadEmployServlet")
+@WebServlet(name = "DownloadEmployServlet" , urlPatterns = "/DownloadEmployServlet")
 public class DownloadEmployServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setHeader("Access-Control-Allow-Origin","*");
+        //允许请求的方法
+        response.setHeader("Access-Control-Allow-Methods","GET,POST,PUT,DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setContentType("text/javascript");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         List<String> etable=new ArrayList<>();
         etable.add("EmployId");
         etable.add("UserName");
         etable.add("Age");
         etable.add("Nation");
-        etable.add("IDCard");
+        etable.add("IdCard");
         etable.add("salary");
         etable.add("Phone");
         etable.add("EmeContact");
@@ -58,7 +69,7 @@ public class DownloadEmployServlet extends HttpServlet {
         System.out.println(sb.toString());
 
         request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect("http://localhost:8080/AttendanceBackEnd_war_exploded/export.jsp");
+        response.sendRedirect(Url.Url + "export.jsp");
 
     }
 

@@ -1,6 +1,7 @@
 package com.Attendence.My.Controller.Attend;
 
 import com.Attendence.My.Model.Service.Attend.Attend;
+import com.Attendence.My.Model.Utils.Url;
 import com.Attendence.My.utils.GetExcel;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -15,11 +16,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "DownAttendServlet")
+@WebServlet(name = "DownAttendServlet" , urlPatterns = "/DownAttendServlet")
 public class DownAttendServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<String> atable=new ArrayList<>();
-        atable.add("PunchID");
         atable.add("EmpName");
         atable.add("EarlyTime");
         atable.add("LateTime");
@@ -31,7 +31,6 @@ public class DownAttendServlet extends HttpServlet {
             ArrayList<com.Attendence.My.Model.Entity.Attend.Attend> Attend=a.Query();
             JSONObject json=new JSONObject();
             for (int i = 0; i <Attend.size(); i++) {
-                json.put("PunchID",Attend.get(i).getEmpCode());
                 json.put("EmpName",Attend.get(i).getEmpName());
                 json.put("EarlyTime",Attend.get(i).getEarlyTime());
                 json.put("LateTime",Attend.get(i).getLateTime());
@@ -46,7 +45,7 @@ public class DownAttendServlet extends HttpServlet {
         System.out.println(sb.toString());
 
         request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect("http://localhost:8080/AttendanceBackEnd_war_exploded/export.jsp");
+        response.sendRedirect(Url.Url + "export.jsp");
 
 
 

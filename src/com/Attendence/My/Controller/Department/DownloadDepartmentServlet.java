@@ -2,6 +2,7 @@ package com.Attendence.My.Controller.Department;
 
 import com.Attendence.My.Model.Entity.Department.DepartmentList;
 import com.Attendence.My.Model.Service.Department.Department;
+import com.Attendence.My.Model.Utils.Url;
 import com.Attendence.My.utils.GetExcel;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -16,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "DownloadDepartmentServlet")
+@WebServlet(name = "DownloadDepartmentServlet" , urlPatterns = "/DownloadDepartmentServlet")
 public class DownloadDepartmentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<String> atable=new ArrayList<>();
@@ -46,11 +47,12 @@ public class DownloadDepartmentServlet extends HttpServlet {
         System.out.println(sb.toString());
 
         request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect("http://localhost:8080/AttendanceBackEnd_war_exploded/export.jsp");
+        response.sendRedirect(Url.Url + "export.jsp");
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request,response);
 
     }
 }

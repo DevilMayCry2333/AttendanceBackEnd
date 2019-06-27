@@ -205,6 +205,12 @@ public class EmployeeList {
                 emm.setAge(re.getString("Age"));
                 emm.setNation(re.getString("Nation"));
                 emm.setStation(re.getString("Job"));
+                emm.setIdCard(re.getString("IDNumber"));
+                emm.setSalary(re.getString("salary"));
+                emm.setTel(re.getString("Phone"));
+                emm.setEmergyContact(re.getString("EmeContact"));
+                emm.setStation(re.getString("Job"));
+                emm.setDesc(re.getString("Describle"));
                 earr.add(emm);
             }
         } catch (SQLException e) {

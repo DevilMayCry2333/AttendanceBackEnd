@@ -2,6 +2,7 @@ package com.Attendence.My.Controller.PaySalary;
 
 import com.Attendence.My.Model.Entity.PaySalary.PaySalary;
 import com.Attendence.My.Model.Service.PaySalaryList.PaySalaryList;
+import com.Attendence.My.Model.Utils.Url;
 import com.Attendence.My.utils.GetExcel;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "DownloadPayServlet")
+@WebServlet(name = "DownloadPayServlet", urlPatterns = "/DownloadPayServlet")
 public class DownloadPayServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<String> atable=new ArrayList<>();
@@ -44,11 +45,11 @@ public class DownloadPayServlet extends HttpServlet {
         System.out.println(sb.toString());
 
         request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect("http://localhost:8080/AttendanceBackEnd_war_exploded/export.jsp");
+        response.sendRedirect(Url.Url + "export.jsp");
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 }

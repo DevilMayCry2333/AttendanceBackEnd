@@ -158,4 +158,43 @@ public class ClassDAO {
         }
         return res;
     }
+
+    public ArrayList<ClassUpdate> Query() throws SQLException {
+        String str="SELECT * from Classes";
+        System.out.println(str);
+        DBUtils dbUtils=new DBUtils();
+        Connection con=dbUtils.getConnecton();
+        ResultSet re=null;
+        ArrayList<ClassUpdate> ClassArr = new ArrayList<>();
+        PreparedStatement st = null;
+        try {
+            st = con.prepareStatement(str);
+            re = st.executeQuery();
+            while (re.next()){
+                //                js.put("Id",re1.getString("Id"));
+//                js.put("ClassId",re1.getString("ClassId"));
+//                js.put("Cname",re1.getString("Cname"));
+//                js.put("Mtime",re1.getString("Mtime"));
+//                js.put("Atime",re1.getString("Atime"));
+                ClassUpdate classUpdate = new ClassUpdate();
+                classUpdate.setId(re.getInt("Id"));
+                classUpdate.setClassId(re.getString("ClassId"));
+                classUpdate.setCname(re.getString("Cname"));
+                classUpdate.setMtime(re.getString("Mtime"));
+                classUpdate.setAtime(re.getString("Atime"));
+                ClassArr.add(classUpdate);
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }finally {
+            re.close();
+            st.close();
+            con.close();
+        }
+        return ClassArr;
+    }
+
 }

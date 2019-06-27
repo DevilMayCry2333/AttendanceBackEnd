@@ -1,6 +1,7 @@
 package com.Attendence.My.Controller.Login;
 
 import com.Attendence.My.Model.Service.Login.Login;
+import com.Attendence.My.Model.Utils.Url;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,12 +21,12 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 //                request.getRequestDispatcher("index.html").forward(request,response);
 
 //                response.sendRedirect( "http://localhost/AttendanceFrontEnd/index.html");
-                response.sendRedirect("https://youkaiyu.com/AttendanceFrontEnd/index.html");
+                response.sendRedirect(Url.FUrl + "index.html");
 
             }
             else {
 //                request.getRequestDispatcher("login.html");
-                response.sendRedirect( "https://youkaiyu.com/AttendanceFrontEnd/login.html");
+                response.sendRedirect( Url.FUrl + "login.html");
             }
         } catch (SQLException e) {
             e.printStackTrace();

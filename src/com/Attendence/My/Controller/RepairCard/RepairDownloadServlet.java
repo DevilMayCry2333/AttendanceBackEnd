@@ -2,6 +2,7 @@ package com.Attendence.My.Controller.RepairCard;
 
 import com.Attendence.My.Model.Entity.PunchCard.PunchCard;
 import com.Attendence.My.Model.Entity.RepairCard.RepairCard;
+import com.Attendence.My.Model.Utils.Url;
 import com.Attendence.My.utils.GetExcel;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -51,7 +52,7 @@ public class RepairDownloadServlet extends HttpServlet {
         System.out.println(sb.toString());
 
         request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect("http://localhost:8080/unnamed/export.jsp");
+        response.sendRedirect(Url.Url + "export.jsp");
 
     }
 

@@ -55,4 +55,12 @@ public class ClassList {
         ClassDAO el = new ClassDAO();
         return el.queryLines();
     }
+
+    public ArrayList<ClassUpdate> Query() throws SQLException {
+
+        ClassDAO classDAO = new ClassDAO();
+        return classDAO.Query();
+    }
+
+
 }
