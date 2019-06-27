@@ -10,9 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class LeaveList {
-    public ArrayList<Leave> LeaveList() throws SQLException {
+    public ArrayList<Leave> LeaveList(int page) throws SQLException {
         LeaveDAO leave = new LeaveDAO();
-        return leave.LeaveQuery();
+        return leave.LeaveQuery(page);
+
     }
     public boolean LeaveInsert(Leave leaveModel) throws SQLException {
         LeaveDAO leaveDAO = new LeaveDAO();
@@ -26,5 +27,9 @@ public class LeaveList {
     public ArrayList<Leave> Query() throws SQLException {
         LeaveDAO leave = new LeaveDAO();
         return leave.Query();
+    }
+    public int QueryAll(){
+       LeaveDAO leaveDAO = new LeaveDAO();
+        return leaveDAO.queryLines();
     }
 }

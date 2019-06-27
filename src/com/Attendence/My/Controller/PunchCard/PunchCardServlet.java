@@ -24,6 +24,7 @@ public class PunchCardServlet extends javax.servlet.http.HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
 
+        int page = Integer.parseInt(request.getParameter("page"));
         //                json.put("PunchId",rs.getString("PunchId"));
 //            json.put("Scode",rs.getString("ClassId"));
 //            json.put("UserName",rs.getString("UserName"));
@@ -34,7 +35,7 @@ public class PunchCardServlet extends javax.servlet.http.HttpServlet {
         PunchCard pc = new PunchCard();
         JSONArray js = new JSONArray();
         try {
-            ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> PunchArr = pc.PunchQuery();
+            ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> PunchArr = pc.PunchQuery(page);
             for (int i = 0; i < PunchArr.size(); i++) {
                 JSONObject json = new JSONObject();
                 json.put("Id",PunchArr.get(i).getID());

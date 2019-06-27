@@ -1,6 +1,6 @@
-package com.Attendence.My.Controller.EmployeeList;
+package com.Attendence.My.Controller.RepairCard;
 
-import com.Attendence.My.Model.Service.EmployeeList.Employee;
+import com.Attendence.My.Model.Service.RepairCard.RepairCard;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "EmpCountServlet",urlPatterns = "/EmpCountServlet")
-public class EmpCountServlet extends HttpServlet {
+@WebServlet(name = "RepairCardCountServlet" , urlPatterns = "/RepairCardCountServlet")
+public class RepairCardCountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin","*");
         //允许请求的方法
@@ -24,14 +24,11 @@ public class EmpCountServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-
-        Employee employ = new Employee();
+        RepairCard repairCard = new RepairCard();
         JSONObject json = new JSONObject();
-        json.put("Count", employ.QueryAll());
+        json.put("Count", repairCard.QueryAll());
         PrintWriter pl = response.getWriter();
         pl.println(json);
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

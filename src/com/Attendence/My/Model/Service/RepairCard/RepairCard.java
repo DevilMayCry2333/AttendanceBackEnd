@@ -9,11 +9,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RepairCard {
-    public ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> RepairQuery() throws SQLException {
+    public ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> RepairQuery(int page) throws SQLException {
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         com.Attendence.My.Model.DAO.RepairCard.RepairCard rc = new com.Attendence.My.Model.DAO.RepairCard.RepairCard();
-        return rc.RepairQuery("select * from Repair");
+        return rc.RepairQuery("select * from repair LIMIT ?,? ",page);
     }
     public int RepairUpdate(com.Attendence.My.Model.Entity.RepairCard.RepairCard repairModel){
         com.Attendence.My.Model.DAO.RepairCard.RepairCard repairCard = new com.Attendence.My.Model.DAO.RepairCard.RepairCard();
@@ -34,5 +34,9 @@ public class RepairCard {
         JSONArray jsonArray = new JSONArray();
         com.Attendence.My.Model.DAO.RepairCard.RepairCard rc = new com.Attendence.My.Model.DAO.RepairCard.RepairCard();
         return rc.Query("select * from Repair");
+    }
+    public int QueryAll(){
+        com.Attendence.My.Model.DAO.RepairCard.RepairCard repairCard = new com.Attendence.My.Model.DAO.RepairCard.RepairCard();
+        return repairCard.queryLines();
     }
 }

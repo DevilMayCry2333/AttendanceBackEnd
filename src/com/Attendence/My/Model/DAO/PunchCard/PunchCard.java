@@ -8,17 +8,19 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class PunchCard {
-    public ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> PunchQuery(String sql) throws SQLException {
+    public ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> PunchQuery(String sql, int page) throws SQLException {
         DBUtils cn = new DBUtils();
         Connection conn = cn.getConnecton();
         ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> punchArr = new ArrayList<>();
 
         ResultSet rs = null;
-        Statement st = null;
+        PreparedStatement st = null;
         try {
-            st = conn.createStatement();
-            rs = st.executeQuery(sql);
-            while (rs.next()){
+            st = conn.prepareStatement(sql);
+            st.setInt(1, page * 10 - 10);
+            st.setInt(2, 10);
+            rs = st.executeQuery();
+            while (rs.next()) {
                 com.Attendence.My.Model.Entity.PunchCard.PunchCard punch = new com.Attendence.My.Model.Entity.PunchCard.PunchCard();
                 punch.setID(rs.getInt("Id"));
                 punch.setClassId(rs.getString("ClassId"));
@@ -30,14 +32,15 @@ public class PunchCard {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             rs.close();
             st.close();
             conn.close();
         }
         return punchArr;
     }
-    public int PunchUpdate(com.Attendence.My.Model.Entity.PunchCard.PunchCard punchModel){
+
+    public int PunchUpdate(com.Attendence.My.Model.Entity.PunchCard.PunchCard punchModel) {
         String sql = "UPDATE punch SET PunchId ='" + punchModel.getID() + "',ClassId='" + punchModel.getClassId() + "',UserName='" + punchModel.getUserName() + "',PunchDate='" + punchModel.getPunchDate() + "',Remarks='" + punchModel.getRemarks() + "'WHERE Id = '" + punchModel.getID() + "'";
         System.out.println(sql);
 
@@ -55,27 +58,27 @@ public class PunchCard {
         }
         return line;
     }
-        public boolean PunchCardInsert(PunchCardInsert punchCardmModel) throws SQLException{
-            DBUtils dbUtils = new DBUtils();
-            Connection connection = dbUtils.getConnecton();
-            String sql = "insert into  punch(PunchId, ClassID, UserName, PunchDate, Remarks) value  (?,?,?,?,?)";//sql语句
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,punchCardmModel.getPunchId());
-            preparedStatement.setString(2,punchCardmModel.getClassId());
-            preparedStatement.setString(3,punchCardmModel.getUserName());
-            preparedStatement.setString(4,punchCardmModel.getPunchDate());
-            preparedStatement.setString(5,punchCardmModel.getRemarks());
-           // 班次，查询
 
-        int c =preparedStatement.executeUpdate();
+    public boolean PunchCardInsert(PunchCardInsert punchCardmModel) throws SQLException {
+        DBUtils dbUtils = new DBUtils();
+        Connection connection = dbUtils.getConnecton();
+        String sql = "insert into  punch(PunchId, ClassID, UserName, PunchDate, Remarks) value  (?,?,?,?,?)";//sql语句
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, punchCardmModel.getPunchId());
+        preparedStatement.setString(2, punchCardmModel.getClassId());
+        preparedStatement.setString(3, punchCardmModel.getUserName());
+        preparedStatement.setString(4, punchCardmModel.getPunchDate());
+        preparedStatement.setString(5, punchCardmModel.getRemarks());
+        // 班次，查询
+
+        int c = preparedStatement.executeUpdate();
         preparedStatement.close();
         connection.close();
-        if(c == 1){
+        if (c == 1) {
             return true;
-        }
-        else
+        } else
             return false;
-        }
+    }
     public ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> Query(String sql) throws SQLException {
         DBUtils cn = new DBUtils();
         Connection conn = cn.getConnecton();
@@ -86,7 +89,7 @@ public class PunchCard {
         try {
             st = conn.createStatement();
             rs = st.executeQuery(sql);
-            while (rs.next()){
+            while (rs.next()) {
                 com.Attendence.My.Model.Entity.PunchCard.PunchCard punch = new com.Attendence.My.Model.Entity.PunchCard.PunchCard();
                 punch.setID(rs.getInt("Id"));
                 punch.setClassId(rs.getString("ClassId"));
@@ -98,11 +101,29 @@ public class PunchCard {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             rs.close();
             st.close();
             conn.close();
         }
         return punchArr;
+    }
+
+    public int queryLines(){
+        DBUtils db = new DBUtils();
+        Connection conn = db.getConnecton();
+        int res = 0;
+        ResultSet rs = null;
+        try {
+            PreparedStatement psmt = conn.prepareStatement("SELECT count(Id)PunchCount FROM Punch");
+            rs = psmt.executeQuery();
+            if(rs.next()){
+                res = rs.getInt("PunchCount");
+                System.out.println(res);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 }

@@ -29,8 +29,10 @@ public class RepairCardServlet extends HttpServlet {
         JSONArray jsonArray = new JSONArray();
         RepairCard repairCard = new RepairCard();
         try {
-            ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> arrRepair = repairCard.RepairQuery();
-            for (int i = 0; i < arrRepair.size(); i++) {
+
+              int page = Integer.parseInt(request.getParameter("page"));
+            ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> arrRepair = repairCard.RepairQuery(page);
+            for (int i = 0; i < arrRepair.size();i++) {
                 JSONObject json = new JSONObject();
                 json.put("RepairId",arrRepair.get(i).getRepairId());
                 json.put("ClassId",arrRepair.get(i).getClassId());

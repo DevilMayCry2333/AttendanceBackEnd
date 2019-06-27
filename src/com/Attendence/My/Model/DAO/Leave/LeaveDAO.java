@@ -7,16 +7,18 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class LeaveDAO {
-    public ArrayList<Leave> LeaveQuery() throws SQLException {
-        String str="SELECT * from MyLeave";
+    public ArrayList<Leave> LeaveQuery(int page) throws SQLException {
+        String str="SELECT * from myleave LIMIT ?,? ";
         DBUtils dbUtils=new DBUtils();
         Connection con= dbUtils.getConnecton();
         ArrayList<Leave> leavArr = new ArrayList<>();
-        Statement st = null;
+        PreparedStatement st = null;
         ResultSet re = null;
         try {
-            st = con.createStatement();
-            re = st.executeQuery(str);
+            st = con.prepareStatement(str);
+            st.setInt(1,page*10-10);
+            st.setInt(2,10);
+            re = st.executeQuery();
             while (re.next()){
                 //                js.put("LeaveId",re1.getString("LeaveId"));
 //                js.put("LeaveName",re1.getString("LeaveName"));
@@ -63,16 +65,16 @@ public class LeaveDAO {
         }
     }
     public ArrayList<Leave> Query() throws SQLException {
-        String str="SELECT * from MyLeave";
-        DBUtils dbUtils=new DBUtils();
-        Connection con= dbUtils.getConnecton();
+        String str = "SELECT * from MyLeave";
+        DBUtils dbUtils = new DBUtils();
+        Connection con = dbUtils.getConnecton();
         ArrayList<Leave> leavArr = new ArrayList<>();
         Statement st = null;
         ResultSet re = null;
         try {
             st = con.createStatement();
             re = st.executeQuery(str);
-            while (re.next()){
+            while (re.next()) {
                 //                js.put("LeaveId",re1.getString("LeaveId"));
 //                js.put("LeaveName",re1.getString("LeaveName"));
 //                js.put("BeginDate",re1.getString("BeginDate"));
@@ -88,11 +90,28 @@ public class LeaveDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             re.close();
             st.close();
             con.close();
         }
         return leavArr;
+    }
+    public int queryLines(){
+        DBUtils db = new DBUtils();
+        Connection conn = db.getConnecton();
+        int res = 0;
+        ResultSet rs = null;
+        try {
+            PreparedStatement psmt = conn.prepareStatement("SELECT count(Id) LeaveCount FROM myleave");
+            rs = psmt.executeQuery();
+            if(rs.next()){
+                res = rs.getInt("LeaveCount");
+                System.out.println(res);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 }

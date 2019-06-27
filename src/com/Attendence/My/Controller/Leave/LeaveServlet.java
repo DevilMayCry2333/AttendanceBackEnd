@@ -29,12 +29,13 @@ public class LeaveServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
+        int page = Integer.parseInt(request.getParameter("page"));
         JSONArray jsonArray = new JSONArray();
         LeaveList leave=new LeaveList();
 
         ArrayList<Leave> leaveArr = null;
         try {
-            leaveArr = leave.LeaveList();
+            leaveArr = leave.LeaveList(page);
             for (int i = 0; i < leaveArr.size(); i++) {
                 JSONObject js = new JSONObject();
                 js.put("LeaveId",leaveArr.get(i).getLeaveId());
@@ -55,7 +56,6 @@ public class LeaveServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         doPost(request,response);
     }
 }

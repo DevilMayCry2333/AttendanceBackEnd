@@ -10,11 +10,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PunchCard {
-    public ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> PunchQuery() throws SQLException {
+    public ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> PunchQuery(int page) throws SQLException {
         JSONObject json = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         com.Attendence.My.Model.DAO.PunchCard.PunchCard pc = new com.Attendence.My.Model.DAO.PunchCard.PunchCard();
-        return pc.PunchQuery("SELECT * from Punch");
+        return pc.PunchQuery("SELECT * from Punch LIMIT ?,?",page);
+
 
     }
 
@@ -44,6 +45,9 @@ public class PunchCard {
         }else{
             return false;
         }
-
+    }
+    public int QueryAll(){
+        com.Attendence.My.Model.DAO.PunchCard.PunchCard punchCard = new com.Attendence.My.Model.DAO.PunchCard.PunchCard();
+        return punchCard.queryLines();
     }
 }

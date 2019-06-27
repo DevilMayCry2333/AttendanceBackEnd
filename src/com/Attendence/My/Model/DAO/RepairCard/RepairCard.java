@@ -8,17 +8,19 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class RepairCard {
-    public ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> RepairQuery (String sql) throws SQLException {
+    public ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> RepairQuery (String sql, int page) throws SQLException {
 
         DBUtils dbUtils=new DBUtils();
         Connection con=dbUtils.getConnecton();
-        Statement st = null;
+        PreparedStatement st = null;
         ResultSet rs = null;
         ArrayList<com.Attendence.My.Model.Entity.RepairCard.RepairCard> repairArr = new ArrayList<>();
 
         try {
-            st = con.createStatement();
-            rs = st.executeQuery(sql);
+            st = con.prepareStatement(sql);
+            st.setInt(1,page*10-10);
+            st.setInt(2,10);
+            rs = st.executeQuery();
             while (rs.next()){
                 //            jsonObject.put("RepairId",rs.getString("RepairId"));
 //            jsonObject.put("ClassId",rs.getString("ClassId"));
@@ -122,4 +124,21 @@ public class RepairCard {
         return repairArr;
     }
 
+    public int queryLines(){
+        DBUtils db = new DBUtils();
+        Connection conn = db.getConnecton();
+        int res = 0;
+        ResultSet rs = null;
+        try {
+            PreparedStatement psmt = conn.prepareStatement("SELECT count(Id)RepairCount FROM Repair");
+            rs = psmt.executeQuery();
+            if(rs.next()){
+                res = rs.getInt("RepairCount");
+                System.out.println(res);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
 }
