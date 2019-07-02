@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBUtils {
     String driver="com.mysql.jdbc.Driver";
-    String url="jdbc:mysql://localhost:3306/attendsys?serverTimezone=UTC";
+    String url="jdbc:mysql://localhost:3306/attendsys?serverTimezone=UTC&characterEncoding=UTF8";
     String user="root";
     String password="YKY12345..";
     Connection conn=null;
