@@ -33,9 +33,7 @@ public class Attend {
     }
     public ArrayList<com.Attendence.My.Model.Entity.Attend.Attend> Query() throws SQLException {
         com.Attendence.My.Model.DAO.Attend.Attend attendDao = new com.Attendence.My.Model.DAO.Attend.Attend();
-        ArrayList<com.Attendence.My.Model.Entity.Attend.Attend>  as = attendDao.Query();
-
-        return as;
+        return attendDao.Query();
 
     }
 }

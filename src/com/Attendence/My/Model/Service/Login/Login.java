@@ -1,5 +1,6 @@
 package com.Attendence.My.Model.Service.Login;
 
+import com.Attendence.My.Model.Entity.Login.LoginState;
 import com.Attendence.My.Model.Utils.EncryBiz;
 
 import java.sql.ResultSet;
@@ -23,5 +24,9 @@ public class Login {
     public boolean deletLogin(String username){
         com.Attendence.My.Model.DAO.Login.Login lg = new com.Attendence.My.Model.DAO.Login.Login();
         return lg.deleteLogin(username);
+    }
+    public LoginState loginState(String username){
+        com.Attendence.My.Model.DAO.Login.Login lg = new com.Attendence.My.Model.DAO.Login.Login();
+        return lg.checkLogin(username);
     }
 }

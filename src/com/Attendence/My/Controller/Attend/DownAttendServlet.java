@@ -31,12 +31,16 @@ public class DownAttendServlet extends HttpServlet {
             ArrayList<com.Attendence.My.Model.Entity.Attend.Attend> Attend=a.Query();
             JSONObject json=new JSONObject();
             for (int i = 0; i <Attend.size(); i++) {
-                json.put("EmpName",Attend.get(i).getEmpName());
-                json.put("EarlyTime",Attend.get(i).getEarlyTime());
-                json.put("LateTime",Attend.get(i).getLateTime());
-                json.put("AttendStatus",Attend.get(i).getAttendStatus());
-                json.put("ClassId",Attend.get(i).getClassId());
-                jsonArray.add(json);
+                for (int j = 0; j < Attend.get(i).getEmpName().size(); j++) {
+                    System.out.print(Attend.get(i).getEmpName().get(j));
+                    json.put("EmpName",Attend.get(i).getEmpName().get(j));
+                    json.put("EarlyTime",Attend.get(i).getEarlyTime().get(j));
+                    json.put("LateTime",Attend.get(i).getLateTime().get(j));
+                    json.put("AttendStatus",Attend.get(i).getAttendStatus().get(j));
+                    json.put("ClassId",Attend.get(i).getClassId().get(j));
+                    jsonArray.add(json);
+                }
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
