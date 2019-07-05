@@ -2,6 +2,7 @@ package com.Attendence.My.Controller.Classes;
 
 import com.Attendence.My.Model.DAO.Classes.ClassDAO;
 import com.Attendence.My.Model.Service.Classes.ClassList;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,15 +40,20 @@ public class AddClassServlet extends HttpServlet {
         list.add(LateTimeSelect);
 
         ClassList s= new ClassList();
+        JSONObject json = new JSONObject();
+        PrintWriter out = response.getWriter();
         try {
             if(s.AddClass(list)){
+                json.put("Res","true");
                 System.out.println("yes");
             }else{
+                json.put("Res","false");
                 System.out.println("error");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        out.println(json);
 
     }
 

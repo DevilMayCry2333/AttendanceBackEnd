@@ -24,9 +24,9 @@ public class Login {
             rs = psmt.executeQuery();
             if(rs.next()){
                 int loginCount = rs.getInt("LoginCount");
-                if(loginCount == 1){
-                    return 2;
-                }else {
+//                if(loginCount == 1){
+//                    return 2;
+//                }else {
                     login = conn.prepareStatement("SELECT PassWord FROM tLogin WHERE UserName = ?");
                     login.setString(1,username);
                     rsL = login.executeQuery();
@@ -43,7 +43,7 @@ public class Login {
                             return 0;
                         }
                     }
-                }
+//                }
 
             }
         } catch (SQLException e) {

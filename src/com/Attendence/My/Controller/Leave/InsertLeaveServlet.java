@@ -2,6 +2,7 @@ package com.Attendence.My.Controller.Leave;
 
 import com.Attendence.My.Model.Entity.Leave.Leave;
 import com.Attendence.My.Model.Service.Leave.LeaveList;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(name = "InsertLeaveServlet",urlPatterns = "/InsertLeaveServlet")
@@ -30,14 +32,22 @@ public class InsertLeaveServlet extends HttpServlet {
         leave.setBeginDate(request.getParameter("BeginDate"));
         leave.setEndDate(request.getParameter("EndDate"));
         leave.setLeaveReason(request.getParameter("LeaveReason"));
-        int page = Integer.parseInt(request.getParameter("page"));
+//        int page = Integer.parseInt(request.getParameter("page"));
+        PrintWriter out = response.getWriter();
+        JSONObject json = new JSONObject();
 
         LeaveList leaveList = new LeaveList();
+
         try {
-            leaveList.LeaveInsert(leave);
+            if(leaveList.LeaveInsert(leave)){
+                json.put("Res","true");
+            }else {
+                json.put("Res","false");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        out.println(json);
 //        response.sendRedirect("http://localhost/AttendanceFrontEnd/index.html");
     }
 

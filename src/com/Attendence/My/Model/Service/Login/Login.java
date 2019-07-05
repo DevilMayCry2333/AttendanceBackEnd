@@ -15,8 +15,6 @@ public class Login {
                 return "密码错误或者用户不存在";
             case 1:
                 return "登录成功";
-            case 2:
-                return "用户已登录";
             default:
                 return "default";
         }

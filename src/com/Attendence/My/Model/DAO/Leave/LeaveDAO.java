@@ -43,7 +43,7 @@ public class LeaveDAO {
         return leavArr;
     }
     public boolean InsertLeave(Leave leave) throws SQLException {
-        String st="INSERT INTO myleave (LeaveId, LeaveName, BeginDate, EndDate, LeaveReason, Id) vaues(?,?,?,?,?,?) ";
+        String st="INSERT INTO myleave (LeaveId, LeaveName, BeginDate, EndDate, LeaveReason, Id) VALUES (?,?,?,?,?,?) ";
         DBUtils db=new DBUtils();
         Connection conn=db.getConnecton();
         int c;
@@ -53,7 +53,8 @@ public class LeaveDAO {
         preparedStatement.setString(3,leave.getBeginDate());
         preparedStatement.setString(4,leave.getEndDate());
         preparedStatement.setString(5,leave.getLeaveReason());
-        preparedStatement.setString(6,"1");
+        preparedStatement.setString(6, String.valueOf(leave.getId()));
+
         c = preparedStatement.executeUpdate();
         preparedStatement.close();
         conn.close();
