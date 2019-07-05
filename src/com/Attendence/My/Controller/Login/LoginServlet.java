@@ -12,6 +12,8 @@ import java.sql.SQLException;
 
 @javax.servlet.annotation.WebServlet(name = "LoginServlet",urlPatterns = "/LoginServlet")
 public class LoginServlet extends javax.servlet.http.HttpServlet {
+    public String UserName;
+    public String PassWord;
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin","*");
         //允许请求的方法
@@ -27,8 +29,8 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
         PrintWriter out=response.getWriter();
         response.setContentType("text/javascript;charset=utf-8");
 
-        String UserName=request.getParameter("username");
-        String PassWord=request.getParameter("password");
+        UserName=request.getParameter("username");
+        PassWord=request.getParameter("password");
         System.out.println(UserName);
 
         JSONObject json = new JSONObject();
