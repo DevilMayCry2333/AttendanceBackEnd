@@ -16,7 +16,6 @@ public class PunchCard {
         com.Attendence.My.Model.DAO.PunchCard.PunchCard pc = new com.Attendence.My.Model.DAO.PunchCard.PunchCard();
         return pc.PunchQuery("SELECT * from Punch LIMIT ?,?",page);
 
-
     }
 
     public ArrayList<com.Attendence.My.Model.Entity.PunchCard.PunchCard> Query() throws SQLException {
