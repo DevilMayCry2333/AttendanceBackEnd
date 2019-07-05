@@ -25,21 +25,13 @@ class AttendTest {
         Attend attend = new Attend();
         try {
             ArrayList<com.Attendence.My.Model.Entity.Attend.Attend> arr = attend.QueryTable();
+            for (int i = 0; i < arr.size(); i++) {
+                com.Attendence.My.Model.Entity.Attend.Attend attend1 = arr.get(i);
+                assert attend1!=null;
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Test
-    void insertTable() {
-    }
-
-    @Test
-    void delTable() {
-    }
-
-    @Test
-    void query() {
     }
 }

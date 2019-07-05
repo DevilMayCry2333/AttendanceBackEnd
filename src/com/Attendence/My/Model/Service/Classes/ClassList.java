@@ -35,9 +35,8 @@ public class ClassList {
     }
     public boolean InsertClass(ArrayList<String> al){
         ClassDAO cd=new ClassDAO();
-        boolean cc=false;
         try {
-            if(cc==cd.InsertClass(al)){
+            if(cd.InsertClass(al)){
                 return true;
             }
         } catch (SQLException e) {

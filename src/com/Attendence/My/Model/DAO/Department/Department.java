@@ -113,7 +113,7 @@ public class Department {
         con.close();
 
 
-        if(c==1){
+        if(c>0){
             return  true;
         }
         else {
