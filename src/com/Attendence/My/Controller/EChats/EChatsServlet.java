@@ -48,8 +48,8 @@ public class EChatsServlet extends HttpServlet {
 
         for (int i = 0; i < arrPay.size(); i++) {
             JSONObject tmp = new JSONObject();
-            yLabelData.add(arrPay.get(i).getEmpName());
-            tmp.put("value",arrPay.get(i).getSalary());
+            yLabelData.add(arrPay.get(i).getEmpName());//添加EmpName
+            tmp.put("value",arrPay.get(i).getSalary());//获取Salary
             tmp.put("label","labelRight");
             dataSerData.add(tmp);
         }

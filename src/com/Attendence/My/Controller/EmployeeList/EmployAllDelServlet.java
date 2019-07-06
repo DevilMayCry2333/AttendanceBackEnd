@@ -25,19 +25,19 @@ public class EmployAllDelServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         PrintWriter out = response.getWriter();
-        String [] tearray = request.getParameterValues("DelList");
+        String [] tearray = request.getParameterValues("DelList");//获取前端的Dellist并放入数组
 //        for (int i = 0; i < tearray.length; i++) {
 //            System.out.println(tearray[i]);
 //        }
         Employee cl = new Employee();
-        boolean res=cl.DeleteAllEmp(tearray);
+        boolean res=cl.DeleteAllEmp(tearray);//删除并返回boolean类型的结果
         JSONObject json = new JSONObject();
         if(res){
             json.put("Res","true");
         }else {
             json.put("Res","false");
         }
-        out.println(json);
+        out.println(json);//判断并返回结果给前端
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

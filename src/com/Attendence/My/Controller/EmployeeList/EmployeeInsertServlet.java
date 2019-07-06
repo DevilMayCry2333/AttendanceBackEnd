@@ -39,7 +39,7 @@ public class EmployeeInsertServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         EmployeeInsert empInsert = new EmployeeInsert();
-        empInsert.setUserName(request.getParameter("userName"));
+        empInsert.setUserName(request.getParameter("userName"));//获取前端的userName并发送到empInsert
         empInsert.setUserCode(request.getParameter("userCode"));
         empInsert.setNation(request.getParameter("Nation"));
         empInsert.setIdCard(request.getParameter("IdCard"));
@@ -58,7 +58,7 @@ public class EmployeeInsertServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect("http://localhost/AttendanceFrontEnd/index.html");
+        response.sendRedirect("http://localhost/AttendanceFrontEnd/index.html");//跳转
 
 
 

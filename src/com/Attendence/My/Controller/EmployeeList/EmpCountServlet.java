@@ -27,9 +27,9 @@ public class EmpCountServlet extends HttpServlet {
 
         Employee employ = new Employee();
         JSONObject json = new JSONObject();
-        json.put("Count", employ.QueryAll());
+        json.put("Count", employ.QueryAll());//查询所有的employ并放入json
         PrintWriter pl = response.getWriter();
-        pl.println(json);
+        pl.println(json);//发送json
 
 
     }

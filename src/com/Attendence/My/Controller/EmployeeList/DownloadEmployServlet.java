@@ -49,7 +49,7 @@ public class DownloadEmployServlet extends HttpServlet {
             ArrayList<EmployeeList> EmployeeList =employee.Query();
             for (int i = 0; i <EmployeeList.size() ; i++) {
                 JSONObject json = new JSONObject();
-                json.put("EmployId",EmployeeList.get(i).getId());
+                json.put("EmployId",EmployeeList.get(i).getId());//获取ID
                 json.put("UserName",EmployeeList.get(i).getUserName());
                 json.put("Age",EmployeeList.get(i).getAge());
                 json.put("Nation",EmployeeList.get(i).getNation());
@@ -60,16 +60,16 @@ public class DownloadEmployServlet extends HttpServlet {
                 json.put("Job",EmployeeList.get(i).getStation());
                 json.put("Des",EmployeeList.get(i).getDesc());
                 json.put("Gender",EmployeeList.get(i).getGender());
-                jsonArray.add(json);
+                jsonArray.add(json);//json放入json数组
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        StringBuffer sb = GetExcel.getExcel("Station",etable,jsonArray);
+        StringBuffer sb = GetExcel.getExcel("Station",etable,jsonArray);//生成Excel
         System.out.println(sb.toString());
 
-        request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect(Url.Url + "export.jsp");
+        request.getSession().setAttribute("excel", sb.toString());//字符串形式输出
+        response.sendRedirect(Url.Url + "export.jsp");//跳转
 
     }
 

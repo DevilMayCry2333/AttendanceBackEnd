@@ -27,13 +27,13 @@ public class DepartmentAddServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String DepartmentId=request.getParameter("a");
+        String DepartmentId=request.getParameter("a");//获取前端的Id"a"
         String Dname=request.getParameter("b");
         String Dprincipal=request.getParameter("c");
         String Dability= request.getParameter("d");
         String Sdepartment= request.getParameter("e");
-        DepartmentList dl = new DepartmentList();
-        dl.setDepartmentId(DepartmentId);
+        DepartmentList dl = new DepartmentList();//新建一个DepartmentList对象
+        dl.setDepartmentId(DepartmentId);//发送id
         dl.setDname(Dname);
         dl.setDPrincipal(Dprincipal);
         dl.setDability(Dability);
@@ -43,7 +43,7 @@ public class DepartmentAddServlet extends HttpServlet {
 
         boolean res = d.InsertDepartment(dl);
         if(res){
-            json.put("Res","true");
+            json.put("Res","true");//判断是否插入成功
         }else {
             json.put("Res","false");
         }

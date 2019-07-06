@@ -36,23 +36,23 @@ public class EmployeeListServlet extends HttpServlet {
         //int page=Integer.valueOf(pages).intValue();
         Employee employeeList=new Employee();
         try {
-            ArrayList<EmployeeList> arrEmp = employeeList.EmployeeList(page);
+            ArrayList<EmployeeList> arrEmp = employeeList.EmployeeList(page);//创建EmployeeList类型的数组对象并调用方法
             for (int i = 0; i < arrEmp.size(); i++) {
                 JSONObject js = new JSONObject();
-                    js.put("Id",arrEmp.get(i).getId());
+                    js.put("Id",arrEmp.get(i).getId());//获取id 值并存入js中
                     js.put("EmployId",arrEmp.get(i).getUserCode());
                     js.put("UserName",arrEmp.get(i).getUserName());
                     js.put("Gender",arrEmp.get(i).getGender());
                     js.put("Age",arrEmp.get(i).getAge());
                     js.put("Nation",arrEmp.get(i).getNation());
                     js.put("Job",arrEmp.get(i).getStation());
-                    jsonArray.add(js);
+                    jsonArray.add(js);//js存入jsonArray中
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         PrintWriter out = response.getWriter();
-        out.println(jsonArray);
+        out.println(jsonArray);//返回到前端jsonArray
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

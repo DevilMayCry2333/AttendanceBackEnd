@@ -19,7 +19,7 @@ public class ClassInsertServlet extends HttpServlet {
         boolean c=false;
         ClassList tt=new ClassList();
         ArrayList<String> al = new ArrayList<>();
-        al.add(request.getParameter("ClassId"));
+        al.add(request.getParameter("ClassId"));//获取前端传来的值并存入al中
         al.add(request.getParameter("Cname"));
         al.add(request.getParameter("Mtime"));
         al.add(request.getParameter("Atime"));

@@ -30,7 +30,7 @@ public class ClassesServlet extends HttpServlet {
 
 
         JSONArray jsonArray = new JSONArray();
-        int page = Integer.parseInt(request.getParameter("page"));
+        int page = Integer.parseInt(request.getParameter("page"));//获取前端传来的page值
 
 
         ClassList c=new ClassList();
@@ -38,7 +38,7 @@ public class ClassesServlet extends HttpServlet {
             ArrayList<ClassUpdate> ClassUpdate = c.ClassList(page);
             for (int i = 0; i < ClassUpdate.size(); i++) {
                 JSONObject json = new JSONObject();
-                json.put("Id",ClassUpdate.get(i).getId());
+                json.put("Id",ClassUpdate.get(i).getId());//值放入json中
                 json.put("ClassId",ClassUpdate.get(i).getClassId());
                 json.put("Cname",ClassUpdate.get(i).getCname());
                 json.put("Mtime",ClassUpdate.get(i).getMtime());

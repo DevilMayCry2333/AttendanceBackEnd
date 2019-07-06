@@ -31,13 +31,13 @@ public class ClassUpdateServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         int id= Integer.parseInt(request.getParameter("id"));
-        String Ccode=request.getParameter("Ccode");
+        String Ccode=request.getParameter("Ccode");//获取前端的Ccode值
         String Cname=request.getParameter("Cname");
         String EarlyTimeSelect=request.getParameter("EarlyTimeSelect");
         String LateTimeSelect= request.getParameter("LateTimeSelect");
         String desc = request.getParameter("desc");
         ClassUpdate classUpdate = new ClassUpdate();
-        classUpdate.setId(id);
+        classUpdate.setId(id);//发送更改后的值
         classUpdate.setClassId(Ccode);
         classUpdate.setCname(Cname);
         classUpdate.setMtime(EarlyTimeSelect);
@@ -48,7 +48,7 @@ public class ClassUpdateServlet extends HttpServlet {
         JSONObject js = new JSONObject();
         js.put("Res",String.valueOf(res));
         PrintWriter out = response.getWriter();
-        out.println(js.toString());
+        out.println(js.toString());//以字符串形式输出
 
 
     }

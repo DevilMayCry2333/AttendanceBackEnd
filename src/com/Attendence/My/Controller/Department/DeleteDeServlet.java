@@ -27,7 +27,7 @@ public class DeleteDeServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        String [] tearray = request.getParameterValues("DelList");
+        String [] tearray = request.getParameterValues("DelList");//获取前端删除的list
         out.println(tearray[0]);
 
         Department der=new Department();
@@ -35,7 +35,7 @@ public class DeleteDeServlet extends HttpServlet {
 //        bol=der.DeleteDepartment();
         if(bol==true){
             RequestDispatcher requestDispatcher=request.getRequestDispatcher("xx.jsp");
-            requestDispatcher.forward(request,response);
+            requestDispatcher.forward(request,response);//判断是否删除成功
         }
         else {
             RequestDispatcher requestDispatcher=request.getRequestDispatcher("xxx.jsp");

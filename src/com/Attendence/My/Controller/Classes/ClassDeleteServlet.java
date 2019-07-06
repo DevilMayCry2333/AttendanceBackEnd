@@ -26,7 +26,7 @@ public class ClassDeleteServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         PrintWriter out = response.getWriter();
-        String [] tearray = request.getParameterValues("DelList");
+        String [] tearray = request.getParameterValues("DelList");//获得前端传来的数组
 //        for (int i = 0; i < tearray.length; i++) {
 //            System.out.println(tearray[i]);
 //        }
@@ -34,7 +34,7 @@ public class ClassDeleteServlet extends HttpServlet {
         boolean res = cl.DeleteClass(tearray);
         JSONObject json = new JSONObject();
         if(res){
-            json.put("Res","true");
+            json.put("Res","true");//判断是否删除成功
         }else {
             json.put("Res","false");
         }

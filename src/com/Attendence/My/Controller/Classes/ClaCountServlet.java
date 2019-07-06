@@ -26,7 +26,7 @@ public class ClaCountServlet extends HttpServlet {
 
         ClassList classList = new ClassList();
         JSONObject json = new JSONObject();
-        json.put("Count", classList.QueryAll());
+        json.put("Count", classList.QueryAll());//查询数量
         PrintWriter pl = response.getWriter();
         pl.println(json);
 

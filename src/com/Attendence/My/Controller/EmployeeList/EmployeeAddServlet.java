@@ -27,7 +27,7 @@ public class EmployeeAddServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String EmployId=request.getParameter("a");
+        String EmployId=request.getParameter("a");//获取ID
         String UserName=request.getParameter("b");
         String Age=request.getParameter("c");
         String Nation= request.getParameter("d");
@@ -41,7 +41,7 @@ public class EmployeeAddServlet extends HttpServlet {
 
 
         EmployeeInsert EmpInsert = new EmployeeInsert();
-        EmpInsert.setUserCode(EmployId);
+        EmpInsert.setUserCode(EmployId);//发送更新后的EmloyId
         EmpInsert.setUserName(UserName);
         EmpInsert.setNation(Nation);
         EmpInsert.setIdCard(IDnumber);
@@ -73,7 +73,7 @@ public class EmployeeAddServlet extends HttpServlet {
         try {
             if(s.AddEmp(EmpInsert)){
                 System.out.println("yes");
-                json.put("Res","true");
+                json.put("Res","true");//判断插入的结果并放入json
             }else{
                 System.out.println("error");
                 json.put("Res","false");
@@ -82,7 +82,7 @@ public class EmployeeAddServlet extends HttpServlet {
             e.printStackTrace();
         }
         PrintWriter out = response.getWriter();
-        out.println(json);
+        out.println(json);//向前端返回json
 
     }
 

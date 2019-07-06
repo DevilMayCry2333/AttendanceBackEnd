@@ -25,7 +25,7 @@ public class EmployDelServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String id= request.getParameter("id");
+        String id= request.getParameter("id");//获取前端的ID
         Employee ed= new Employee();
         JSONObject json = new JSONObject();
         PrintWriter out = response.getWriter();
@@ -33,7 +33,7 @@ public class EmployDelServlet extends HttpServlet {
         try {
             if(ed.deleteEmp(id)){
 //                System.out.println("yes");
-                json.put("Res","true");
+                json.put("Res","true");//判断是否删除成功如果成功则返回结果true
             }else{
                 json.put("Res","false");
 //                System.out.println("error");
@@ -41,7 +41,7 @@ public class EmployDelServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        out.println(json);
+        out.println(json);//向前端发送json的结果
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

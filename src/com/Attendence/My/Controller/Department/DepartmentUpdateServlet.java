@@ -27,7 +27,7 @@ public class DepartmentUpdateServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String id= request.getParameter("id");
+        String id= request.getParameter("id");//获取前端的id
         String DepartmentId=request.getParameter("a");
         String Dname=request.getParameter("b");
         String Dprincipal=request.getParameter("c");
@@ -35,7 +35,7 @@ public class DepartmentUpdateServlet extends HttpServlet {
         String Sdepartment= request.getParameter("e");
 
         DepartmentList dl = new DepartmentList();
-        dl.setId(Integer.parseInt(id));
+        dl.setId(Integer.parseInt(id));//发送id
         dl.setDepartmentId(DepartmentId);
         dl.setDname(Dname);
         dl.setDPrincipal(Dprincipal);
@@ -56,7 +56,7 @@ public class DepartmentUpdateServlet extends HttpServlet {
             e.printStackTrace();
         }
         PrintWriter out = response.getWriter();
-        out.println(json);
+        out.println(json);//判断是否更新成功并把结果发送给前端
 
     }
 

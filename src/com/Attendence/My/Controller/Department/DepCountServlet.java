@@ -24,11 +24,11 @@ public class DepCountServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        Department department = new Department();
+        Department department = new Department();//newDepartment对象
         JSONObject json = new JSONObject();
-        json.put("Count", department.QueryAll());
+        json.put("Count", department.QueryAll());//查询所有并计数
         PrintWriter pl = response.getWriter();
-        pl.println(json);
+        pl.println(json);//返回json
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

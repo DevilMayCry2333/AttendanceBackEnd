@@ -48,26 +48,6 @@ public class ClassDAO {
     }
 
     public boolean InsertClass(ArrayList<String> list) throws SQLException {
-//        String sql="INSERT INTO Classes(ClassId,Cname,Mtime,Atime)values('" + list.get(0) + "','"
-//                + list.get(1) + "','" + list.get(2) +"','" + list.get(3) + "')";
-//        DBUtils db=new DBUtils();
-//        Connection conn=db.getConnecton();
-//        boolean c = false;
-//        try {
-//            Statement stt=conn.createStatement();
-//            c=stt.execute(sql);
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        if(c==true){
-//            return  true;
-//        }
-//        else {
-//            return false;
-//        }
-
-
         DBUtils dbUtils=new DBUtils();
         Connection con= dbUtils.getConnecton();
         String sql = "insert into Classes(ClassId, Cname, Mtime, Atime)  value (?,?,?,?)";

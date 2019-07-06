@@ -37,7 +37,7 @@ public class DownloadClassServlet extends HttpServlet {
             ArrayList<ClassUpdate> ClassUpdate = Cl.Query();
             for (int i = 0; i < ClassUpdate.size(); i++) {
                 JSONObject json = new JSONObject();
-                json.put("Id",ClassUpdate.get(i).getId());
+                json.put("Id",ClassUpdate.get(i).getId());//取Id并放入json中
                 json.put("ClassId",ClassUpdate.get(i).getClassId());
                 json.put("Cname",ClassUpdate.get(i).getCname());
                 json.put("Mtime",ClassUpdate.get(i).getMtime());
@@ -47,10 +47,10 @@ public class DownloadClassServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        StringBuffer sb = GetExcel.getExcel("Station",colname,jsonArr);
+        StringBuffer sb = GetExcel.getExcel("Station",colname,jsonArr);//变为Excel
         System.out.println(sb.toString());
 
-        request.getSession().setAttribute("excel", sb.toString());
+        request.getSession().setAttribute("excel", sb.toString());//设置前端session
         response.sendRedirect(Url.Url + "export.jsp");
     }
 

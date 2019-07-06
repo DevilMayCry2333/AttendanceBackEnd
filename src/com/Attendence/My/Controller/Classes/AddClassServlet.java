@@ -27,14 +27,14 @@ public class AddClassServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String Ccode=request.getParameter("Ccode");
+        String Ccode=request.getParameter("Ccode");//前端获取数据
         String Cname=request.getParameter("Cname");
         String EarlyTimeSelect=request.getParameter("EarlyTimeSelect");
         String LateTimeSelect= request.getParameter("LateTimeSelect");
         String desc = request.getParameter("desc");
 
         ArrayList<String> list = new ArrayList<>();
-        list.add(Ccode);
+        list.add(Ccode);//添加数据到list
         list.add(Cname);
         list.add(EarlyTimeSelect);
         list.add(LateTimeSelect);
@@ -44,7 +44,7 @@ public class AddClassServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             if(s.AddClass(list)){
-                json.put("Res","true");
+                json.put("Res","true");//判断是否添加成功
                 System.out.println("yes");
             }else{
                 json.put("Res","false");

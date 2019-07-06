@@ -21,7 +21,7 @@ import java.util.List;
 public class DownloadDepartmentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<String> atable=new ArrayList<>();
-        atable.add("DepartmentId");
+        atable.add("DepartmentId");//创建列表
         atable.add("Dname");
         atable.add("Dprincipal");
         atable.add("Dability");
@@ -32,22 +32,22 @@ public class DownloadDepartmentServlet extends HttpServlet {
             ArrayList<DepartmentList> DepartmentList=department.Query();
             JSONObject json=new JSONObject();
             for (int i = 0; i <DepartmentList.size() ; i++) {
-                json.put("DepartmentId",DepartmentList.get(i).getDepartmentId());
+                json.put("DepartmentId",DepartmentList.get(i).getDepartmentId());//获得ID并放入json中
                 json.put("Dname",DepartmentList.get(i).getDname());
                 json.put("Dprincipal",DepartmentList.get(i).getDPrincipal());
                 json.put("Dability",DepartmentList.get(i).getDability());
                 json.put("Sdepartment",DepartmentList.get(i).getSdepartment());
-                jsonArray.add(json);
+                jsonArray.add(json);//json放入json数组
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        StringBuffer sb = GetExcel.getExcel("Station",atable,jsonArray);
+        StringBuffer sb = GetExcel.getExcel("Station",atable,jsonArray);//生成Excel
         System.out.println(sb.toString());
 
-        request.getSession().setAttribute("excel", sb.toString());
-        response.sendRedirect(Url.Url + "export.jsp");
+        request.getSession().setAttribute("excel", sb.toString());//以字符串形式输出
+        response.sendRedirect(Url.Url + "export.jsp");//跳转
 
     }
 

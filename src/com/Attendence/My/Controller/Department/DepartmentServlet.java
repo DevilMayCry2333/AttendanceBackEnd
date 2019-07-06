@@ -31,7 +31,7 @@ public class DepartmentServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         JSONArray jsonArray = new JSONArray();
-        int page = Integer.parseInt(request.getParameter("page"));
+        int page = Integer.parseInt(request.getParameter("page"));//获取前端当前页数
         System.out.println(page);
         //                JS.put("Id",re.getString("Id"));
 //                JS.put("DepartmentId",re.getString("DepartmentId"));
@@ -46,20 +46,20 @@ public class DepartmentServlet extends HttpServlet {
             ArrayList<DepartmentList> DepartmentList = department.Department(page);
             for (int i = 0; i < DepartmentList.size(); i++) {
                 JSONObject json = new JSONObject();
-                json.put("Id",DepartmentList.get(i).getId());
+                json.put("Id",DepartmentList.get(i).getId());//获取ID存入json
                 json.put("DepartmentId",DepartmentList.get(i).getDepartmentId());
                 json.put("Dname",DepartmentList.get(i).getDname());
                 json.put("Dprincipal",DepartmentList.get(i).getDPrincipal());
                 json.put("Dability",DepartmentList.get(i).getDability());
                 json.put("Sdepartment",DepartmentList.get(i).getSdepartment());
-                jsonArray.add(json);
+                jsonArray.add(json);//json存入jaonArray中
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         PrintWriter out = response.getWriter();
-        out.println(jsonArray);
+        out.println(jsonArray);//发送jsonArray给前端
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

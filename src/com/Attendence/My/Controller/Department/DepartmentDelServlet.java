@@ -25,7 +25,7 @@ public class DepartmentDelServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String id= request.getParameter("id");
+        String id= request.getParameter("id");//获取ID
         Department dd= new Department();
         PrintWriter out = response.getWriter();
         JSONObject json = new JSONObject();
@@ -45,7 +45,7 @@ public class DepartmentDelServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        out.println(json.toString());
+        out.println(json.toString());//判断是否删除成功
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

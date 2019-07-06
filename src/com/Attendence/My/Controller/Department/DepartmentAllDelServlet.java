@@ -25,15 +25,15 @@ public class DepartmentAllDelServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         PrintWriter out = response.getWriter();
-        String [] tearray = request.getParameterValues("DelList");
+        String [] tearray = request.getParameterValues("DelList");//获得前端的DelList
 //        for (int i = 0; i < tearray.length; i++) {
 //            System.out.println(tearray[i]);
 //        }
         Department cl = new Department();
-        boolean res = cl.DeleteDepartment(tearray);
+        boolean res = cl.DeleteDepartment(tearray);//调用删除的方法并把结果变为boolean
         JSONObject json = new JSONObject();
         if(res){
-            json.put("Res","true");
+            json.put("Res","true");//判断是否删除成功
         }else {
             json.put("Res","false");
         }

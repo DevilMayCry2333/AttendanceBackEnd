@@ -29,26 +29,26 @@ public class AttendServlet extends HttpServlet {
 
         Attend attendService = new Attend();
         try {
-            ArrayList<com.Attendence.My.Model.Entity.Attend.Attend> attendMod = attendService.QueryTable();
+            ArrayList<com.Attendence.My.Model.Entity.Attend.Attend> attendMod = attendService.QueryTable();//调用查询表方法
 //            com.Attendence.My.Model.Entity.Attend.Attend []attendMod = attendService.QueryTable();
-            JSONArray jsonArr = new JSONArray();
-            attendService.DelTable();
+            JSONArray jsonArr = new JSONArray();//new一个JSONArray对象
+            attendService.DelTable();//删除表的方法
 
             for (int i = 0; i < attendMod.size(); i++) {
-                attendService.insertTable(attendMod.get(i));
+                attendService.insertTable(attendMod.get(i));//循环插入
                 for (int j = 0; j < attendMod.get(i).getClassId().size(); j++) {
                     JSONObject json = new JSONObject();
-                    json.put("EarlyTime",attendMod.get(i).getEarlyTime().get(j));
+                    json.put("EarlyTime",attendMod.get(i).getEarlyTime().get(j));//信息传入json中
                     json.put("LateTime",attendMod.get(i).getLateTime().get(j));
                     json.put("EmpName",attendMod.get(i).getEmpName().get(j));
                     json.put("ClassId",attendMod.get(i).getClassId().get(j));
                     json.put("AttendStatus",attendMod.get(i).getAttendStatus().get(j));
-                    jsonArr.add(json);
+                    jsonArr.add(json);//放入JSON数组
                 }
 
             }
             PrintWriter out = response.getWriter();
-            out.println(jsonArr.toString());
+            out.println(jsonArr.toString());传输jsonArr
 
         } catch (SQLException e) {
             e.printStackTrace();

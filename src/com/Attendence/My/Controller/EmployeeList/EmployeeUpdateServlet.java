@@ -27,7 +27,7 @@ public class EmployeeUpdateServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String id= request.getParameter("id");
+        String id= request.getParameter("id");//获取前端id
         String EmployId=request.getParameter("a");
         String UserName=request.getParameter("b");
         String Age=request.getParameter("c");
@@ -41,7 +41,7 @@ public class EmployeeUpdateServlet extends HttpServlet {
         String sex = request.getParameter("k");
 
         EmployeeInsert EmpInsert = new EmployeeInsert();
-        EmpInsert.setId(Integer.parseInt(id));
+        EmpInsert.setId(Integer.parseInt(id));//插入到数据库
         EmpInsert.setUserCode(EmployId);
         EmpInsert.setUserName(UserName);
         EmpInsert.setNation(Nation);
@@ -69,7 +69,7 @@ public class EmployeeUpdateServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        out.println(json);
+        out.println(json);//判断更新结果并返回给前端
 
 
     }
