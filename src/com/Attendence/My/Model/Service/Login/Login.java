@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Login {
+    //进行登录验证
     public String loginquery(String username,String password) throws SQLException {
         com.Attendence.My.Model.DAO.Login.Login lg = new com.Attendence.My.Model.DAO.Login.Login();
         int realpass = lg.updateLogin(username, password);
@@ -19,6 +20,7 @@ public class Login {
                 return "default";
         }
     }
+
     public boolean deletLogin(String username){
         com.Attendence.My.Model.DAO.Login.Login lg = new com.Attendence.My.Model.DAO.Login.Login();
         return lg.deleteLogin(username);
