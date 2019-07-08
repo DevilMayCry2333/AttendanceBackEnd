@@ -10,6 +10,7 @@ public class Attend {
     private ArrayList<String> LateTime;
     private ArrayList<String> AttendStatus;
     private ArrayList<String> ClassId;
+    private ArrayList<String> status;
 
     public ArrayList<String> getID() {
         return ID;
@@ -65,5 +66,13 @@ public class Attend {
 
     public void setClassId(ArrayList<String> classId) {
         ClassId = classId;
+    }
+
+    public ArrayList<String> getStatus() {
+        return status;
+    }
+
+    public void setStatus(ArrayList<String> status) {
+        this.status = status;
     }
 }

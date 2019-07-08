@@ -11,7 +11,7 @@
  Target Server Version : 50642
  File Encoding         : utf-8
 
- Date: 07/05/2019 20:12:57 PM
+ Date: 07/08/2019 15:30:13 PM
 */
 
 SET NAMES utf8mb4;
@@ -29,13 +29,13 @@ CREATE TABLE `attend` (
   `ClassId` varchar(255) DEFAULT NULL,
   `attendStatus` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=456 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=521 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `attend`
 -- ----------------------------
 BEGIN;
-INSERT INTO `attend` VALUES ('454', '2019-06-26 07:00:00', '2019-06-26 17:22:00', '游开钰', '214', '正常'), ('455', '2019-06-26 07:00:00', '2019-06-26 17:22:00', '游开钰', '214', '迟到');
+INSERT INTO `attend` VALUES ('518', '2019-07-08 09:00:00', '2019-07-08 20:00:00', '游开钰', '2', '正常'), ('519', '2019-07-08 09:00:00', '2019-07-08 21:00:00', '小小', '2', '正常'), ('520', '2019-07-08 08:00:00', '2019-07-08 21:00:00', '肖腾跃', '2', '正常');
 COMMIT;
 
 -- ----------------------------
@@ -51,13 +51,13 @@ CREATE TABLE `classes` (
   `Descri` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `ClassId` (`ClassId`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=667 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `classes`
 -- ----------------------------
 BEGIN;
-INSERT INTO `classes` VALUES ('19', '22', '销售', '07:00:00.000000', '17:00:00.000000', '修改测试'), ('23', '214', '开发', '00:00:00.000000', '00:00:00.000000', null), ('25', '666', '管理', '09:00:00.000000', '15:00:00.000000', null), ('28', '444', 'JUnitTest2', '10:07:00.000000', '21:00:00.000000', null), ('30', '666', 'JUnitUpdate', '19:00:00.000000', '08:00:00.000000', 'None'), ('31', '444', 'JUnitTest2', '10:07:00.000000', '21:00:00.000000', null);
+INSERT INTO `classes` VALUES ('22', '1', '管理', '09:00:00.000000', '15:00:00.000000', null), ('214', '2', 'JUnitTest2', '09:00:00.000000', '16:00:00.000000', null), ('666', '3', '测试', '08:58:00.000000', '17:58:03.000000', null);
 COMMIT;
 
 -- ----------------------------
@@ -72,13 +72,13 @@ CREATE TABLE `department` (
   `Dability` varchar(255) DEFAULT NULL,
   `Sdepartment` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `department`
 -- ----------------------------
 BEGIN;
-INSERT INTO `department` VALUES ('7', '444', '测试修改', '游', 'CEO', '无'), ('11', '11', '测试', '游开钰', '开发', 'CEO'), ('12', '266', 'JUnitDepTest', 'CEO', '管理', 'ROOT'), ('13', '266', 'JUnitDepTest', 'CEO', '管理', 'ROOT'), ('17', '666', 'JUnitUpdateTest', 'ROOT', '直接负责人', 'ROOT'), ('21', '266', 'JUnitDepTest', 'CEO', '管理', 'ROOT');
+INSERT INTO `department` VALUES ('22', '1', '销售部门', '游开钰', '销售', '销售'), ('23', '2', '开发部门', '游开钰', '开发', '开发');
 COMMIT;
 
 -- ----------------------------
@@ -100,15 +100,14 @@ CREATE TABLE `employ` (
   `Gender` varchar(10) DEFAULT NULL,
   `ClassId` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`Id`),
-  KEY `ClassId` (`ClassId`),
-  CONSTRAINT `ClassId` FOREIGN KEY (`ClassId`) REFERENCES `classes` (`ClassId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
+  KEY `ClassId` (`ClassId`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `employ`
 -- ----------------------------
 BEGIN;
-INSERT INTO `employ` VALUES ('1', '1', '游开钰', '中国', '35XX', '1000', '137', '137', 'CEO', '22', '18', '男', '214'), ('11', '2', '家香', '3', '3', '3', '3', '3', '214', '3', '3', '男', '214'), ('12', '2', '林善凯', '66', '66', '66', '66', '66', '214', '22', '66', '男', '214'), ('15', '6677', '测试1', '1', '1', '1', '1', '1', '214', '22', '66', '男', '214'), ('16', '2', '吴', '汉', '3501', '1000', '66', '66', '214', '测试', '19', '女', '214'), ('17', '11', '测试2', '66', '66', '66', '66', '66', '214', '66', '66', '男', '214'), ('18', '测试6', '11', '22', '33', '44', '55', '22', '214', '66', '22', '男', '214'), ('19', '2', '肖腾跃', '汉', '350122', '10000', '137', '137', '214', '男', '19', '男', '214'), ('20', '3', '林煊鸿', '汉', '350122', '10000', '137', '137', '214', '男', '20', '男', '214'), ('21', '4', 'CEO', '汉', '350122', '1000000', '100000', '10000', '214', '10000', '20', '男', '214'), ('22', '222', 'CFO', '汉', '350122', '1000', '1000', '1000', '214', '男', '12', '男', '214'), ('23', '测试', '22', '44', '350122', '111', '2223', '333', '22', '444', '112', '男', '214'), ('24', '2222', 'Update', '中国', '350122', '10000', '137', '137', '测试', '描述', '13', '男', '214'), ('28', '66666', 'Update', '中国', '350122', '10000', '137', '137', '测试', '描述', '13', '男', '214'), ('29', '2222', 'Update', '中国', '350122', '10000', '137', '137', '测试', '描述', '13', '男', '214');
+INSERT INTO `employ` VALUES ('34', '1', '游开钰', '汉', '350122', '1000', '137', '137', '销售', '为空', '22', '男', '3'), ('35', '2', '林煊鸿', '汉', '350111', '10000', '137', '137', '销售', '无', '20', '男', '3'), ('36', '3', '林善凯', '汉', '3501', '10000', '183', '183', '销售', '无', '20', '男', '3'), ('37', '4', '肖腾跃', '汉', '3501', '10000', '10086', '10086', '销售', '无', '30', '男', '3'), ('50', '22', '小小', '11', '11', '11', '11', '11', '开发', '11', '33', '男', '214'), ('51', '5', '小敏', '汉', '3501', '1000', '137', '137', '开发', '无', '20', '男', '2'), ('52', '7', '新晋员工', '汉', '137', '1000', '137', '137', '开发', '无', '20', '男', '2'), ('53', '8', 'Aimer', '汉', '350122', '10000', '137', '无', '管理', '无', '18', '女', '2'), ('54', '9', 'Alpha', '汉', '35011', '2000', '137', '137', '管理', '无', '22', '男', '2'), ('55', '10', 'Beta', '汉', '350122', '1000', '137', '137', '管理', '无', '19', '男', '2'), ('56', '11', '程序猿', '汉', '350122', '10000', '137', '137', '开发', '无', '18', '男', '2');
 COMMIT;
 
 -- ----------------------------
@@ -123,13 +122,13 @@ CREATE TABLE `myleave` (
   `LeaveReason` varchar(255) DEFAULT NULL,
   `Id` int(10) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `myleave`
 -- ----------------------------
 BEGIN;
-INSERT INTO `myleave` VALUES ('22', '33', '2019-07-04 11:11:00.000000', '2019-07-04 11:11:00.000000', '12', '5'), ('6', '测试请假', '2019-07-04 11:00:00.000000', '2019-07-04 11:00:00.000000', '123', '6'), ('22', 'Joker', '2019-07-05 08:00:00.000000', '2019-07-05 12:00:00.000000', '回家', '7');
+INSERT INTO `myleave` VALUES ('1', '小小', '2019-07-09 08:00:00.000000', '2019-07-09 08:00:00.000000', '看病', '8');
 COMMIT;
 
 -- ----------------------------
@@ -165,13 +164,13 @@ CREATE TABLE `punch` (
   `Remarks` varchar(255) DEFAULT NULL,
   `Id` int(10) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `punch`
 -- ----------------------------
 BEGIN;
-INSERT INTO `punch` VALUES ('1', '214', '游开钰', '2019-06-26 07:00:00.000000', '22', '1'), ('2', '214', '游开钰', '2019-06-26 17:22:00.000000', '213', '9'), ('5', '214', '吴', '2019-06-26 07:00:00.000000', '213', '12'), ('6', '214', '家香', '2019-06-26 20:22:00.000000', '', '13'), ('56', '214', '林善凯', '2019-06-26 16:00:00.000000', '22', '14');
+INSERT INTO `punch` VALUES ('1', '2', '游开钰', '2019-07-08 09:00:00.000000', '无', '22'), ('2', '2', '游开钰', '2019-07-08 20:00:00.000000', '无', '23'), ('3', '2', '小小', '2019-07-08 21:00:00.000000', '无', '24'), ('4', '2', '肖腾跃', '2019-07-08 21:00:00.000000', '无', '25');
 COMMIT;
 
 -- ----------------------------
@@ -186,7 +185,14 @@ CREATE TABLE `repair` (
   `Reason` varchar(255) DEFAULT NULL,
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+--  Records of `repair`
+-- ----------------------------
+BEGIN;
+INSERT INTO `repair` VALUES ('1', '2', '小小', '2019-07-08 09:00:00.000000', '无', '7'), ('3', '2', '肖腾跃', '2019-07-08 08:00:00.000000', '无', '8'), ('22', '33', '测试', '2019-07-15 00:00:00.000000', '', '10');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `station`
@@ -196,17 +202,17 @@ CREATE TABLE `station` (
   `Id` int(10) NOT NULL AUTO_INCREMENT,
   `JobId` varchar(10) DEFAULT NULL,
   `Pname` varchar(15) DEFAULT NULL,
-  `Adepartment` varchar(10) DEFAULT NULL,
+  `Adepartment` varchar(20) DEFAULT NULL,
   `Isuperior` varchar(10) DEFAULT NULL,
   `Jcategory` enum('管理类','我就是董事长','技术类') DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `station`
 -- ----------------------------
 BEGIN;
-INSERT INTO `station` VALUES ('9', '9', '测试', '0', '0', '');
+INSERT INTO `station` VALUES ('24', '1', '销售前台', '0', '2', '我就是董事长'), ('25', '2', '技术顾问', '管理', '三无软件技术总监', '管理类');
 COMMIT;
 
 -- ----------------------------
@@ -251,33 +257,24 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 
 
 
-
-
-
-
-
-
 -- ----------------------------
 --  View structure for `realsalary`
 -- ----------------------------
 DROP VIEW IF EXISTS `realsalary`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `realsalary` AS select `attend`.`Id` AS `idx`,`attend`.`EarlyTime` AS `EarlyTime`,`attend`.`LateTime` AS `LateTime`,`attend`.`EmpName` AS `EmpName`,`attend`.`ClassId` AS `ClassId`,`attend`.`attendStatus` AS `attendStatus`,`myleave`.`LeaveId` AS `LeaveId`,`myleave`.`BeginDate` AS `BeginDate`,`myleave`.`EndDate` AS `EndDate`,`myleave`.`LeaveReason` AS `LeaveReason`,`myleave`.`Id` AS `Id`,timestampdiff(HOUR,`myleave`.`BeginDate`,`myleave`.`EndDate`) AS `LeaveTime` from (`attend` left join `myleave` on((`attend`.`EmpName` = `myleave`.`LeaveName`)));
 
-
+SET FOREIGN_KEY_CHECKS = 1;
 -- ----------------------------
 --  View structure for `absday`
 -- ----------------------------
 DROP VIEW IF EXISTS `absday`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `absday` AS select `realall`.`UserName` AS `UserName`,`realall`.`EarlyTime` AS `EarlyTime`,`realall`.`LatTime` AS `LatTime`,`realall`.`ClassId` AS `ClassId` from `realall` where (isnull(`realall`.`EarlyTime`) or isnull(`realall`.`LatTime`));
 
-
-
 -- ----------------------------
 --  View structure for `earlyafternoon`
 -- ----------------------------
 DROP VIEW IF EXISTS `earlyafternoon`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `earlyafternoon` AS select `realacard`.`punchId` AS `punchId`,`realacard`.`UserName` AS `UserName`,`realmcard`.`punchDate` AS `t1`,`realacard`.`punchDate` AS `t2`,`realacard`.`ClassId` AS `ClassId` from (`realacard` join `realmcard`) where ((cast(`realacard`.`punchDate` as time(6)) < (select `classes`.`Atime` from `classes` where (`realacard`.`ClassId` = `classes`.`ClassId`))) and (cast(`realmcard`.`punchDate` as date) = cast(`realacard`.`punchDate` as date)) and (`realmcard`.`UserName` = `realacard`.`UserName`));
-
 
 -- ----------------------------
 --  View structure for `intw`
@@ -291,16 +288,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP VIEW IF EXISTS `latemorning`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `latemorning` AS select `realmcard`.`punchId` AS `punchId`,`realmcard`.`UserName` AS `UserName`,`realmcard`.`punchDate` AS `t1`,`realacard`.`punchDate` AS `t2`,`realmcard`.`ClassId` AS `ClassId` from (`realmcard` join `realacard`) where ((cast(`realmcard`.`punchDate` as time(6)) > (select `classes`.`Mtime` from `classes` where (`realmcard`.`ClassId` = `classes`.`ClassId`))) and (cast(`realmcard`.`punchDate` as date) = cast(`realacard`.`punchDate` as date)) and (`realmcard`.`UserName` = `realacard`.`UserName`));
 
-
-
 -- ----------------------------
 --  View structure for `pay`
 -- ----------------------------
 DROP VIEW IF EXISTS `pay`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pay` AS select `realsalary`.`ClassId` AS `ClassId`,`realsalary`.`EmpName` AS `EmpName`,sum((case `realsalary`.`attendStatus` when '正常' then 100 when '旷工' then -(100) when '迟到' then -(20) else (`realsalary`.`LeaveTime` * -(20)) end)) AS `Salary`,min(`realall`.`EarlyTime`) AS `BeginTime`,max(`realall`.`LatTime`) AS `EndTime` from (`realsalary` join `realall`) where (`realall`.`UserName` = `realsalary`.`EmpName`) group by `realsalary`.`EmpName`;
-
-
-
-
-
-SET FOREIGN_KEY_CHECKS = 1;
