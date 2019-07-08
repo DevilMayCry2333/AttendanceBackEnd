@@ -36,23 +36,10 @@ class RepairCardTest {
     }
 
     @Test
-    void repairUpdate() {
-        RepairCard rc = new RepairCard();
-        com.Attendence.My.Model.Entity.RepairCard.RepairCard rcModel = new com.Attendence.My.Model.Entity.RepairCard.RepairCard();
-        rcModel.setId(2);
-        rcModel.setReason("24");
-        rcModel.setRepairId("34");
-        rcModel.setRepairDate("2018-11-11");
-        rcModel.setClassId("25");
-        rcModel.setUserName("asd");
-        assertEquals(true,rc.RepairUpdate(rcModel));
-    }
-
-    @Test
     void repairInsert() {
         RepairCard rc = new RepairCard();
         RepairInsert rcModel = new RepairInsert();
-        rcModel.setId(2);
+        rcModel.setId(5);
         rcModel.setReason("24");
         rcModel.setRepairId("34");
         rcModel.setRepairDate("2018-11-11");

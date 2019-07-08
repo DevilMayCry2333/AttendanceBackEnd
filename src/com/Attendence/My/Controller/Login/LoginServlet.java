@@ -35,11 +35,6 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
         JSONObject json = new JSONObject();
         Login lo = new Login();
-//        String a = "root";
-//        String b = "123";
-//        String c ="49c032802743b23f39b1304eb9414951cf0ad21389290f22";
-//        boolean res = EncryBiz.getSaltverifyMd5AndSha(b,c);
-//        System.out.println(res);
 
         try {
             String rs = lo.loginquery(UserName,PassWord);

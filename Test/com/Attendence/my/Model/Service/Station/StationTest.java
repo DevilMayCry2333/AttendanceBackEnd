@@ -37,14 +37,14 @@ class StationTest {
 
     @Test
     void deleteStation() {
-        String id = "27";
+        String id = "15";
         Station station = new Station();
         assertEquals(true,station.DeleteStation(id));
     }
 
     @Test
     void deleteStation1() {
-        String []del = {"19","20"};
+        String []del = {"16","17"};
         Station station = new Station();
         assertEquals(true,station.DeleteStation(del));
     }
@@ -53,9 +53,9 @@ class StationTest {
     void addSta() {
        Station station = new Station();
        ArrayList<String> strList = new ArrayList<>();
-        strList.add("JobId");
-        strList.add("Pname");
-        strList.add("Adepartment");
+        strList.add("20");
+        strList.add("Developer");
+        strList.add("Sale");
         strList.add("Isuperior");
         strList.add("管理类");
         try {
@@ -69,13 +69,14 @@ class StationTest {
     void updateSta() {
         Station station = new Station();
         ArrayList<String> strList = new ArrayList<>();
-        strList.add("JobIdd");
+        strList.add("18");
         strList.add("Pname");
         strList.add("Adepartment");
         strList.add("Isuperior");
         strList.add("管理类");
+        strList.add("14");
         try {
-            assertEquals(true,station.AddSta(strList));
+            assertEquals(true,station.UpdateSta(strList));
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -40,13 +40,15 @@ class PunchCardTest {
     void punchUpdate() {
         PunchCard pc = new PunchCard();
         com.Attendence.My.Model.Entity.PunchCard.PunchCard pcModel = new com.Attendence.My.Model.Entity.PunchCard.PunchCard();
-        pcModel.setID(2);
+        pcModel.setID(14);
         pcModel.setRemarks("24");
         pcModel.setPunchId("34");
         pcModel.setPunchDate("2018-11-11");
         pcModel.setClassId("25");
         pcModel.setUserName("asd");
-        assertEquals(true,pc.PunchUpdate(pcModel));
+        int res = pc.PunchUpdate(pcModel);
+        assert res > 0;
+
     }
 
     @Test

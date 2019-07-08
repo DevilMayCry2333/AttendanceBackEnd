@@ -48,7 +48,7 @@ public class AttendServlet extends HttpServlet {
 
             }
             PrintWriter out = response.getWriter();
-            out.println(jsonArr.toString());传输jsonArr
+            out.println(jsonArr.toString());//传输jsonArr
 
         } catch (SQLException e) {
             e.printStackTrace();
