@@ -37,7 +37,7 @@ public class RepairCardServlet extends HttpServlet {
                 json.put("RepairId",arrRepair.get(i).getRepairId());
                 json.put("ClassId",arrRepair.get(i).getClassId());
                 json.put("UserName",arrRepair.get(i).getUserName());
-                json.put("RepairDate",arrRepair.get(i).getRepairId());
+                json.put("RepairDate",arrRepair.get(i).getRepairDate());
                 json.put("Reason",arrRepair.get(i).getReason());
                 System.out.println(json);
                 jsonArray.add(json);

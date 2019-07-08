@@ -52,7 +52,8 @@ public class EmployeeAddServlet extends HttpServlet {
         EmpInsert.setDesc(Desc);
         EmpInsert.setGender(sex);
         EmpInsert.setAge(Age);
-        EmpInsert.setClassId("214");
+        EmpInsert.setClassId("2");
+
 
 //        ArrayList<String> list = new ArrayList<>();
 //        list.add(EmployId);

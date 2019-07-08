@@ -41,6 +41,27 @@ public class Station {
         }
         return sarr;
     }
+
+    public StationList updateQuery(int id){
+        DBUtils dbUtils = new DBUtils();
+        Connection connection = dbUtils.getConnecton();
+        StationList stationList = new StationList();
+        try {
+            PreparedStatement psmt = connection.prepareStatement("SELECT * FROM station WHERE id=?");
+            psmt.setString(1, String.valueOf(id));
+            ResultSet rs = psmt.executeQuery();
+            if(rs.next()){
+                stationList.setJobId(rs.getString("JobId"));
+                stationList.setJcategory(rs.getString("Jcategory"));
+                stationList.setIsuperior(rs.getString("Isuperior"));
+                stationList.setAdepartment(rs.getString("Adepartment"));
+                stationList.setPname(rs.getString("Pname"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return stationList;
+    }
     public boolean  InsertStation(ArrayList<String> list) throws SQLException {
         DBUtils dbUtils=new DBUtils();
         Connection con= dbUtils.getConnecton();

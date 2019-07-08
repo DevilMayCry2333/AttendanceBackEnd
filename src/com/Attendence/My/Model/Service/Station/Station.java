@@ -43,6 +43,12 @@ public class Station {
             return false;
         }
     }
+
+    public StationList updateQuery(int id){
+        com.Attendence.My.Model.DAO.Station.Station station = new com.Attendence.My.Model.DAO.Station.Station();
+        return station.updateQuery(id);
+    }
+
     public  boolean DeleteStation(String[] del){
         com.Attendence.My.Model.DAO.Station.Station station2=new com.Attendence.My.Model.DAO.Station.Station();
         station2.DeleteStation(del);
