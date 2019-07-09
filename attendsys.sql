@@ -11,7 +11,7 @@
  Target Server Version : 50642
  File Encoding         : utf-8
 
- Date: 07/08/2019 15:30:13 PM
+ Date: 07/08/2019 20:45:33 PM
 */
 
 SET NAMES utf8mb4;
@@ -29,13 +29,13 @@ CREATE TABLE `attend` (
   `ClassId` varchar(255) DEFAULT NULL,
   `attendStatus` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=521 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1688 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `attend`
 -- ----------------------------
 BEGIN;
-INSERT INTO `attend` VALUES ('518', '2019-07-08 09:00:00', '2019-07-08 20:00:00', '游开钰', '2', '正常'), ('519', '2019-07-08 09:00:00', '2019-07-08 21:00:00', '小小', '2', '正常'), ('520', '2019-07-08 08:00:00', '2019-07-08 21:00:00', '肖腾跃', '2', '正常');
+INSERT INTO `attend` VALUES ('1682', '2019-07-08 09:00:00.000000', '2019-07-08 20:00:00.000000', '游开钰', '2', '正常'), ('1683', '2019-07-08 08:00:00.000000', '2019-07-08 20:00:00.000000', '林煊鸿', '2', '正常'), ('1684', '2019-07-08 08:00:00.000000', '2019-07-08 21:00:00.000000', '林善凯', '2', '正常'), ('1685', '2019-07-08 08:00:00.000000', '2019-07-08 21:00:00.000000', '肖腾跃', '2', '正常'), ('1686', '缺勤', '2019-07-08 17:52:33.000000', '新晋员工', '2', '旷工'), ('1687', '2019-07-08 09:30:00', '2019-07-08 18:00:17', '小小', '2', '迟到');
 COMMIT;
 
 -- ----------------------------
@@ -101,13 +101,13 @@ CREATE TABLE `employ` (
   `ClassId` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `ClassId` (`ClassId`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `employ`
 -- ----------------------------
 BEGIN;
-INSERT INTO `employ` VALUES ('34', '1', '游开钰', '汉', '350122', '1000', '137', '137', '销售', '为空', '22', '男', '3'), ('35', '2', '林煊鸿', '汉', '350111', '10000', '137', '137', '销售', '无', '20', '男', '3'), ('36', '3', '林善凯', '汉', '3501', '10000', '183', '183', '销售', '无', '20', '男', '3'), ('37', '4', '肖腾跃', '汉', '3501', '10000', '10086', '10086', '销售', '无', '30', '男', '3'), ('50', '22', '小小', '11', '11', '11', '11', '11', '开发', '11', '33', '男', '214'), ('51', '5', '小敏', '汉', '3501', '1000', '137', '137', '开发', '无', '20', '男', '2'), ('52', '7', '新晋员工', '汉', '137', '1000', '137', '137', '开发', '无', '20', '男', '2'), ('53', '8', 'Aimer', '汉', '350122', '10000', '137', '无', '管理', '无', '18', '女', '2'), ('54', '9', 'Alpha', '汉', '35011', '2000', '137', '137', '管理', '无', '22', '男', '2'), ('55', '10', 'Beta', '汉', '350122', '1000', '137', '137', '管理', '无', '19', '男', '2'), ('56', '11', '程序猿', '汉', '350122', '10000', '137', '137', '开发', '无', '18', '男', '2');
+INSERT INTO `employ` VALUES ('36', '3', '林善凯', '汉', '3501', '10000', '183', '183', '销售', '无', '20', '男', '2'), ('37', '4', '肖腾跃', '汉', '3501', '10000', '10086', '10086', '销售', '无', '30', '男', '2'), ('50', '22', '小小', '11', '11', '11', '11', '11', '开发', '11', '33', '男', '2'), ('51', '5', '小程', '汉', '3501', '1000', '137', '137', '开发', '无', '20', '男', '2'), ('52', '7', '新晋员工', '汉', '137', '1000', '137', '137', '开发', '无', '20', '男', '2'), ('53', '8', 'Aimer', '汉', '350122', '10000', '137', '无', '管理', '无', '18', '女', '2'), ('54', '9', 'Alpha', '汉', '35011', '2000', '137', '137', '管理', '无', '22', '男', '2'), ('56', '11', '程序猿', '汉', '350122', '10000', '137', '137', '开发', '无', '18', '男', '2'), ('57', '1', '游开钰修改1', '汉', '350122', '1000', '137', '137', '测试', '无', '20', '男', '3'), ('58', '2', '林煊鸿', '汉', '350111', '10000', '137', '137', '销售', '无', '20', '男', '3'), ('59', '3', '林善凯1', '汉', '3501', '10000', '183', '183', '销售', '无', '20', '男', '3'), ('60', '4', '肖腾跃1', '汉', '3501', '10000', '10086', '10086', '销售', '无', '30', '男', '3'), ('63', '7', '新晋员工1', '汉', '137', '1000', '137', '137', '开发', '无', '20', '男', '2'), ('64', '8', 'Aimer1', '汉', '350122', '10000', '137', '无', '管理', '无', '18', '女', '2'), ('65', '9', 'Alpha1', '汉', '35011', '2000', '137', '137', '管理', '无', '22', '男', '2'), ('66', '10', 'Beta', '汉', '350122', '1000', '137', '137', '管理', '无', '19', '男', '2'), ('67', '11', '程序猿1', '汉', '350122', '10000', '137', '137', '开发', '无', '18', '男', '2'), ('70', '1', '游开钰', '汉', '350122', '1000', '137', '137', '销售', '为空', '22', '男', '3'), ('71', '1', '游开钰1', '汉', '350122', '1000', '137', '137', '销售', '为空', '22', '男', '3'), ('72', '2', '林煊鸿1', '汉', '350111', '10000', '137', '137', '销售', '无', '20', '男', '3'), ('73', '3', '林善凯2', '汉', '3501', '10000', '183', '183', '销售', '无', '20', '男', '3'), ('74', '4', '肖腾跃2', '汉', '3501', '10000', '10086', '10086', '销售', '无', '30', '男', '3'), ('77', '7', '新晋员工2', '汉', '137', '1000', '137', '137', '开发', '无', '20', '男', '2'), ('78', '8', 'Aimer2', '汉', '350122', '10000', '137', '无', '管理', '无', '18', '女', '2'), ('79', '9', 'Alpha2', '汉', '35011', '2000', '137', '137', '管理', '无', '22', '男', '2'), ('80', '10', 'Beta1', '汉', '350122', '1000', '137', '137', '管理', '无', '19', '男', '2');
 COMMIT;
 
 -- ----------------------------
@@ -128,7 +128,7 @@ CREATE TABLE `myleave` (
 --  Records of `myleave`
 -- ----------------------------
 BEGIN;
-INSERT INTO `myleave` VALUES ('1', '小小', '2019-07-09 08:00:00.000000', '2019-07-09 08:00:00.000000', '看病', '8');
+INSERT INTO `myleave` VALUES ('1', '小小', '2019-07-11 08:00:00.000000', '2019-07-11 20:00:00.000000', '看病', '8');
 COMMIT;
 
 -- ----------------------------
@@ -164,13 +164,13 @@ CREATE TABLE `punch` (
   `Remarks` varchar(255) DEFAULT NULL,
   `Id` int(10) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `punch`
 -- ----------------------------
 BEGIN;
-INSERT INTO `punch` VALUES ('1', '2', '游开钰', '2019-07-08 09:00:00.000000', '无', '22'), ('2', '2', '游开钰', '2019-07-08 20:00:00.000000', '无', '23'), ('3', '2', '小小', '2019-07-08 21:00:00.000000', '无', '24'), ('4', '2', '肖腾跃', '2019-07-08 21:00:00.000000', '无', '25');
+INSERT INTO `punch` VALUES ('1', '2', '游开钰', '2019-07-08 09:00:00.000000', '无', '22'), ('2', '2', '游开钰', '2019-07-08 20:00:00.000000', '无', '23'), ('4', '2', '肖腾跃', '2019-07-08 21:00:00.000000', '无', '25'), ('5', '2', '林煊鸿', '2019-07-08 08:00:00.000000', '无', '26'), ('6', '2', '林煊鸿', '2019-07-08 20:00:00.000000', '无', '27'), ('7', '2', '林善凯', '2019-07-08 08:00:00.000000', '无', '28'), ('8', '2', '林善凯', '2019-07-08 21:00:00.000000', '无', '29'), ('9', '2', '小小', '2019-07-08 09:30:00.000000', '无', '32'), ('10', '2', '小小', '2019-07-08 18:00:17.000000', '无', '33'), ('11', '2', '新晋员工', '2019-07-08 17:52:33.000000', '无', '35');
 COMMIT;
 
 -- ----------------------------
@@ -191,7 +191,7 @@ CREATE TABLE `repair` (
 --  Records of `repair`
 -- ----------------------------
 BEGIN;
-INSERT INTO `repair` VALUES ('1', '2', '小小', '2019-07-08 09:00:00.000000', '无', '7'), ('3', '2', '肖腾跃', '2019-07-08 08:00:00.000000', '无', '8'), ('22', '33', '测试', '2019-07-15 00:00:00.000000', '', '10');
+INSERT INTO `repair` VALUES ('3', '2', '肖腾跃', '2019-07-08 08:00:00.000000', '无', '8');
 COMMIT;
 
 -- ----------------------------
@@ -206,13 +206,13 @@ CREATE TABLE `station` (
   `Isuperior` varchar(10) DEFAULT NULL,
   `Jcategory` enum('管理类','我就是董事长','技术类') DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 --  Records of `station`
 -- ----------------------------
 BEGIN;
-INSERT INTO `station` VALUES ('24', '1', '销售前台', '0', '2', '我就是董事长'), ('25', '2', '技术顾问', '管理', '三无软件技术总监', '管理类');
+INSERT INTO `station` VALUES ('24', '', '销售前台', '销售', '三无软件董事', '我就是董事长'), ('25', '2', '技术顾问', '管理', '三无软件技术总监', '管理类'), ('28', '66', '运营', '销售', '三无软件CEO', '技术类');
 COMMIT;
 
 -- ----------------------------
@@ -241,13 +241,11 @@ COMMIT;
 DROP VIEW IF EXISTS `realacard`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `realacard` AS select `punch`.`punchId` AS `punchId`,`punch`.`UserName` AS `UserName`,`punch`.`punchDate` AS `punchDate`,cast(`punch`.`punchDate` as date) AS `DaypunchDate`,`punch`.`ClassId` AS `ClassId` from `punch` where (cast(`punch`.`punchDate` as time(6)) > '12:00:00') union select `repair`.`repairId` AS `repairId`,`repair`.`UserName` AS `UserName`,`repair`.`repairDate` AS `repairDate`,cast(`repair`.`repairDate` as date) AS `DayrepairDate`,`repair`.`ClassId` AS `ClassId` from `repair` where (cast(`repair`.`repairDate` as time(6)) > '12:00:00');
 
-
 -- ----------------------------
 --  View structure for `realmcard`
 -- ----------------------------
 DROP VIEW IF EXISTS `realmcard`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `realmcard` AS select `punch`.`punchId` AS `punchId`,`punch`.`UserName` AS `UserName`,`punch`.`punchDate` AS `punchDate`,cast(`punch`.`punchDate` as date) AS `DaypunchDate`,`punch`.`ClassId` AS `ClassId` from `punch` where (cast(`punch`.`punchDate` as time(6)) < '12:00:00') union select `repair`.`repairId` AS `repairId`,`repair`.`UserName` AS `UserName`,`repair`.`repairDate` AS `repairDate`,cast(`repair`.`repairDate` as date) AS `DayrepairDate`,`repair`.`ClassId` AS `ClassId` from `repair` where (cast(`repair`.`repairDate` as time(6)) < '12:00:00');
-
 
 -- ----------------------------
 --  View structure for `realall`
@@ -255,15 +253,14 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP VIEW IF EXISTS `realall`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `realall` AS select `realmcard`.`UserName` AS `UserName`,if((`realmcard`.`DaypunchDate` = `realacard`.`DaypunchDate`),`realmcard`.`punchDate`,`realmcard`.`punchDate`) AS `EarlyTime`,if((`realacard`.`DaypunchDate` = `realmcard`.`DaypunchDate`),`realacard`.`punchDate`,'缺勤') AS `LatTime`,`realmcard`.`ClassId` AS `ClassId` from (`realmcard` left join `realacard` on((`realmcard`.`UserName` = `realacard`.`UserName`))) union select `realacard`.`UserName` AS `UserName`,if((`realmcard`.`DaypunchDate` = `realacard`.`DaypunchDate`),`realmcard`.`punchDate`,'缺勤') AS `EarlyTime`,if((`realacard`.`DaypunchDate` = `realmcard`.`DaypunchDate`),`realacard`.`punchDate`,`realacard`.`punchDate`) AS `LatTime`,`realacard`.`ClassId` AS `ClassId` from (`realacard` left join `realmcard` on((`realmcard`.`UserName` = `realacard`.`UserName`)));
 
-
-
 -- ----------------------------
 --  View structure for `realsalary`
 -- ----------------------------
 DROP VIEW IF EXISTS `realsalary`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `realsalary` AS select `attend`.`Id` AS `idx`,`attend`.`EarlyTime` AS `EarlyTime`,`attend`.`LateTime` AS `LateTime`,`attend`.`EmpName` AS `EmpName`,`attend`.`ClassId` AS `ClassId`,`attend`.`attendStatus` AS `attendStatus`,`myleave`.`LeaveId` AS `LeaveId`,`myleave`.`BeginDate` AS `BeginDate`,`myleave`.`EndDate` AS `EndDate`,`myleave`.`LeaveReason` AS `LeaveReason`,`myleave`.`Id` AS `Id`,timestampdiff(HOUR,`myleave`.`BeginDate`,`myleave`.`EndDate`) AS `LeaveTime` from (`attend` left join `myleave` on((`attend`.`EmpName` = `myleave`.`LeaveName`)));
 
-SET FOREIGN_KEY_CHECKS = 1;
+
+
 -- ----------------------------
 --  View structure for `absday`
 -- ----------------------------
@@ -293,3 +290,10 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- ----------------------------
 DROP VIEW IF EXISTS `pay`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pay` AS select `realsalary`.`ClassId` AS `ClassId`,`realsalary`.`EmpName` AS `EmpName`,sum((case `realsalary`.`attendStatus` when '正常' then 100 when '旷工' then -(100) when '迟到' then -(20) else (`realsalary`.`LeaveTime` * -(20)) end)) AS `Salary`,min(`realall`.`EarlyTime`) AS `BeginTime`,max(`realall`.`LatTime`) AS `EndTime` from (`realsalary` join `realall`) where (`realall`.`UserName` = `realsalary`.`EmpName`) group by `realsalary`.`EmpName`;
+
+
+
+
+
+
+SET FOREIGN_KEY_CHECKS = 1;
